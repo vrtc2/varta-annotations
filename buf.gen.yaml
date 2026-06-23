@@ -1,0 +1,10 @@
+version: v2
+# go_package is set explicitly in each .proto, so managed mode is intentionally
+# off — consumers see one canonical Go import path for these annotations.
+plugins:
+  - remote: buf.build/protocolbuffers/go
+    out: gen/go
+    opt:
+      - paths=source_relative
+inputs:
+  - directory: .

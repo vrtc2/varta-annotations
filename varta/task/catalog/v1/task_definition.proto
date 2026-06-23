@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package varta.task.catalog.v1;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/vrtc2/varta-annotations/gen/go/varta/task/catalog/v1;catalogv1";
+
+// Task annotations.
+//
+// Apply these options to your own protobuf messages, fields, oneofs and enum
+// values so Varta can render them as a task input form and present the task in
+// the catalog.
+
+// Widget hints which input control Varta renders for a field.
+enum Widget {
+  WIDGET_UNSPECIFIED = 0;
+  WIDGET_INTEGER = 1;
+  WIDGET_FLOAT = 2;
+  WIDGET_TEXT = 3;
+  WIDGET_TEXTAREA = 4;
+  WIDGET_COORDINATES = 5;
+  WIDGET_DATE = 6;
+  WIDGET_DATETIME = 7;
+  WIDGET_ENUM = 8;
+  WIDGET_BOOLEAN = 9;
+  WIDGET_MAP_POINT = 10;
+  WIDGET_WAYPOINTS = 11;
+  WIDGET_WAYPOINTS_ITEM = 12;
+}
+
+message FieldUI {
+  Widget widget = 1;
+  string label = 2;
+  string placeholder = 3;
+  bool required = 4;
+  string hint = 5;
+}
+
+// Extend field options
+extend google.protobuf.FieldOptions {
+  FieldUI field = 70101;
+}
+
+// Optionally extend message options to mark this message as a Task
+message TaskDefinition {
+  string name = 1;
+  string description = 2;
+  string category = 3;
+  int32 sort = 4;
+}
+
+extend google.protobuf.MessageOptions {
+  TaskDefinition task = 70102;
+}
+
+message EnumValueUI {
+  string label = 1;
+  string description = 2;
+}
+
+extend google.protobuf.EnumValueOptions {
+  EnumValueUI enum_value = 70101;
+}
+
+message OneofValueUI {
+  string label = 1;
+  string description = 2;
+}
+
+extend google.protobuf.FieldOptions {
+  OneofValueUI oneof_value = 70102;
+}
+
+extend google.protobuf.OneofOptions {
+  FieldUI oneof_field = 70101;
+}

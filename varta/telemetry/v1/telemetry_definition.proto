@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package varta.telemetry.v1;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/vrtc2/varta-annotations/gen/go/varta/telemetry/v1;telemetryv1";
+
+// Telemetry annotations.
+//
+// Apply these options to your telemetry messages, fields and enum values so
+// Varta can label and document each value it ingests and displays.
+
+message Telemetry {
+  string name = 1;
+  optional string description = 2;
+}
+
+extend google.protobuf.MessageOptions {
+  Telemetry telemetry = 71010;
+}
+
+message TelemetryField {
+  string name = 1;
+  optional string description = 2;
+}
+
+extend google.protobuf.FieldOptions {
+  TelemetryField field = 71020;
+}
+
+message TelemetryEnumValue {
+  string label = 1;
+  optional string description = 2;
+}
+
+extend google.protobuf.EnumValueOptions {
+  TelemetryEnumValue enum_value = 71030;
+}

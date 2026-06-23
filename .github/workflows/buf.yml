@@ -1,0 +1,22 @@
+name: Buf
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  buf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-action@v1
+        with:
+          token: ${{ secrets.BUF_TOKEN }}
+          # PRs: format + lint + breaking-change detection (against BSR), no push.
+          # Push to main: same checks, then publish to the BSR.
+          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
