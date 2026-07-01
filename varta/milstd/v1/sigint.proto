@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/task/catalog/v1/task_definition.proto";
+
+message SignalsIntelligenceSymbol {
+  SigintEntity entity = 1 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Entity"
+    required: true
+  }];
+  optional SigintModifier1 modifier1 = 2 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 1"
+  }];
+  optional SigintModifier2 modifier2 = 3 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 2"
+  }];
+}
+
+enum SigintEntity {
+  SIGINT_ENTITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SIGINT_ENTITY_COMMUNICATIONS = 110100 [(varta.task.catalog.v1.enum_value) = {label: "Communications"}];
+  SIGINT_ENTITY_JAMMER_ELECTRONIC_COUNTER_MEASURES = 110200 [(varta.task.catalog.v1.enum_value) = {label: "Jammer Electronic Counter-measures"}];
+  SIGINT_ENTITY_RADAR = 110300 [(varta.task.catalog.v1.enum_value) = {label: "Radar"}];
+}
+
+enum SigintModifier1 {
+  SIGINT_MODIFIER1_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SIGINT_MODIFIER1_ANTI_AIRCRAFT_FIRE_CONTROL = 1 [(varta.task.catalog.v1.enum_value) = {label: "Anti-aircraft Fire Control"}];
+  SIGINT_MODIFIER1_AIRBORNE_SEARCH_AND_BOMBING = 2 [(varta.task.catalog.v1.enum_value) = {label: "Airborne Search And Bombing"}];
+  SIGINT_MODIFIER1_AIRBORNE_INTERCEPT = 3 [(varta.task.catalog.v1.enum_value) = {label: "Airborne Intercept"}];
+  SIGINT_MODIFIER1_ALTIMETER = 4 [(varta.task.catalog.v1.enum_value) = {label: "Altimeter"}];
+  SIGINT_MODIFIER1_AIRBORNE_RECONNAISSANCE_AND_MAPPING = 5 [(varta.task.catalog.v1.enum_value) = {label: "Airborne Reconnaissance And Mapping"}];
+  SIGINT_MODIFIER1_AIR_TRAFFIC_CONTROL = 6 [(varta.task.catalog.v1.enum_value) = {label: "Air Traffic Control"}];
+  SIGINT_MODIFIER1_BEACON_TRANSPONDER_NOT_IFF = 7 [(varta.task.catalog.v1.enum_value) = {label: "Beacon Transponder (not Iff)"}];
+  SIGINT_MODIFIER1_BATTLEFIELD_SURVEILLANCE = 8 [(varta.task.catalog.v1.enum_value) = {label: "Battlefield Surveillance"}];
+  SIGINT_MODIFIER1_CONTROLLED_APPROACH = 9 [(varta.task.catalog.v1.enum_value) = {label: "Controlled Approach"}];
+  SIGINT_MODIFIER1_CONTROLLED_INTERCEPT = 10 [(varta.task.catalog.v1.enum_value) = {label: "Controlled Intercept"}];
+  SIGINT_MODIFIER1_CELLULAR_MOBILE = 11 [(varta.task.catalog.v1.enum_value) = {label: "Cellular Mobile"}];
+  SIGINT_MODIFIER1_COASTAL_SURVEILLANCE = 12 [(varta.task.catalog.v1.enum_value) = {label: "Coastal Surveillance"}];
+  SIGINT_MODIFIER1_DECOY_MIMIC = 13 [(varta.task.catalog.v1.enum_value) = {label: "Decoy Mimic"}];
+  SIGINT_MODIFIER1_DATA_TRANSMISSION = 14 [(varta.task.catalog.v1.enum_value) = {label: "Data Transmission"}];
+  SIGINT_MODIFIER1_EARTH_SURVEILLANCE = 15 [(varta.task.catalog.v1.enum_value) = {label: "Earth Surveillance"}];
+  SIGINT_MODIFIER1_EARLY_WARNING = 16 [(varta.task.catalog.v1.enum_value) = {label: "Early Warning"}];
+  SIGINT_MODIFIER1_FIRE_CONTROL = 17 [(varta.task.catalog.v1.enum_value) = {label: "Fire Control"}];
+  SIGINT_MODIFIER1_GROUND_MAPPING = 18 [(varta.task.catalog.v1.enum_value) = {label: "Ground Mapping"}];
+  SIGINT_MODIFIER1_HEIGHT_FINDING = 19 [(varta.task.catalog.v1.enum_value) = {label: "Height Finding"}];
+  SIGINT_MODIFIER1_HARBOR_SURVEILLANCE = 20 [(varta.task.catalog.v1.enum_value) = {label: "Harbor Surveillance"}];
+  SIGINT_MODIFIER1_IDENTIFICATION_FRIEND_OR_FOE_INTERROGATOR = 21 [(varta.task.catalog.v1.enum_value) = {label: "Identification, Friend or Foe (interrogator)"}];
+  SIGINT_MODIFIER1_INSTRUMENT_LANDING_SYSTEM = 22 [(varta.task.catalog.v1.enum_value) = {label: "Instrument Landing System"}];
+  SIGINT_MODIFIER1_IONOSPHERIC_SOUNDING = 23 [(varta.task.catalog.v1.enum_value) = {label: "Ionospheric Sounding"}];
+  SIGINT_MODIFIER1_IDENTIFICATION_FRIEND_OR_FOE_TRANSPONDER = 24 [(varta.task.catalog.v1.enum_value) = {label: "Identification, Friend or Foe (transponder)"}];
+  SIGINT_MODIFIER1_BARRAGE_JAMMER = 25 [(varta.task.catalog.v1.enum_value) = {label: "Barrage Jammer"}];
+  SIGINT_MODIFIER1_CLICK_JAMMER = 26 [(varta.task.catalog.v1.enum_value) = {label: "Click Jammer"}];
+  SIGINT_MODIFIER1_DECEPTIVE_JAMMER = 27 [(varta.task.catalog.v1.enum_value) = {label: "Deceptive Jammer"}];
+  SIGINT_MODIFIER1_FREQUENCY_SWEPT_JAMMER = 28 [(varta.task.catalog.v1.enum_value) = {label: "Frequency Swept Jammer"}];
+  SIGINT_MODIFIER1_JAMMER_GENERAL = 29 [(varta.task.catalog.v1.enum_value) = {label: "Jammer (general)"}];
+  SIGINT_MODIFIER1_NOISE_JAMMER = 30 [(varta.task.catalog.v1.enum_value) = {label: "Noise Jammer"}];
+  SIGINT_MODIFIER1_PULSED_JAMMER = 31 [(varta.task.catalog.v1.enum_value) = {label: "Pulsed Jammer"}];
+  SIGINT_MODIFIER1_REPEATER_JAMMER = 32 [(varta.task.catalog.v1.enum_value) = {label: "Repeater Jammer"}];
+  SIGINT_MODIFIER1_SPOT_NOISE_JAMMER = 33 [(varta.task.catalog.v1.enum_value) = {label: "Spot Noise Jammer"}];
+  SIGINT_MODIFIER1_TRANSPONDER_JAMMER = 34 [(varta.task.catalog.v1.enum_value) = {label: "Transponder Jammer"}];
+  SIGINT_MODIFIER1_MISSILE_ACQUISITION = 35 [(varta.task.catalog.v1.enum_value) = {label: "Missile Acquisition"}];
+  SIGINT_MODIFIER1_MISSILE_CONTROL = 36 [(varta.task.catalog.v1.enum_value) = {label: "Missile Control"}];
+  SIGINT_MODIFIER1_MISSILE_DOWNLINK = 37 [(varta.task.catalog.v1.enum_value) = {label: "Missile Downlink"}];
+  SIGINT_MODIFIER1_METEOROLOGICAL = 38 [(varta.task.catalog.v1.enum_value) = {label: "Meteorological"}];
+  SIGINT_MODIFIER1_MULTI_FUNCTION = 39 [(varta.task.catalog.v1.enum_value) = {label: "Multi-function"}];
+  SIGINT_MODIFIER1_MISSILE_GUIDANCE = 40 [(varta.task.catalog.v1.enum_value) = {label: "Missile Guidance"}];
+  SIGINT_MODIFIER1_MISSILE_HOMING = 41 [(varta.task.catalog.v1.enum_value) = {label: "Missile Homing"}];
+  SIGINT_MODIFIER1_MISSILE_TRACKING = 42 [(varta.task.catalog.v1.enum_value) = {label: "Missile Tracking"}];
+  SIGINT_MODIFIER1_NAVIGATIONAL_GENERAL = 43 [(varta.task.catalog.v1.enum_value) = {label: "Navigational General"}];
+  SIGINT_MODIFIER1_NAVIGATIONAL_DISTANCE_MEASURING_EQUIPMENT = 44 [(varta.task.catalog.v1.enum_value) = {label: "Navigational Distance Measuring Equipment"}];
+  SIGINT_MODIFIER1_NAVIGATION_TERRAIN_FOLLOWING = 45 [(varta.task.catalog.v1.enum_value) = {label: "Navigation Terrain Following"}];
+  SIGINT_MODIFIER1_NAVIGATIONAL_WEATHER_AVOIDANCE = 46 [(varta.task.catalog.v1.enum_value) = {label: "Navigational Weather Avoidance"}];
+  SIGINT_MODIFIER1_OMNI_LINE_OF_SIGHT_LOS = 47 [(varta.task.catalog.v1.enum_value) = {label: "Omni-line of Sight (los)"}];
+  SIGINT_MODIFIER1_PROXIMITY_USE = 48 [(varta.task.catalog.v1.enum_value) = {label: "Proximity Use"}];
+  SIGINT_MODIFIER1_POINT_TO_POINT_LINE_OF_SIGHT_LOS = 49 [(varta.task.catalog.v1.enum_value) = {label: "Point-to-point Line of Sight (los)"}];
+  SIGINT_MODIFIER1_INSTRUMENTATION = 50 [(varta.task.catalog.v1.enum_value) = {label: "Instrumentation"}];
+  SIGINT_MODIFIER1_RANGE_ONLY = 51 [(varta.task.catalog.v1.enum_value) = {label: "Range Only"}];
+  SIGINT_MODIFIER1_SONOBUOY = 52 [(varta.task.catalog.v1.enum_value) = {label: "Sonobuoy"}];
+  SIGINT_MODIFIER1_SATELLITE_DOWNLINK = 53 [(varta.task.catalog.v1.enum_value) = {label: "Satellite Downlink"}];
+  SIGINT_MODIFIER1_SPACE = 54 [(varta.task.catalog.v1.enum_value) = {label: "Space"}];
+  SIGINT_MODIFIER1_SURFACE_SEARCH = 55 [(varta.task.catalog.v1.enum_value) = {label: "Surface Search"}];
+  SIGINT_MODIFIER1_SHELL_TRACKING = 56 [(varta.task.catalog.v1.enum_value) = {label: "Shell Tracking"}];
+  SIGINT_MODIFIER1_SATELLITE_UPLINK = 57 [(varta.task.catalog.v1.enum_value) = {label: "Satellite Uplink"}];
+  SIGINT_MODIFIER1_TARGET_ACQUISITION = 58 [(varta.task.catalog.v1.enum_value) = {label: "Target Acquisition"}];
+  SIGINT_MODIFIER1_TARGET_ILLUMINATION = 59 [(varta.task.catalog.v1.enum_value) = {label: "Target Illumination"}];
+  SIGINT_MODIFIER1_TROPOSPHERIC_SCATTER = 60 [(varta.task.catalog.v1.enum_value) = {label: "Tropospheric Scatter"}];
+  SIGINT_MODIFIER1_TARGET_TRACKING = 61 [(varta.task.catalog.v1.enum_value) = {label: "Target Tracking"}];
+  SIGINT_MODIFIER1_UNKNOWN = 62 [(varta.task.catalog.v1.enum_value) = {label: "Unknown"}];
+  SIGINT_MODIFIER1_VIDEO_REMOTING = 63 [(varta.task.catalog.v1.enum_value) = {label: "Video Remoting"}];
+  SIGINT_MODIFIER1_EXPERIMENTAL = 64 [(varta.task.catalog.v1.enum_value) = {label: "Experimental"}];
+  SIGINT_MODIFIER1_CYBER = 65 [(varta.task.catalog.v1.enum_value) = {label: "Cyber"}];
+}
+
+enum SigintModifier2 {
+  SIGINT_MODIFIER2_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SIGINT_MODIFIER2_CYBER = 1 [(varta.task.catalog.v1.enum_value) = {label: "Cyber"}];
+}

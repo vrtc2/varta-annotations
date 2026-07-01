@@ -4,8 +4,6 @@ package varta.telemetry.v1;
 
 import "google/protobuf/descriptor.proto";
 
-option go_package = "github.com/vrtc2/varta-annotations/gen/go/varta/telemetry/v1;telemetryv1";
-
 // Telemetry annotations.
 //
 // Apply these options to your telemetry messages, fields and enum values so

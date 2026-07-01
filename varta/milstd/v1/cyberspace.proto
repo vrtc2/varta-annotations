@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/task/catalog/v1/task_definition.proto";
+
+message CyberspaceSymbol {
+  CyberspaceEntity entity = 1 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Entity"
+    required: true
+  }];
+  optional CyberspaceModifier1 modifier1 = 2 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 1"
+  }];
+  optional CyberspaceModifier2 modifier2 = 3 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 2"
+  }];
+}
+
+enum CyberspaceEntity {
+  CYBERSPACE_ENTITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  CYBERSPACE_ENTITY_DEFENSIVE_CYBERSPACE_OPERATION = 110600 [(varta.task.catalog.v1.enum_value) = {label: "Defensive Cyberspace Operation"}];
+  CYBERSPACE_ENTITY_OFFENSIVE_CYBERSPACE_OPERATION = 110700 [(varta.task.catalog.v1.enum_value) = {label: "Offensive Cyberspace Operation"}];
+  CYBERSPACE_ENTITY_INTERNET_SERVICE_PROVIDER = 110800 [(varta.task.catalog.v1.enum_value) = {label: "Internet Service Provider"}];
+  CYBERSPACE_ENTITY_SECURITY = 110900 [(varta.task.catalog.v1.enum_value) = {label: "Security"}];
+  CYBERSPACE_ENTITY_OPERATIONS = 111000 [(varta.task.catalog.v1.enum_value) = {label: "Operations"}];
+  CYBERSPACE_ENTITY_ADVANCED_PERSISTENT_THREAT_APT = 120100 [(varta.task.catalog.v1.enum_value) = {label: "Advanced Persistent Threat (apt)"}];
+  CYBERSPACE_ENTITY_APT_WITH_C2 = 120101 [(varta.task.catalog.v1.enum_value) = {label: "APT With c2"}];
+  CYBERSPACE_ENTITY_APT_WITH_SELF_PROPAGATION = 120102 [(varta.task.catalog.v1.enum_value) = {label: "APT With Self Propagation"}];
+  CYBERSPACE_ENTITY_APT_WITH_C2_AND_SELF_PROPAGATION = 120103 [(varta.task.catalog.v1.enum_value) = {label: "APT With c2 And Self Propagation"}];
+  CYBERSPACE_ENTITY_APT_OTHER = 120104 [(varta.task.catalog.v1.enum_value) = {label: "APT Other"}];
+  CYBERSPACE_ENTITY_NAPT_WITH_C2 = 120201 [(varta.task.catalog.v1.enum_value) = {label: "Napt With c2"}];
+  CYBERSPACE_ENTITY_NAPT_WITH_SELF_PROPAGATION = 120202 [(varta.task.catalog.v1.enum_value) = {label: "Napt With Self Propagation"}];
+  CYBERSPACE_ENTITY_NAPT_WITH_C2_AND_SELF_PROPAGATION = 120203 [(varta.task.catalog.v1.enum_value) = {label: "Napt With c2 And Self Propagation"}];
+  CYBERSPACE_ENTITY_NAPT_OTHER = 120204 [(varta.task.catalog.v1.enum_value) = {label: "Napt Other"}];
+  CYBERSPACE_ENTITY_UNKNOWN = 130300 [(varta.task.catalog.v1.enum_value) = {label: "Unknown"}];
+  CYBERSPACE_ENTITY_IMPAIRED = 130400 [(varta.task.catalog.v1.enum_value) = {label: "Impaired"}];
+  CYBERSPACE_ENTITY_CORE_ROUTER = 140100 [(varta.task.catalog.v1.enum_value) = {label: "Core Router"}];
+  CYBERSPACE_ENTITY_ROUTER_TEXT = 140200 [(varta.task.catalog.v1.enum_value) = {label: "Router Text"}];
+  CYBERSPACE_ENTITY_WEB_SERVER = 140500 [(varta.task.catalog.v1.enum_value) = {label: "Web Server"}];
+  CYBERSPACE_ENTITY_DOMAIN_SERVER = 140600 [(varta.task.catalog.v1.enum_value) = {label: "Domain Server"}];
+  CYBERSPACE_ENTITY_FILE_SERVER = 140700 [(varta.task.catalog.v1.enum_value) = {label: "File Server"}];
+  CYBERSPACE_ENTITY_PEER_TO_PEER_NODE = 140800 [(varta.task.catalog.v1.enum_value) = {label: "Peer-to-peer Node"}];
+  CYBERSPACE_ENTITY_FIREWALL_TEXT = 140900 [(varta.task.catalog.v1.enum_value) = {label: "Firewall Text"}];
+  CYBERSPACE_ENTITY_SWITCH_TEXT = 141000 [(varta.task.catalog.v1.enum_value) = {label: "Switch Text"}];
+  CYBERSPACE_ENTITY_HOST = 141100 [(varta.task.catalog.v1.enum_value) = {label: "Host"}];
+  CYBERSPACE_ENTITY_VIRTUAL_PRIVATE_NETWORK_VPN = 141200 [(varta.task.catalog.v1.enum_value) = {label: "Virtual Private Network (vpn)"}];
+  CYBERSPACE_ENTITY_NON_GOVERNMENT = 150500 [(varta.task.catalog.v1.enum_value) = {label: "Non-government"}];
+  CYBERSPACE_ENTITY_DATA_SPOOFING = 160300 [(varta.task.catalog.v1.enum_value) = {label: "Data Spoofing"}];
+  CYBERSPACE_ENTITY_DATA_MANIPULATION = 160400 [(varta.task.catalog.v1.enum_value) = {label: "Data Manipulation"}];
+  CYBERSPACE_ENTITY_EXFILTRATION = 160500 [(varta.task.catalog.v1.enum_value) = {label: "Exfiltration"}];
+  CYBERSPACE_ENTITY_POWER_OUTAGE = 160600 [(varta.task.catalog.v1.enum_value) = {label: "Power Outage"}];
+  CYBERSPACE_ENTITY_NETWORK_OUTAGE = 160700 [(varta.task.catalog.v1.enum_value) = {label: "Network Outage"}];
+  CYBERSPACE_ENTITY_SERVICE_OUTAGE = 160800 [(varta.task.catalog.v1.enum_value) = {label: "Service Outage"}];
+  CYBERSPACE_ENTITY_DEVICE_OUTAGE = 160900 [(varta.task.catalog.v1.enum_value) = {label: "Device Outage"}];
+  CYBERSPACE_ENTITY_SERVER = 170100 [(varta.task.catalog.v1.enum_value) = {label: "Server"}];
+  CYBERSPACE_ENTITY_WORKSTATION = 170200 [(varta.task.catalog.v1.enum_value) = {label: "Workstation"}];
+  CYBERSPACE_ENTITY_MOBILE = 170301 [(varta.task.catalog.v1.enum_value) = {label: "Mobile"}];
+  CYBERSPACE_ENTITY_TABLET = 170302 [(varta.task.catalog.v1.enum_value) = {label: "Tablet"}];
+  CYBERSPACE_ENTITY_LAPTOP = 170303 [(varta.task.catalog.v1.enum_value) = {label: "Laptop"}];
+  CYBERSPACE_ENTITY_HEALTH_MONITOR = 170304 [(varta.task.catalog.v1.enum_value) = {label: "Health Monitor"}];
+  CYBERSPACE_ENTITY_SMARTVEST = 170305 [(varta.task.catalog.v1.enum_value) = {label: "Smartvest"}];
+  CYBERSPACE_ENTITY_SMARTWATCH = 170306 [(varta.task.catalog.v1.enum_value) = {label: "Smartwatch"}];
+  CYBERSPACE_ENTITY_WEARABLE = 170307 [(varta.task.catalog.v1.enum_value) = {label: "Wearable"}];
+  CYBERSPACE_ENTITY_IOT = 170400 [(varta.task.catalog.v1.enum_value) = {label: "IOT"}];
+  CYBERSPACE_ENTITY_PRINTER = 170500 [(varta.task.catalog.v1.enum_value) = {label: "Printer"}];
+  CYBERSPACE_ENTITY_ROUTER = 170600 [(varta.task.catalog.v1.enum_value) = {label: "Router"}];
+  CYBERSPACE_ENTITY_SWITCH = 170700 [(varta.task.catalog.v1.enum_value) = {label: "Switch"}];
+  CYBERSPACE_ENTITY_NETWORK = 180000 [(varta.task.catalog.v1.enum_value) = {label: "Network"}];
+}
+
+enum CyberspaceModifier1 {
+  CYBERSPACE_MODIFIER1_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  CYBERSPACE_MODIFIER1_DEFENSIVE_CYBERSPACE = 1 [(varta.task.catalog.v1.enum_value) = {label: "Defensive Cyberspace"}];
+  CYBERSPACE_MODIFIER1_OFFENSIVE_CYBERSPACE = 2 [(varta.task.catalog.v1.enum_value) = {label: "Offensive Cyberspace"}];
+  CYBERSPACE_MODIFIER1_SOCIAL = 3 [(varta.task.catalog.v1.enum_value) = {label: "Social"}];
+  CYBERSPACE_MODIFIER1_WIRED = 4 [(varta.task.catalog.v1.enum_value) = {label: "Wired"}];
+  CYBERSPACE_MODIFIER1_WIRELESS = 5 [(varta.task.catalog.v1.enum_value) = {label: "Wireless"}];
+  CYBERSPACE_MODIFIER1_RADIO_FREQUENCY = 6 [(varta.task.catalog.v1.enum_value) = {label: "Radio Frequency"}];
+  CYBERSPACE_MODIFIER1_OPERATING_SYSTEM = 7 [(varta.task.catalog.v1.enum_value) = {label: "Operating System"}];
+  CYBERSPACE_MODIFIER1_CONTINUITY_OF_OPERATIONS = 8 [(varta.task.catalog.v1.enum_value) = {label: "Continuity of Operations"}];
+  CYBERSPACE_MODIFIER1_INTERNET_SERVICE_PROVIDER = 9 [(varta.task.catalog.v1.enum_value) = {label: "Internet Service Provider"}];
+  CYBERSPACE_MODIFIER1_FINANCE = 10 [(varta.task.catalog.v1.enum_value) = {label: "Finance"}];
+  CYBERSPACE_MODIFIER1_OUT_OF_BAND = 11 [(varta.task.catalog.v1.enum_value) = {label: "Out of Band"}];
+  CYBERSPACE_MODIFIER1_CLOUD = 12 [(varta.task.catalog.v1.enum_value) = {label: "Cloud"}];
+  CYBERSPACE_MODIFIER1_DATA = 13 [(varta.task.catalog.v1.enum_value) = {label: "Data"}];
+}
+
+enum CyberspaceModifier2 {
+  CYBERSPACE_MODIFIER2_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  CYBERSPACE_MODIFIER2_SECURED = 1 [(varta.task.catalog.v1.enum_value) = {label: "Secured"}];
+  CYBERSPACE_MODIFIER2_OPEN = 2 [(varta.task.catalog.v1.enum_value) = {label: "Open"}];
+  CYBERSPACE_MODIFIER2_RESPONSE_ACTIONS = 3 [(varta.task.catalog.v1.enum_value) = {label: "Response Actions"}];
+  CYBERSPACE_MODIFIER2_INTERNAL_DEFENSE_MEASURES = 5 [(varta.task.catalog.v1.enum_value) = {label: "Internal Defense Measures"}];
+  CYBERSPACE_MODIFIER2_ADVANCED_PERSISTENT_THREAT = 6 [(varta.task.catalog.v1.enum_value) = {label: "Advanced Persistent Threat"}];
+  CYBERSPACE_MODIFIER2_NATION_STATE = 7 [(varta.task.catalog.v1.enum_value) = {label: "Nation State"}];
+  CYBERSPACE_MODIFIER2_NATION_STATE_SPONSORED = 8 [(varta.task.catalog.v1.enum_value) = {label: "Nation State Sponsored"}];
+}

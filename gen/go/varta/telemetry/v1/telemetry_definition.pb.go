@@ -243,7 +243,8 @@ const file_varta_telemetry_v1_telemetry_definition_proto_rawDesc = "" +
 	"\ttelemetry\x12\x1f.google.protobuf.MessageOptions\x18\xe2\xaa\x04 \x01(\v2\x1d.varta.telemetry.v1.TelemetryR\ttelemetry:Y\n" +
 	"\x05field\x12\x1d.google.protobuf.FieldOptions\x18\xec\xaa\x04 \x01(\v2\".varta.telemetry.v1.TelemetryFieldR\x05field:j\n" +
 	"\n" +
-	"enum_value\x12!.google.protobuf.EnumValueOptions\x18\xf6\xaa\x04 \x01(\v2&.varta.telemetry.v1.TelemetryEnumValueR\tenumValueBJZHgithub.com/vrtc2/varta-annotations/gen/go/varta/telemetry/v1;telemetryv1b\x06proto3"
+	"enum_value\x12!.google.protobuf.EnumValueOptions\x18\xf6\xaa\x04 \x01(\v2&.varta.telemetry.v1.TelemetryEnumValueR\tenumValueB\xe6\x01\n" +
+	"\x16com.varta.telemetry.v1B\x18TelemetryDefinitionProtoP\x01ZHgithub.com/vrtc2/varta-annotations/gen/go/varta/telemetry/v1;telemetryv1\xa2\x02\x03VTX\xaa\x02\x12Varta.Telemetry.V1\xca\x02\x12Varta\\Telemetry\\V1\xe2\x02\x1eVarta\\Telemetry\\V1\\GPBMetadata\xea\x02\x14Varta::Telemetry::V1b\x06proto3"
 
 var (
 	file_varta_telemetry_v1_telemetry_definition_proto_rawDescOnce sync.Once

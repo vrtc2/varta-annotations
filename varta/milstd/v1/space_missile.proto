@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/task/catalog/v1/task_definition.proto";
+
+message SpaceMissileSymbol {
+  SpaceMissileEntity entity = 1 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Entity"
+    required: true
+  }];
+  optional SpaceMissileModifier1 modifier1 = 2 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 1"
+  }];
+  optional SpaceMissileModifier2 modifier2 = 3 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 2"
+  }];
+}
+
+enum SpaceMissileEntity {
+  SPACE_MISSILE_ENTITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SPACE_MISSILE_ENTITY_ICON = 110000 [(varta.task.catalog.v1.enum_value) = {label: "Icon"}];
+}
+
+enum SpaceMissileModifier1 {
+  SPACE_MISSILE_MODIFIER1_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SPACE_MISSILE_MODIFIER1_BALLISTIC = 1 [(varta.task.catalog.v1.enum_value) = {label: "Ballistic"}];
+  SPACE_MISSILE_MODIFIER1_SPACE = 2 [(varta.task.catalog.v1.enum_value) = {label: "Space"}];
+  SPACE_MISSILE_MODIFIER1_INTERCEPTOR = 3 [(varta.task.catalog.v1.enum_value) = {label: "Interceptor"}];
+  SPACE_MISSILE_MODIFIER1_HYPERSONIC = 4 [(varta.task.catalog.v1.enum_value) = {label: "Hypersonic"}];
+}
+
+enum SpaceMissileModifier2 {
+  SPACE_MISSILE_MODIFIER2_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SPACE_MISSILE_MODIFIER2_SHORT_RANGE = 1 [(varta.task.catalog.v1.enum_value) = {label: "Short Range"}];
+  SPACE_MISSILE_MODIFIER2_MEDIUM_RANGE = 2 [(varta.task.catalog.v1.enum_value) = {label: "Medium Range"}];
+  SPACE_MISSILE_MODIFIER2_INTERMEDIATE_RANGE = 3 [(varta.task.catalog.v1.enum_value) = {label: "Intermediate Range"}];
+  SPACE_MISSILE_MODIFIER2_LONG_RANGE = 4 [(varta.task.catalog.v1.enum_value) = {label: "Long Range"}];
+  SPACE_MISSILE_MODIFIER2_INTERCONTINENTAL = 5 [(varta.task.catalog.v1.enum_value) = {label: "Intercontinental"}];
+  SPACE_MISSILE_MODIFIER2_ARROW = 6 [(varta.task.catalog.v1.enum_value) = {label: "Arrow"}];
+  SPACE_MISSILE_MODIFIER2_GROUND_BASED_INTERCEPTOR_GBI = 7 [(varta.task.catalog.v1.enum_value) = {label: "Ground-based Interceptor (gbi)"}];
+  SPACE_MISSILE_MODIFIER2_PATRIOT = 8 [(varta.task.catalog.v1.enum_value) = {label: "Patriot"}];
+  SPACE_MISSILE_MODIFIER2_STANDARD_MISSILE_3_SM_3 = 10 [(varta.task.catalog.v1.enum_value) = {label: "Standard Missile - 3 (sm-3)"}];
+  SPACE_MISSILE_MODIFIER2_SPACE = 12 [(varta.task.catalog.v1.enum_value) = {label: "Space"}];
+  SPACE_MISSILE_MODIFIER2_CLOSE_RANGE = 13 [(varta.task.catalog.v1.enum_value) = {label: "Close Range"}];
+  SPACE_MISSILE_MODIFIER2_DEBRIS = 14 [(varta.task.catalog.v1.enum_value) = {label: "Debris"}];
+  SPACE_MISSILE_MODIFIER2_UNKNOWN = 15 [(varta.task.catalog.v1.enum_value) = {label: "Unknown"}];
+}

@@ -1,0 +1,254 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/milstd/v1/activity.proto";
+import "varta/milstd/v1/air.proto";
+import "varta/milstd/v1/air_missile.proto";
+import "varta/milstd/v1/cyberspace.proto";
+import "varta/milstd/v1/dismounted_individual.proto";
+import "varta/milstd/v1/land_civilian.proto";
+import "varta/milstd/v1/land_equipment.proto";
+import "varta/milstd/v1/land_installation.proto";
+import "varta/milstd/v1/land_unit.proto";
+import "varta/milstd/v1/mine_warfare.proto";
+import "varta/milstd/v1/sea_surface.proto";
+import "varta/milstd/v1/sigint.proto";
+import "varta/milstd/v1/space.proto";
+import "varta/milstd/v1/space_missile.proto";
+import "varta/milstd/v1/subsurface.proto";
+import "varta/task/catalog/v1/task_definition.proto";
+
+// MIL-STD-2525D symbol definition.
+// The frontend assembles the full SIDC string from these fields plus
+// MilitaryView.disposition (which maps to SIDC Standard Identity, position 4).
+// Version (positions 1-2) and Context (position 3) are set by the system.
+message MilStd2525Symbol {
+  oneof symbol_set {
+    option (varta.task.catalog.v1.oneof_field) = {
+      label: "Symbol Set"
+      required: true
+    };
+    AirSymbol air = 1 [(varta.task.catalog.v1.oneof_value) = {label: "Air"}];
+    AirMissileSymbol air_missile = 2 [(varta.task.catalog.v1.oneof_value) = {label: "Air Missile"}];
+    SpaceSymbol space = 3 [(varta.task.catalog.v1.oneof_value) = {label: "Space"}];
+    SpaceMissileSymbol space_missile = 4 [(varta.task.catalog.v1.oneof_value) = {label: "Space Missile"}];
+    LandUnitSymbol land_unit = 5 [(varta.task.catalog.v1.oneof_value) = {label: "Land Unit"}];
+    LandCivilianSymbol land_civilian = 6 [(varta.task.catalog.v1.oneof_value) = {label: "Land Civilian"}];
+    DismountedIndividualSymbol dismounted_individual = 7 [(varta.task.catalog.v1.oneof_value) = {label: "Dismounted Individual"}];
+    LandEquipmentSymbol land_equipment = 8 [(varta.task.catalog.v1.oneof_value) = {label: "Land Equipment"}];
+    LandInstallationSymbol land_installation = 9 [(varta.task.catalog.v1.oneof_value) = {label: "Land Installation"}];
+    SeaSurfaceSymbol sea_surface = 10 [(varta.task.catalog.v1.oneof_value) = {label: "Sea Surface"}];
+    SubsurfaceSymbol subsurface = 11 [(varta.task.catalog.v1.oneof_value) = {label: "Subsurface"}];
+    MineWarfareSymbol mine_warfare = 12 [(varta.task.catalog.v1.oneof_value) = {label: "Mine Warfare"}];
+    ActivitySymbol activity = 13 [(varta.task.catalog.v1.oneof_value) = {label: "Activity"}];
+    CyberspaceSymbol cyberspace = 14 [(varta.task.catalog.v1.oneof_value) = {label: "Cyberspace"}];
+    SignalsIntelligenceSymbol signals_intelligence = 15 [(varta.task.catalog.v1.oneof_value) = {label: "Signals Intelligence"}];
+  }
+
+  optional SymbolStatus status = 20 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Status"
+  }];
+
+  optional HqTfDummy hq_tf_dummy = 21 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "HQ / Task Force / Dummy"
+  }];
+
+  optional EchelonMobility echelon_mobility = 22 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Echelon / Mobility"
+  }];
+
+  optional uint32 quantity = 23 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_INTEGER
+    label: "Quantity"
+  }];
+
+  optional CommonModifier1 common_modifier1 = 24 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Common Modifier 1"
+  }];
+
+  optional CommonModifier2 common_modifier2 = 25 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Common Modifier 2"
+  }];
+
+  // ISO 3166-1 alpha-2 country code (e.g. "UA", "US").
+  // milsymbol renders a small country flag on the symbol.
+  optional string country = 26 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_TEXT
+    label: "Country"
+    placeholder: "UA"
+    hint: "ISO 3166-1 alpha-2"
+  }];
+
+  // SIDC Position 3: Reality / Exercise / Simulation.
+  // Defaults to Reality (0) when not set.
+  optional SymbolContext context = 27 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Context"
+  }];
+}
+
+// SIDC Position 3: Reality, Exercise, or Simulation context.
+// Enum value maps directly to SIDC digit (0=Reality, 1=Exercise, 2=Simulation).
+enum SymbolContext {
+  SYMBOL_CONTEXT_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Reality"}];
+  SYMBOL_CONTEXT_EXERCISE = 1 [(varta.task.catalog.v1.enum_value) = {label: "Exercise"}];
+  SYMBOL_CONTEXT_SIMULATION = 2 [(varta.task.catalog.v1.enum_value) = {label: "Simulation"}];
+}
+
+// SIDC Position 7: Present or Planned status
+enum SymbolStatus {
+  SYMBOL_STATUS_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SYMBOL_STATUS_PRESENT = 1 [(varta.task.catalog.v1.enum_value) = {label: "Present"}];
+  SYMBOL_STATUS_PLANNED = 2 [(varta.task.catalog.v1.enum_value) = {label: "Planned / Anticipated"}];
+}
+
+// SIDC Position 8: Headquarters, Task Force, Dummy indicators
+enum HqTfDummy {
+  HQ_TF_DUMMY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  HQ_TF_DUMMY_FEINT_DUMMY = 1 [(varta.task.catalog.v1.enum_value) = {label: "Feint / Dummy"}];
+  HQ_TF_DUMMY_HEADQUARTERS = 2 [(varta.task.catalog.v1.enum_value) = {label: "Headquarters"}];
+  HQ_TF_DUMMY_FEINT_DUMMY_HEADQUARTERS = 3 [(varta.task.catalog.v1.enum_value) = {label: "Feint / Dummy Headquarters"}];
+  HQ_TF_DUMMY_TASK_FORCE = 4 [(varta.task.catalog.v1.enum_value) = {label: "Task Force"}];
+  HQ_TF_DUMMY_FEINT_DUMMY_TASK_FORCE = 5 [(varta.task.catalog.v1.enum_value) = {label: "Feint / Dummy Task Force"}];
+  HQ_TF_DUMMY_TASK_FORCE_HEADQUARTERS = 6 [(varta.task.catalog.v1.enum_value) = {label: "Task Force Headquarters"}];
+  HQ_TF_DUMMY_FEINT_DUMMY_TASK_FORCE_HEADQUARTERS = 7 [(varta.task.catalog.v1.enum_value) = {label: "Feint / Dummy Task Force HQ"}];
+}
+
+// SIDC Positions 9-10: Echelon or Mobility amplifier
+enum EchelonMobility {
+  ECHELON_MOBILITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  ECHELON_MOBILITY_TEAM_CREW = 11 [(varta.task.catalog.v1.enum_value) = {label: "Team / Crew"}];
+  ECHELON_MOBILITY_SQUAD = 12 [(varta.task.catalog.v1.enum_value) = {label: "Squad"}];
+  ECHELON_MOBILITY_SECTION = 13 [(varta.task.catalog.v1.enum_value) = {label: "Section"}];
+  ECHELON_MOBILITY_PLATOON = 14 [(varta.task.catalog.v1.enum_value) = {label: "Platoon / Detachment"}];
+  ECHELON_MOBILITY_COMPANY = 15 [(varta.task.catalog.v1.enum_value) = {label: "Company / Battery / Troop"}];
+  ECHELON_MOBILITY_BATTALION = 16 [(varta.task.catalog.v1.enum_value) = {label: "Battalion / Squadron"}];
+  ECHELON_MOBILITY_REGIMENT = 17 [(varta.task.catalog.v1.enum_value) = {label: "Regiment / Group"}];
+  ECHELON_MOBILITY_BRIGADE = 18 [(varta.task.catalog.v1.enum_value) = {label: "Brigade"}];
+  ECHELON_MOBILITY_DIVISION = 21 [(varta.task.catalog.v1.enum_value) = {label: "Division"}];
+  ECHELON_MOBILITY_CORPS = 22 [(varta.task.catalog.v1.enum_value) = {label: "Corps / MEF"}];
+  ECHELON_MOBILITY_ARMY = 23 [(varta.task.catalog.v1.enum_value) = {label: "Army"}];
+  ECHELON_MOBILITY_ARMY_GROUP = 24 [(varta.task.catalog.v1.enum_value) = {label: "Army Group / Front"}];
+  ECHELON_MOBILITY_REGION = 25 [(varta.task.catalog.v1.enum_value) = {label: "Region / Theater"}];
+  ECHELON_MOBILITY_COMMAND = 26 [(varta.task.catalog.v1.enum_value) = {label: "Command"}];
+  ECHELON_MOBILITY_WHEELED_LIMITED = 31 [(varta.task.catalog.v1.enum_value) = {label: "Wheeled (limited)"}];
+  ECHELON_MOBILITY_WHEELED = 32 [(varta.task.catalog.v1.enum_value) = {label: "Wheeled"}];
+  ECHELON_MOBILITY_TRACKED = 33 [(varta.task.catalog.v1.enum_value) = {label: "Tracked"}];
+  ECHELON_MOBILITY_WHEELED_AND_TRACKED = 34 [(varta.task.catalog.v1.enum_value) = {label: "Wheeled and Tracked"}];
+  ECHELON_MOBILITY_TOWED = 35 [(varta.task.catalog.v1.enum_value) = {label: "Towed"}];
+  ECHELON_MOBILITY_RAIL = 36 [(varta.task.catalog.v1.enum_value) = {label: "Rail"}];
+  ECHELON_MOBILITY_OVER_SNOW = 37 [(varta.task.catalog.v1.enum_value) = {label: "Over Snow"}];
+  ECHELON_MOBILITY_SLED = 38 [(varta.task.catalog.v1.enum_value) = {label: "Sled"}];
+  ECHELON_MOBILITY_PACK_ANIMALS = 41 [(varta.task.catalog.v1.enum_value) = {label: "Pack Animals"}];
+  ECHELON_MOBILITY_BARGE = 51 [(varta.task.catalog.v1.enum_value) = {label: "Barge"}];
+  ECHELON_MOBILITY_AMPHIBIOUS = 52 [(varta.task.catalog.v1.enum_value) = {label: "Amphibious"}];
+  ECHELON_MOBILITY_LEADER = 71 [(varta.task.catalog.v1.enum_value) = {label: "Leader"}];
+  ECHELON_MOBILITY_DEPUTY = 72 [(varta.task.catalog.v1.enum_value) = {label: "Deputy"}];
+}
+
+enum CommonModifier1 {
+  COMMON_MODIFIER1_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  COMMON_MODIFIER1_UNMANNED_AERIAL_VEHICLE_UAV = 100 [(varta.task.catalog.v1.enum_value) = {label: "Unmanned Aerial Vehicle(uav)"}];
+  COMMON_MODIFIER1_ROBOTIC = 101 [(varta.task.catalog.v1.enum_value) = {label: "Robotic"}];
+  COMMON_MODIFIER1_FIXED_WING = 102 [(varta.task.catalog.v1.enum_value) = {label: "Fixed Wing"}];
+  COMMON_MODIFIER1_ROTARY_WING = 103 [(varta.task.catalog.v1.enum_value) = {label: "Rotary Wing"}];
+  COMMON_MODIFIER1_TILT_ROTOR = 104 [(varta.task.catalog.v1.enum_value) = {label: "Tilt Rotor"}];
+  COMMON_MODIFIER1_VTOL = 105 [(varta.task.catalog.v1.enum_value) = {label: "Vtol"}];
+  COMMON_MODIFIER1_ATTACK = 106 [(varta.task.catalog.v1.enum_value) = {label: "Attack"}];
+  COMMON_MODIFIER1_ARMORED = 107 [(varta.task.catalog.v1.enum_value) = {label: "Armored"}];
+  COMMON_MODIFIER1_BALLISTIC_MISSILE = 108 [(varta.task.catalog.v1.enum_value) = {label: "Ballistic Missile"}];
+  COMMON_MODIFIER1_BRIDGE = 109 [(varta.task.catalog.v1.enum_value) = {label: "Bridge"}];
+  COMMON_MODIFIER1_CARGO = 110 [(varta.task.catalog.v1.enum_value) = {label: "Cargo"}];
+  COMMON_MODIFIER1_UTILITY = 111 [(varta.task.catalog.v1.enum_value) = {label: "Utility"}];
+  COMMON_MODIFIER1_LIGHT = 112 [(varta.task.catalog.v1.enum_value) = {label: "Light"}];
+  COMMON_MODIFIER1_MEDIUM = 113 [(varta.task.catalog.v1.enum_value) = {label: "Medium"}];
+  COMMON_MODIFIER1_HEAVY = 114 [(varta.task.catalog.v1.enum_value) = {label: "Heavy"}];
+  COMMON_MODIFIER1_CYBERSPACE = 115 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+  COMMON_MODIFIER1_COMMAND_POST_NODE = 116 [(varta.task.catalog.v1.enum_value) = {label: "Command Post Node"}];
+  COMMON_MODIFIER1_JOINT_NETWORK_NODE = 117 [(varta.task.catalog.v1.enum_value) = {label: "Joint Network Node"}];
+  COMMON_MODIFIER1_RETRANSMISSION_SITE = 118 [(varta.task.catalog.v1.enum_value) = {label: "Retransmission Site"}];
+  COMMON_MODIFIER1_BRIGADE = 119 [(varta.task.catalog.v1.enum_value) = {label: "Brigade"}];
+  COMMON_MODIFIER1_CLOSE_PROTECTION = 120 [(varta.task.catalog.v1.enum_value) = {label: "Close Protection"}];
+  COMMON_MODIFIER1_COMBAT = 121 [(varta.task.catalog.v1.enum_value) = {label: "Combat"}];
+  COMMON_MODIFIER1_COMMAND_AND_CONTROL = 122 [(varta.task.catalog.v1.enum_value) = {label: "Command And Control"}];
+  COMMON_MODIFIER1_CROWD_AND_RIOT_CONTROL = 123 [(varta.task.catalog.v1.enum_value) = {label: "Crowd And Riot Control"}];
+  COMMON_MODIFIER1_EOD = 124 [(varta.task.catalog.v1.enum_value) = {label: "EOD"}];
+  COMMON_MODIFIER1_ISR = 125 [(varta.task.catalog.v1.enum_value) = {label: "ISR"}];
+  COMMON_MODIFIER1_MAINTENANCE = 126 [(varta.task.catalog.v1.enum_value) = {label: "Maintenance"}];
+  COMMON_MODIFIER1_MEDICAL = 127 [(varta.task.catalog.v1.enum_value) = {label: "Medical"}];
+  COMMON_MODIFIER1_SEARCH_AND_RESCUE = 128 [(varta.task.catalog.v1.enum_value) = {label: "Search And Rescue"}];
+  COMMON_MODIFIER1_SECURITY = 129 [(varta.task.catalog.v1.enum_value) = {label: "Security"}];
+  COMMON_MODIFIER1_SNIPER = 130 [(varta.task.catalog.v1.enum_value) = {label: "Sniper"}];
+  COMMON_MODIFIER1_SPECIAL_OPERATION_FORCES = 131 [(varta.task.catalog.v1.enum_value) = {label: "Special Operation Forces"}];
+  COMMON_MODIFIER1_SWAT = 132 [(varta.task.catalog.v1.enum_value) = {label: "SWAT"}];
+  COMMON_MODIFIER1_GUIDED_MISSILE = 133 [(varta.task.catalog.v1.enum_value) = {label: "Guided Missile"}];
+  COMMON_MODIFIER1_OTHER_GUIDED_MISSILE = 134 [(varta.task.catalog.v1.enum_value) = {label: "Other Guided Missile"}];
+  COMMON_MODIFIER1_PETROLEUM = 135 [(varta.task.catalog.v1.enum_value) = {label: "Petroleum"}];
+  COMMON_MODIFIER1_WATER = 136 [(varta.task.catalog.v1.enum_value) = {label: "Water"}];
+  COMMON_MODIFIER1_WEAPON = 137 [(varta.task.catalog.v1.enum_value) = {label: "Weapon"}];
+  COMMON_MODIFIER1_CHEMICAL = 138 [(varta.task.catalog.v1.enum_value) = {label: "Chemical"}];
+  COMMON_MODIFIER1_BIOLOGICAL = 139 [(varta.task.catalog.v1.enum_value) = {label: "Biological"}];
+  COMMON_MODIFIER1_RADIOLOGICAL = 140 [(varta.task.catalog.v1.enum_value) = {label: "Radiological"}];
+  COMMON_MODIFIER1_NUKLEAR = 141 [(varta.task.catalog.v1.enum_value) = {label: "Nuklear"}];
+  COMMON_MODIFIER1_DECONTAMINATION = 142 [(varta.task.catalog.v1.enum_value) = {label: "Decontamination"}];
+  COMMON_MODIFIER1_CIVILIAN = 143 [(varta.task.catalog.v1.enum_value) = {label: "Civilian"}];
+  COMMON_MODIFIER1_GOVERNMENT = 144 [(varta.task.catalog.v1.enum_value) = {label: "Government"}];
+  COMMON_MODIFIER1_ACCIDENT = 145 [(varta.task.catalog.v1.enum_value) = {label: "Accident"}];
+  COMMON_MODIFIER1_ASSASSINATION = 146 [(varta.task.catalog.v1.enum_value) = {label: "Assassination"}];
+  COMMON_MODIFIER1_EXECUTION = 147 [(varta.task.catalog.v1.enum_value) = {label: "Execution"}];
+  COMMON_MODIFIER1_KIDNAPPING = 148 [(varta.task.catalog.v1.enum_value) = {label: "Kidnapping"}];
+  COMMON_MODIFIER1_PIRACY = 149 [(varta.task.catalog.v1.enum_value) = {label: "Piracy"}];
+  COMMON_MODIFIER1_RAPE = 150 [(varta.task.catalog.v1.enum_value) = {label: "Rape"}];
+  COMMON_MODIFIER1_ANTISUBMARINE_WARFARE = 151 [(varta.task.catalog.v1.enum_value) = {label: "Antisubmarine Warfare"}];
+  COMMON_MODIFIER1_ESCORT = 152 [(varta.task.catalog.v1.enum_value) = {label: "Escort"}];
+  COMMON_MODIFIER1_MINE_COUNTERMEASURES = 153 [(varta.task.catalog.v1.enum_value) = {label: "Mine Countermeasures"}];
+  COMMON_MODIFIER1_MINE_WARFARE = 154 [(varta.task.catalog.v1.enum_value) = {label: "Mine Warfare"}];
+  COMMON_MODIFIER1_SURFACE_WARFARE = 155 [(varta.task.catalog.v1.enum_value) = {label: "Surface Warfare"}];
+  COMMON_MODIFIER1_INDEPENDENT_COMMAND = 156 [(varta.task.catalog.v1.enum_value) = {label: "Independent Command"}];
+  COMMON_MODIFIER1_COMPANY = 157 [(varta.task.catalog.v1.enum_value) = {label: "Company"}];
+  COMMON_MODIFIER1_PLATOON = 158 [(varta.task.catalog.v1.enum_value) = {label: "Platoon"}];
+  COMMON_MODIFIER1_REGIMENT = 159 [(varta.task.catalog.v1.enum_value) = {label: "Regiment"}];
+  COMMON_MODIFIER1_SECTION = 160 [(varta.task.catalog.v1.enum_value) = {label: "Section"}];
+  COMMON_MODIFIER1_SQUAD = 161 [(varta.task.catalog.v1.enum_value) = {label: "Squad"}];
+  COMMON_MODIFIER1_TEAM = 162 [(varta.task.catalog.v1.enum_value) = {label: "Team"}];
+  COMMON_MODIFIER1_BATTALION = 163 [(varta.task.catalog.v1.enum_value) = {label: "Battalion"}];
+  COMMON_MODIFIER1_LASER = 164 [(varta.task.catalog.v1.enum_value) = {label: "Laser"}];
+  COMMON_MODIFIER1_HIJACKER = 165 [(varta.task.catalog.v1.enum_value) = {label: "Hijacker"}];
+  COMMON_MODIFIER1_ELECTROMAGNETIC_WARFARE = 166 [(varta.task.catalog.v1.enum_value) = {label: "Electromagnetic Warfare"}];
+}
+
+enum CommonModifier2 {
+  COMMON_MODIFIER2_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  COMMON_MODIFIER2_AIRBORNE = 100 [(varta.task.catalog.v1.enum_value) = {label: "Airborne"}];
+  COMMON_MODIFIER2_BICYCLE_EQUIPPED = 101 [(varta.task.catalog.v1.enum_value) = {label: "Bicycle Equipped"}];
+  COMMON_MODIFIER2_RAILROAD = 102 [(varta.task.catalog.v1.enum_value) = {label: "Railroad"}];
+  COMMON_MODIFIER2_SKI = 103 [(varta.task.catalog.v1.enum_value) = {label: "Ski"}];
+  COMMON_MODIFIER2_TRACKED = 104 [(varta.task.catalog.v1.enum_value) = {label: "Tracked"}];
+  COMMON_MODIFIER2_WHEELED_LIMITED = 105 [(varta.task.catalog.v1.enum_value) = {label: "Wheeled Limited"}];
+  COMMON_MODIFIER2_WHEELED = 106 [(varta.task.catalog.v1.enum_value) = {label: "Wheeled"}];
+  COMMON_MODIFIER2_FIXED_WING = 107 [(varta.task.catalog.v1.enum_value) = {label: "Fixed Wing"}];
+  COMMON_MODIFIER2_ROTARY_WING = 108 [(varta.task.catalog.v1.enum_value) = {label: "Rotary Wing"}];
+  COMMON_MODIFIER2_ROBOTIC = 109 [(varta.task.catalog.v1.enum_value) = {label: "Robotic"}];
+  COMMON_MODIFIER2_AUTONOMOUS_CONTROL = 110 [(varta.task.catalog.v1.enum_value) = {label: "Autonomous Control"}];
+  COMMON_MODIFIER2_REMOTELY_PILOTED = 111 [(varta.task.catalog.v1.enum_value) = {label: "Remotely Piloted"}];
+  COMMON_MODIFIER2_EXPENDABLE = 112 [(varta.task.catalog.v1.enum_value) = {label: "Expendable"}];
+  COMMON_MODIFIER2_MOUNTAIN = 113 [(varta.task.catalog.v1.enum_value) = {label: "Mountain"}];
+  COMMON_MODIFIER2_LONG_RANGE = 114 [(varta.task.catalog.v1.enum_value) = {label: "Long Range"}];
+  COMMON_MODIFIER2_MEDIUM_RANGE = 115 [(varta.task.catalog.v1.enum_value) = {label: "Medium Range"}];
+  COMMON_MODIFIER2_SHORT_RANGE = 116 [(varta.task.catalog.v1.enum_value) = {label: "Short Range"}];
+  COMMON_MODIFIER2_CLOSE_RANGE = 117 [(varta.task.catalog.v1.enum_value) = {label: "Close Range"}];
+  COMMON_MODIFIER2_HEAVY = 118 [(varta.task.catalog.v1.enum_value) = {label: "Heavy"}];
+  COMMON_MODIFIER2_MEDIUM = 119 [(varta.task.catalog.v1.enum_value) = {label: "Medium"}];
+  COMMON_MODIFIER2_LIGHT_AND_MEDIUM = 120 [(varta.task.catalog.v1.enum_value) = {label: "Light And Medium"}];
+  COMMON_MODIFIER2_LIGHT = 121 [(varta.task.catalog.v1.enum_value) = {label: "Light"}];
+  COMMON_MODIFIER2_CYBERSPACE = 122 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+  COMMON_MODIFIER2_SECURITY_FORCE_ASSISTANCE = 123 [(varta.task.catalog.v1.enum_value) = {label: "Security Force Assistance"}];
+  COMMON_MODIFIER2_BED = 124 [(varta.task.catalog.v1.enum_value) = {label: "Bed"}];
+  COMMON_MODIFIER2_MULTIFUNCTIONAL = 125 [(varta.task.catalog.v1.enum_value) = {label: "Multifunctional"}];
+}

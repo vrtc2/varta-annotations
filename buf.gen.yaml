@@ -1,6 +1,9 @@
 version: v2
-# go_package is set explicitly in each .proto, so managed mode is intentionally
-# off — consumers see one canonical Go import path for these annotations.
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/vrtc2/varta-annotations/gen/go
 plugins:
   - remote: buf.build/protocolbuffers/go
     out: gen/go

@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/task/catalog/v1/task_definition.proto";
+
+message MineWarfareSymbol {
+  MineWarfareEntity entity = 1 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Entity"
+    required: true
+  }];
+}
+
+enum MineWarfareEntity {
+  MINE_WARFARE_ENTITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  MINE_WARFARE_ENTITY_SEA_MINE = 110000 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_BOTTOM = 110100 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine - Bottom"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_MOORED = 110200 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine - Moored"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_FLOATING = 110300 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine - Floating"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_RISING = 110400 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine - Rising"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_IN_OTHER_POSITION = 110500 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine (in Other Position)"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_KINGFISHER = 110600 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine - Kingfisher"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_SMALL_OBJECT = 110700 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine - Small Object"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_EXERCISE_MINE = 110800 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Exercise Mine"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_EXERCISE_MINE_BOTTOM = 110801 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Exercise Mine - Bottom"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_EXERCISE_MINE_MOORED = 110802 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Exercise Mine - Moored"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_EXERCISE_MINE_FLOATING = 110803 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Exercise Mine - Floating"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_EXERCISE_MINE_RISING = 110804 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Exercise Mine - Rising"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_NEUTRALIZED = 110900 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Neutralized"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_NEUTRALIZED_BOTTOM = 110901 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Neutralized - Bottom"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_NEUTRALIZED_MOORED = 110902 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Neutralized - Moored"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_NEUTRALIZED_FLOATING = 110903 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Neutralized - Floating"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_NEUTRALIZED_RISING = 110904 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Neutralized - Rising"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_IN_OTHER_POSITION_NEUTRALIZED = 110905 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine (in Other Position) Neutralized"}];
+  MINE_WARFARE_ENTITY_UNEXPLODED_EXPLOSIVE_ORDNANCE = 120000 [(varta.task.catalog.v1.enum_value) = {label: "Unexploded Explosive Ordnance"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_DECOY = 130000 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Decoy"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_DECOY_BOTTOM_GROUND = 130100 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Decoy, Bottom Ground"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_DECOY_MOORED = 130200 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Decoy, Moored"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_MILCO_BOTTOM = 140200 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Milco - Bottom"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_MILCO_MOORED = 140300 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Milco - Moored"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_MILCO_FLOATING = 140400 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Milco - Floating"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_MILEC_BOTTOM = 150100 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Milec - Bottom"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_MILEC_MOORED = 150200 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Milec - Moored"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_MILEC_FLOATING = 150300 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Milec - Floating"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_NEGATIVE_REACQUISITION_BOTTOM = 160100 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Negative Reacquisition - Bottom"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_NEGATIVE_REACQUISITION_MOORED = 160200 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Negative Reacquisition - Moored"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_NEGATIVE_REACQUISITION_FLOATING = 160300 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine Negative Reacquisition - Floating"}];
+  MINE_WARFARE_ENTITY_SEA_MINE_GENERAL_OBSTRUCTOR_NEUTRALIZED = 170100 [(varta.task.catalog.v1.enum_value) = {label: "Sea Mine General Obstructor Neutralized"}];
+  MINE_WARFARE_ENTITY_ENVIRONMENTAL_REPORT_LOCATION = 200000 [(varta.task.catalog.v1.enum_value) = {label: "Environmental Report Location"}];
+  MINE_WARFARE_ENTITY_DIVE_REPORT_LOCATION = 210000 [(varta.task.catalog.v1.enum_value) = {label: "Dive Report Location"}];
+}

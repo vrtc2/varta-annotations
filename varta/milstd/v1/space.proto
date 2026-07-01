@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/task/catalog/v1/task_definition.proto";
+
+message SpaceSymbol {
+  SpaceEntity entity = 1 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Entity"
+    required: true
+  }];
+  optional SpaceModifier1 modifier1 = 2 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 1"
+  }];
+  optional SpaceModifier2 modifier2 = 3 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 2"
+  }];
+}
+
+enum SpaceEntity {
+  SPACE_ENTITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SPACE_ENTITY_MILITARY = 110000 [(varta.task.catalog.v1.enum_value) = {label: "Military"}];
+  SPACE_ENTITY_SPACE_VEHICLE = 110100 [(varta.task.catalog.v1.enum_value) = {label: "Space Vehicle"}];
+  SPACE_ENTITY_RE_ENTRY_VEHICLE = 110200 [(varta.task.catalog.v1.enum_value) = {label: "Re-entry Vehicle"}];
+  SPACE_ENTITY_SPACE_PLANET_LANDER = 110300 [(varta.task.catalog.v1.enum_value) = {label: "Space.planet Lander"}];
+  SPACE_ENTITY_ORBITER_SHUTTLE = 110400 [(varta.task.catalog.v1.enum_value) = {label: "Orbiter Shuttle"}];
+  SPACE_ENTITY_CAPSULE = 110500 [(varta.task.catalog.v1.enum_value) = {label: "Capsule"}];
+  SPACE_ENTITY_SATELLITE_GENERAL = 110600 [(varta.task.catalog.v1.enum_value) = {label: "Satellite, General"}];
+  SPACE_ENTITY_SATELLITE = 110700 [(varta.task.catalog.v1.enum_value) = {label: "Satellite"}];
+  SPACE_ENTITY_ANTISATELLITE_WEAPON = 110800 [(varta.task.catalog.v1.enum_value) = {label: "Antisatellite Weapon"}];
+  SPACE_ENTITY_ASTRONOMICAL_SATELLITE = 110900 [(varta.task.catalog.v1.enum_value) = {label: "Astronomical Satellite"}];
+  SPACE_ENTITY_BIOSATELLITE = 111000 [(varta.task.catalog.v1.enum_value) = {label: "Biosatellite"}];
+  SPACE_ENTITY_COMMUNICATIONS_SATELLITE = 111100 [(varta.task.catalog.v1.enum_value) = {label: "Communications Satellite"}];
+  SPACE_ENTITY_EARTH_OBSERVATION_SATELLITE = 111200 [(varta.task.catalog.v1.enum_value) = {label: "Earth Observation Satellite"}];
+  SPACE_ENTITY_MINIATURIZED_SATELLITE = 111300 [(varta.task.catalog.v1.enum_value) = {label: "Miniaturized Satellite"}];
+  SPACE_ENTITY_NAVIGATIONAL_SATELLITE = 111400 [(varta.task.catalog.v1.enum_value) = {label: "Navigational Satellite"}];
+  SPACE_ENTITY_RECONNAISSANCE_SATELLITE = 111500 [(varta.task.catalog.v1.enum_value) = {label: "Reconnaissance Satellite"}];
+  SPACE_ENTITY_SPACE_STATION = 111600 [(varta.task.catalog.v1.enum_value) = {label: "Space Station"}];
+  SPACE_ENTITY_TETHERED_SATELLITE = 111700 [(varta.task.catalog.v1.enum_value) = {label: "Tethered Satellite"}];
+  SPACE_ENTITY_WEATHER_SATELLITE = 111800 [(varta.task.catalog.v1.enum_value) = {label: "Weather Satellite"}];
+  SPACE_ENTITY_SPACE_LAUNCH_VEHICLE = 111900 [(varta.task.catalog.v1.enum_value) = {label: "Space Launch Vehicle"}];
+  SPACE_ENTITY_CIVILIAN = 120000 [(varta.task.catalog.v1.enum_value) = {label: "Civilian"}];
+  SPACE_ENTITY_CIVILIAN_ORBITER_SHUTTLE = 120100 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Orbiter Shuttle"}];
+  SPACE_ENTITY_CIVILIAN_CAPSULE = 120200 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Capsule"}];
+  SPACE_ENTITY_CIVILIAN_SATELLITE = 120300 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Satellite"}];
+  SPACE_ENTITY_CIVILIAN_ASTRONOMICAL_SATELLITE = 120400 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Astronomical Satellite"}];
+  SPACE_ENTITY_CIVILIAN_BIOSATELLITE = 120500 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Biosatellite"}];
+  SPACE_ENTITY_CIVILIAN_COMMUNICATIONS_SATELLITE = 120600 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Communications Satellite"}];
+  SPACE_ENTITY_CIVILIAN_EARTH_OBSERVATION_SATELLITE = 120700 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Earth Observation Satellite"}];
+  SPACE_ENTITY_CIVILIAN_MINIATURIZED_SATELLITE = 120800 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Miniaturized Satellite"}];
+  SPACE_ENTITY_CIVILIAN_NAVIGATIONAL_SATELLITE = 120900 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Navigational Satellite"}];
+  SPACE_ENTITY_CIVILIAN_SPACE_STATION = 121000 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Space Station"}];
+  SPACE_ENTITY_CIVILIAN_TETHERED_SATELLITE = 121100 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Tethered Satellite"}];
+  SPACE_ENTITY_CIVILIAN_WEATHER_SATELLITE = 121200 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Weather Satellite"}];
+  SPACE_ENTITY_PLANETARY_LANDER = 121300 [(varta.task.catalog.v1.enum_value) = {label: "Planetary Lander"}];
+  SPACE_ENTITY_CIVILIAN_SPACE_VEHICLE = 121400 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Space Vehicle"}];
+  SPACE_ENTITY_MANUAL_TRACK = 130000 [(varta.task.catalog.v1.enum_value) = {label: "Manual Track"}];
+}
+
+enum SpaceModifier1 {
+  SPACE_MODIFIER1_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SPACE_MODIFIER1_LOW_EARTH_ORBIT_LEO = 1 [(varta.task.catalog.v1.enum_value) = {label: "Low Earth Orbit (leo)"}];
+  SPACE_MODIFIER1_MEDIUM_EARTH_ORBIT_MEO = 2 [(varta.task.catalog.v1.enum_value) = {label: "Medium Earth Orbit (meo)"}];
+  SPACE_MODIFIER1_HIGH_EARTH_ORBIT_HEO = 3 [(varta.task.catalog.v1.enum_value) = {label: "High Earth Orbit (heo)"}];
+  SPACE_MODIFIER1_GEOSYNCHRONOUS_ORBIT_GSO = 4 [(varta.task.catalog.v1.enum_value) = {label: "Geosynchronous Orbit (gso)"}];
+  SPACE_MODIFIER1_GEOSTATIONARY_ORBIT_GO = 5 [(varta.task.catalog.v1.enum_value) = {label: "Geostationary Orbit (go)"}];
+  SPACE_MODIFIER1_MOLNIYA_ORBIT_MO = 6 [(varta.task.catalog.v1.enum_value) = {label: "Molniya Orbit (mo)"}];
+  SPACE_MODIFIER1_CYBERSPACE = 7 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+}
+
+enum SpaceModifier2 {
+  SPACE_MODIFIER2_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SPACE_MODIFIER2_OPTICAL = 1 [(varta.task.catalog.v1.enum_value) = {label: "Optical"}];
+  SPACE_MODIFIER2_INFRARED = 2 [(varta.task.catalog.v1.enum_value) = {label: "Infrared"}];
+  SPACE_MODIFIER2_RADAR = 3 [(varta.task.catalog.v1.enum_value) = {label: "Radar"}];
+  SPACE_MODIFIER2_SIGNALS_INTELLIGENCE_SIGINT = 4 [(varta.task.catalog.v1.enum_value) = {label: "Signals Intelligence (sigint)"}];
+  SPACE_MODIFIER2_CYBERSPACE = 5 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+  SPACE_MODIFIER2_ELECTROMAGNETIC_WARFARE_ASAT = 6 [(varta.task.catalog.v1.enum_value) = {label: "Electromagnetic Warfare (asat)"}];
+  SPACE_MODIFIER2_HIGH_POWER_MICROWAVE = 7 [(varta.task.catalog.v1.enum_value) = {label: "High Power Microwave"}];
+  SPACE_MODIFIER2_LASER = 8 [(varta.task.catalog.v1.enum_value) = {label: "Laser"}];
+  SPACE_MODIFIER2_MINE = 9 [(varta.task.catalog.v1.enum_value) = {label: "Mine"}];
+  SPACE_MODIFIER2_MAINTENANCE = 10 [(varta.task.catalog.v1.enum_value) = {label: "Maintenance"}];
+  SPACE_MODIFIER2_REFUEL = 11 [(varta.task.catalog.v1.enum_value) = {label: "Refuel"}];
+  SPACE_MODIFIER2_TUG = 12 [(varta.task.catalog.v1.enum_value) = {label: "Tug"}];
+}

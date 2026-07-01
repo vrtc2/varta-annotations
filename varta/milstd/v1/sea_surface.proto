@@ -1,0 +1,164 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/task/catalog/v1/task_definition.proto";
+
+message SeaSurfaceSymbol {
+  SeaSurfaceEntity entity = 1 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Entity"
+    required: true
+  }];
+  optional SeaSurfaceModifier1 modifier1 = 2 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 1"
+  }];
+  optional SeaSurfaceModifier2 modifier2 = 3 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 2"
+  }];
+}
+
+enum SeaSurfaceEntity {
+  SEA_SURFACE_ENTITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SEA_SURFACE_ENTITY_MILITARY = 110000 [(varta.task.catalog.v1.enum_value) = {label: "Military"}];
+  SEA_SURFACE_ENTITY_COMBATANT = 120000 [(varta.task.catalog.v1.enum_value) = {label: "Combatant"}];
+  SEA_SURFACE_ENTITY_CARRIER = 120100 [(varta.task.catalog.v1.enum_value) = {label: "Carrier"}];
+  SEA_SURFACE_ENTITY_SURFACE_COMBATANT_LINE = 120200 [(varta.task.catalog.v1.enum_value) = {label: "Surface Combatant, Line"}];
+  SEA_SURFACE_ENTITY_BATTLESHIP = 120201 [(varta.task.catalog.v1.enum_value) = {label: "Battleship"}];
+  SEA_SURFACE_ENTITY_CRUISER_GUIDED_MISSILE = 120202 [(varta.task.catalog.v1.enum_value) = {label: "Cruiser, Guided Missile"}];
+  SEA_SURFACE_ENTITY_DESTROYER = 120203 [(varta.task.catalog.v1.enum_value) = {label: "Destroyer"}];
+  SEA_SURFACE_ENTITY_FRIGATE = 120204 [(varta.task.catalog.v1.enum_value) = {label: "Frigate"}];
+  SEA_SURFACE_ENTITY_CORVETTE = 120205 [(varta.task.catalog.v1.enum_value) = {label: "Corvette"}];
+  SEA_SURFACE_ENTITY_LITTORAL_COMBATANT_SHIP = 120206 [(varta.task.catalog.v1.enum_value) = {label: "Littoral Combatant Ship"}];
+  SEA_SURFACE_ENTITY_AMPHIBIOUS_WARFARE_SHIP = 120300 [(varta.task.catalog.v1.enum_value) = {label: "Amphibious Warfare Ship"}];
+  SEA_SURFACE_ENTITY_AMPHIBIOUS_FORCE_FLAGSHIP = 120301 [(varta.task.catalog.v1.enum_value) = {label: "Amphibious Force Flagship"}];
+  SEA_SURFACE_ENTITY_AMPHIBIOUS_ASSAULT = 120302 [(varta.task.catalog.v1.enum_value) = {label: "Amphibious Assault"}];
+  SEA_SURFACE_ENTITY_AMPHIBIOUS_ASSAULT_SHIP_GENERAL = 120303 [(varta.task.catalog.v1.enum_value) = {label: "Amphibious Assault Ship, General"}];
+  SEA_SURFACE_ENTITY_AMPHIBIOUS_ASSAULT_SHIP_MULTI_PURPOSE = 120304 [(varta.task.catalog.v1.enum_value) = {label: "Amphibious Assault Ship, Multi-purpose"}];
+  SEA_SURFACE_ENTITY_AMPHIBIOUS_ASSAULT_SHIP_HELICOPTER = 120305 [(varta.task.catalog.v1.enum_value) = {label: "Amphibious Assault Ship, Helicopter"}];
+  SEA_SURFACE_ENTITY_AMPHIBIOUS_TRANSPORT_DOCK = 120306 [(varta.task.catalog.v1.enum_value) = {label: "Amphibious Transport, Dock"}];
+  SEA_SURFACE_ENTITY_LANDING_SHIP = 120307 [(varta.task.catalog.v1.enum_value) = {label: "Landing Ship"}];
+  SEA_SURFACE_ENTITY_LANDING_CRAFT = 120308 [(varta.task.catalog.v1.enum_value) = {label: "Landing Craft"}];
+  SEA_SURFACE_ENTITY_MINE_WARFARE_VESSEL = 120400 [(varta.task.catalog.v1.enum_value) = {label: "Mine Warfare Vessel"}];
+  SEA_SURFACE_ENTITY_MINELAYER = 120401 [(varta.task.catalog.v1.enum_value) = {label: "Minelayer"}];
+  SEA_SURFACE_ENTITY_MINESWEEPER = 120402 [(varta.task.catalog.v1.enum_value) = {label: "Minesweeper"}];
+  SEA_SURFACE_ENTITY_MINESWEEPER_DRONE = 120403 [(varta.task.catalog.v1.enum_value) = {label: "Minesweeper, Drone"}];
+  SEA_SURFACE_ENTITY_MINEHUNTER = 120404 [(varta.task.catalog.v1.enum_value) = {label: "Minehunter"}];
+  SEA_SURFACE_ENTITY_MINE_COUNTERMEASURES = 120405 [(varta.task.catalog.v1.enum_value) = {label: "Mine Countermeasures"}];
+  SEA_SURFACE_ENTITY_MINE_COUNTER_MEASURE_SUPPORT_SHIP = 120406 [(varta.task.catalog.v1.enum_value) = {label: "Mine Counter Measure Support Ship"}];
+  SEA_SURFACE_ENTITY_PATROL = 120500 [(varta.task.catalog.v1.enum_value) = {label: "Patrol"}];
+  SEA_SURFACE_ENTITY_PATROL_CRAFT = 120501 [(varta.task.catalog.v1.enum_value) = {label: "Patrol Craft"}];
+  SEA_SURFACE_ENTITY_PATROL_GUN = 120502 [(varta.task.catalog.v1.enum_value) = {label: "Patrol Gun"}];
+  SEA_SURFACE_ENTITY_SEA_SURFACE_DECOY = 120600 [(varta.task.catalog.v1.enum_value) = {label: "Sea Surface Decoy"}];
+  SEA_SURFACE_ENTITY_UNMANNED_SURFACE_WATER_VEHICLE = 120700 [(varta.task.catalog.v1.enum_value) = {label: "Unmanned Surface Water Vehicle"}];
+  SEA_SURFACE_ENTITY_MILITARY_SPEEDBOAT = 120800 [(varta.task.catalog.v1.enum_value) = {label: "Military Speedboat"}];
+  SEA_SURFACE_ENTITY_MILITARY_JETSKI = 120900 [(varta.task.catalog.v1.enum_value) = {label: "Military Jetski"}];
+  SEA_SURFACE_ENTITY_NAVY_TASK_ORGANIZATION_UNIT = 121000 [(varta.task.catalog.v1.enum_value) = {label: "Navy Task Organization Unit"}];
+  SEA_SURFACE_ENTITY_NAVY_TASK_ELEMENT = 121001 [(varta.task.catalog.v1.enum_value) = {label: "Navy Task Element"}];
+  SEA_SURFACE_ENTITY_NAVY_TASK_FORCE = 121002 [(varta.task.catalog.v1.enum_value) = {label: "Navy Task Force"}];
+  SEA_SURFACE_ENTITY_NAVY_TASK_GROUP = 121003 [(varta.task.catalog.v1.enum_value) = {label: "Navy Task Group"}];
+  SEA_SURFACE_ENTITY_NAVY_TASK_UNIT = 121004 [(varta.task.catalog.v1.enum_value) = {label: "Navy Task Unit"}];
+  SEA_SURFACE_ENTITY_CONVOY = 121005 [(varta.task.catalog.v1.enum_value) = {label: "Convoy"}];
+  SEA_SURFACE_ENTITY_RADAR = 121100 [(varta.task.catalog.v1.enum_value) = {label: "Radar"}];
+  SEA_SURFACE_ENTITY_NONCOMBATANT = 130000 [(varta.task.catalog.v1.enum_value) = {label: "Noncombatant"}];
+  SEA_SURFACE_ENTITY_AUXILIARY_SHIP = 130100 [(varta.task.catalog.v1.enum_value) = {label: "Auxiliary Ship"}];
+  SEA_SURFACE_ENTITY_AMMUNITION_SHIP = 130101 [(varta.task.catalog.v1.enum_value) = {label: "Ammunition Ship"}];
+  SEA_SURFACE_ENTITY_STORES_SHIP = 130102 [(varta.task.catalog.v1.enum_value) = {label: "Stores Ship"}];
+  SEA_SURFACE_ENTITY_AUXILIARY_FLAG_OR_COMMAND_SHIP = 130103 [(varta.task.catalog.v1.enum_value) = {label: "Auxiliary Flag or Command Ship"}];
+  SEA_SURFACE_ENTITY_INTELLIGENCE_COLLECTOR = 130104 [(varta.task.catalog.v1.enum_value) = {label: "Intelligence Collector"}];
+  SEA_SURFACE_ENTITY_OCEAN_RESEARCH_SHIP = 130105 [(varta.task.catalog.v1.enum_value) = {label: "Ocean Research Ship"}];
+  SEA_SURFACE_ENTITY_SURVEY_SHIP = 130106 [(varta.task.catalog.v1.enum_value) = {label: "Survey Ship"}];
+  SEA_SURFACE_ENTITY_HOSPITAL_SHIP = 130107 [(varta.task.catalog.v1.enum_value) = {label: "Hospital Ship"}];
+  SEA_SURFACE_ENTITY_CARGO_SHIP = 130108 [(varta.task.catalog.v1.enum_value) = {label: "Cargo Ship"}];
+  SEA_SURFACE_ENTITY_COMBAT_SUPPORT_SHIP_FAST = 130109 [(varta.task.catalog.v1.enum_value) = {label: "Combat Support Ship, Fast"}];
+  SEA_SURFACE_ENTITY_OILER_REPLENISHMENT = 130110 [(varta.task.catalog.v1.enum_value) = {label: "Oiler, Replenishment"}];
+  SEA_SURFACE_ENTITY_REPAIR_SHIP = 130111 [(varta.task.catalog.v1.enum_value) = {label: "Repair Ship"}];
+  SEA_SURFACE_ENTITY_SUBMARINE_TENDER = 130112 [(varta.task.catalog.v1.enum_value) = {label: "Submarine Tender"}];
+  SEA_SURFACE_ENTITY_TUG_OCEAN_GOING = 130113 [(varta.task.catalog.v1.enum_value) = {label: "Tug, Ocean Going"}];
+  SEA_SURFACE_ENTITY_SERVICE_CRAFT_YARD_GENERAL = 130200 [(varta.task.catalog.v1.enum_value) = {label: "Service Craft, Yard, General"}];
+  SEA_SURFACE_ENTITY_BARGE_NOT_SELF_PROPELLED = 130201 [(varta.task.catalog.v1.enum_value) = {label: "Barge, Not Self-propelled"}];
+  SEA_SURFACE_ENTITY_BARGE_SELF_PROPELLED = 130202 [(varta.task.catalog.v1.enum_value) = {label: "Barge, Self-propelled"}];
+  SEA_SURFACE_ENTITY_TUG_HARBOUR = 130203 [(varta.task.catalog.v1.enum_value) = {label: "Tug, Harbour"}];
+  SEA_SURFACE_ENTITY_LAUNCH = 130204 [(varta.task.catalog.v1.enum_value) = {label: "Launch"}];
+  SEA_SURFACE_ENTITY_CIVILIAN = 140000 [(varta.task.catalog.v1.enum_value) = {label: "Civilian"}];
+  SEA_SURFACE_ENTITY_MERCHANT_SHIP_GENERAL = 140100 [(varta.task.catalog.v1.enum_value) = {label: "Merchant Ship, General"}];
+  SEA_SURFACE_ENTITY_CARGO_GENERAL = 140101 [(varta.task.catalog.v1.enum_value) = {label: "Cargo, General"}];
+  SEA_SURFACE_ENTITY_CONTAINER_SHIP = 140102 [(varta.task.catalog.v1.enum_value) = {label: "Container Ship"}];
+  SEA_SURFACE_ENTITY_DREDGE = 140103 [(varta.task.catalog.v1.enum_value) = {label: "Dredge"}];
+  SEA_SURFACE_ENTITY_ROLL_ON_ROLL_OFF = 140104 [(varta.task.catalog.v1.enum_value) = {label: "Roll On-roll Off"}];
+  SEA_SURFACE_ENTITY_FERRY = 140105 [(varta.task.catalog.v1.enum_value) = {label: "Ferry"}];
+  SEA_SURFACE_ENTITY_HEAVY_LIFT = 140106 [(varta.task.catalog.v1.enum_value) = {label: "Heavy Lift"}];
+  SEA_SURFACE_ENTITY_HOVERCRAFT_2525D = 140107 [(varta.task.catalog.v1.enum_value) = {label: "Hovercraft 2525d"}];
+  SEA_SURFACE_ENTITY_MERCHANT_SHIP_LASH_CARRIER_WITH_BARGES = 140108 [(varta.task.catalog.v1.enum_value) = {label: "Merchant Ship, Lash Carrier (with Barges)"}];
+  SEA_SURFACE_ENTITY_OILER_TANKER = 140109 [(varta.task.catalog.v1.enum_value) = {label: "Oiler Tanker"}];
+  SEA_SURFACE_ENTITY_PASSENGER_SHIP = 140110 [(varta.task.catalog.v1.enum_value) = {label: "Passenger Ship"}];
+  SEA_SURFACE_ENTITY_TUG_OCEAN_GOING_CIVILIAN = 140111 [(varta.task.catalog.v1.enum_value) = {label: "Tug, Ocean Going Civilian"}];
+  SEA_SURFACE_ENTITY_TOW = 140112 [(varta.task.catalog.v1.enum_value) = {label: "Tow"}];
+  SEA_SURFACE_ENTITY_TRANSPORT_SHIP_HAZARDOUS_MATERIAL = 140113 [(varta.task.catalog.v1.enum_value) = {label: "Transport Ship, Hazardous Material"}];
+  SEA_SURFACE_ENTITY_JUNK_DHOW = 140114 [(varta.task.catalog.v1.enum_value) = {label: "Junk Dhow"}];
+  SEA_SURFACE_ENTITY_BARGE_NOT_SELF_PROPELLED_CIV = 140115 [(varta.task.catalog.v1.enum_value) = {label: "Barge, Not Self-propelled Civ"}];
+  SEA_SURFACE_ENTITY_HOSPITAL_SHIP_CIV = 140116 [(varta.task.catalog.v1.enum_value) = {label: "Hospital Ship Civ"}];
+  SEA_SURFACE_ENTITY_FISHING_VESSEL = 140200 [(varta.task.catalog.v1.enum_value) = {label: "Fishing Vessel"}];
+  SEA_SURFACE_ENTITY_DRIFTER = 140201 [(varta.task.catalog.v1.enum_value) = {label: "Drifter"}];
+  SEA_SURFACE_ENTITY_TRAWLER = 140202 [(varta.task.catalog.v1.enum_value) = {label: "Trawler"}];
+  SEA_SURFACE_ENTITY_FISHING_VESSEL_DREDGE = 140203 [(varta.task.catalog.v1.enum_value) = {label: "Fishing Vessel Dredge"}];
+  SEA_SURFACE_ENTITY_LAW_ENFORCEMENT_VESSEL = 140300 [(varta.task.catalog.v1.enum_value) = {label: "Law Enforcement Vessel"}];
+  SEA_SURFACE_ENTITY_LEISURE_CRAFT_SAILING_BOAT = 140400 [(varta.task.catalog.v1.enum_value) = {label: "Leisure Craft, Sailing Boat"}];
+  SEA_SURFACE_ENTITY_LEISURE_CRAFT_MOTORIZED = 140500 [(varta.task.catalog.v1.enum_value) = {label: "Leisure Craft, Motorized"}];
+  SEA_SURFACE_ENTITY_LEISURE_CRAFT_MOTORIZED_SPEEDBOAT = 140502 [(varta.task.catalog.v1.enum_value) = {label: "Leisure Craft, Motorized, Speedboat"}];
+  SEA_SURFACE_ENTITY_LEISURE_CRAFT_JETSKI = 140600 [(varta.task.catalog.v1.enum_value) = {label: "Leisure Craft, Jetski"}];
+  SEA_SURFACE_ENTITY_UNMANNED_SURFACE_WATER_VEHICLE_USV = 140700 [(varta.task.catalog.v1.enum_value) = {label: "Unmanned Surface Water Vehicle (usv)"}];
+  SEA_SURFACE_ENTITY_OWN_SHIP = 150000 [(varta.task.catalog.v1.enum_value) = {label: "Own Ship"}];
+  SEA_SURFACE_ENTITY_FUSED_TRACK = 160000 [(varta.task.catalog.v1.enum_value) = {label: "Fused Track"}];
+  SEA_SURFACE_ENTITY_MANUAL_TRACK = 170000 [(varta.task.catalog.v1.enum_value) = {label: "Manual Track"}];
+}
+
+enum SeaSurfaceModifier1 {
+  SEA_SURFACE_MODIFIER1_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SEA_SURFACE_MODIFIER1_OWN_SHIP = 1 [(varta.task.catalog.v1.enum_value) = {label: "Own Ship"}];
+  SEA_SURFACE_MODIFIER1_ANTIAIR_WARFARE = 2 [(varta.task.catalog.v1.enum_value) = {label: "Antiair Warfare"}];
+  SEA_SURFACE_MODIFIER1_ANTISUBMARINE_WARFARE = 3 [(varta.task.catalog.v1.enum_value) = {label: "Antisubmarine Warfare"}];
+  SEA_SURFACE_MODIFIER1_ESCORT = 4 [(varta.task.catalog.v1.enum_value) = {label: "Escort"}];
+  SEA_SURFACE_MODIFIER1_ELECTRONIC_WARFARE = 5 [(varta.task.catalog.v1.enum_value) = {label: "Electronic Warfare"}];
+  SEA_SURFACE_MODIFIER1_INTELLIGENCE_SURVEILLANCE_RECONNAISSANCE = 6 [(varta.task.catalog.v1.enum_value) = {label: "Intelligence, Surveillance, Reconnaissance"}];
+  SEA_SURFACE_MODIFIER1_MINE_COUNTER_MEASURES = 7 [(varta.task.catalog.v1.enum_value) = {label: "Mine Counter Measures"}];
+  SEA_SURFACE_MODIFIER1_MISSILE_DEFENSE = 8 [(varta.task.catalog.v1.enum_value) = {label: "Missile Defense"}];
+  SEA_SURFACE_MODIFIER1_MEDICAL = 9 [(varta.task.catalog.v1.enum_value) = {label: "Medical"}];
+  SEA_SURFACE_MODIFIER1_MINE_WARFARE = 10 [(varta.task.catalog.v1.enum_value) = {label: "Mine Warfare"}];
+  SEA_SURFACE_MODIFIER1_REMOTE_MULTI_MISSION_VEHIHLE = 11 [(varta.task.catalog.v1.enum_value) = {label: "Remote Multi-mission Vehihle"}];
+  SEA_SURFACE_MODIFIER1_SPECIAL_OPERATIONS_FORCE = 12 [(varta.task.catalog.v1.enum_value) = {label: "Special Operations Force"}];
+  SEA_SURFACE_MODIFIER1_SURFACE_WARFARE = 13 [(varta.task.catalog.v1.enum_value) = {label: "Surface Warfare"}];
+  SEA_SURFACE_MODIFIER1_BALLISTIC_MISSILE = 14 [(varta.task.catalog.v1.enum_value) = {label: "Ballistic Missile"}];
+  SEA_SURFACE_MODIFIER1_GUIDED_MISSILE = 15 [(varta.task.catalog.v1.enum_value) = {label: "Guided Missile"}];
+  SEA_SURFACE_MODIFIER1_OTHER_GUIDED_MISSILE = 16 [(varta.task.catalog.v1.enum_value) = {label: "Other Guided Missile"}];
+  SEA_SURFACE_MODIFIER1_TORPEDO = 17 [(varta.task.catalog.v1.enum_value) = {label: "Torpedo"}];
+  SEA_SURFACE_MODIFIER1_DRONE_EQUIPPED = 18 [(varta.task.catalog.v1.enum_value) = {label: "Drone-equipped"}];
+  SEA_SURFACE_MODIFIER1_HELICOPTER_EQUIPPED = 19 [(varta.task.catalog.v1.enum_value) = {label: "Helicopter-equipped"}];
+  SEA_SURFACE_MODIFIER1_BALLISTIC_MISSILE_DEFENSE_SHOOTER = 20 [(varta.task.catalog.v1.enum_value) = {label: "Ballistic Missile Defense, Shooter"}];
+  SEA_SURFACE_MODIFIER1_SEA_BASE_X_BAND = 22 [(varta.task.catalog.v1.enum_value) = {label: "Sea-base X-band"}];
+  SEA_SURFACE_MODIFIER1_HIJACKING_HIJACKED = 23 [(varta.task.catalog.v1.enum_value) = {label: "Hijacking Hijacked"}];
+  SEA_SURFACE_MODIFIER1_HIJACKER = 24 [(varta.task.catalog.v1.enum_value) = {label: "Hijacker"}];
+  SEA_SURFACE_MODIFIER1_CYBERSPACE = 25 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+}
+
+enum SeaSurfaceModifier2 {
+  SEA_SURFACE_MODIFIER2_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SEA_SURFACE_MODIFIER2_NUCLEAR_POWERED = 1 [(varta.task.catalog.v1.enum_value) = {label: "Nuclear Powered"}];
+  SEA_SURFACE_MODIFIER2_HEAVY = 2 [(varta.task.catalog.v1.enum_value) = {label: "Heavy"}];
+  SEA_SURFACE_MODIFIER2_LIGHT = 3 [(varta.task.catalog.v1.enum_value) = {label: "Light"}];
+  SEA_SURFACE_MODIFIER2_MEDIUM = 4 [(varta.task.catalog.v1.enum_value) = {label: "Medium"}];
+  SEA_SURFACE_MODIFIER2_DOCK = 5 [(varta.task.catalog.v1.enum_value) = {label: "Dock"}];
+  SEA_SURFACE_MODIFIER2_LOGISTICS = 6 [(varta.task.catalog.v1.enum_value) = {label: "Logistics"}];
+  SEA_SURFACE_MODIFIER2_TANK = 7 [(varta.task.catalog.v1.enum_value) = {label: "Tank"}];
+  SEA_SURFACE_MODIFIER2_VEHICLE = 8 [(varta.task.catalog.v1.enum_value) = {label: "Vehicle"}];
+  SEA_SURFACE_MODIFIER2_FAST = 9 [(varta.task.catalog.v1.enum_value) = {label: "Fast"}];
+  SEA_SURFACE_MODIFIER2_AIR_CUSHIONED_USA_ONLY = 10 [(varta.task.catalog.v1.enum_value) = {label: "Air-cushioned (usa Only)"}];
+  SEA_SURFACE_MODIFIER2_AIR_CUSHIONED = 11 [(varta.task.catalog.v1.enum_value) = {label: "Air-cushioned"}];
+  SEA_SURFACE_MODIFIER2_HYDROFOIL = 12 [(varta.task.catalog.v1.enum_value) = {label: "Hydrofoil"}];
+  SEA_SURFACE_MODIFIER2_AUTONOMOUS_CONTROL = 13 [(varta.task.catalog.v1.enum_value) = {label: "Autonomous Control"}];
+  SEA_SURFACE_MODIFIER2_REMOTELY_PILOTED = 14 [(varta.task.catalog.v1.enum_value) = {label: "Remotely Piloted"}];
+  SEA_SURFACE_MODIFIER2_EXPENDABLE = 15 [(varta.task.catalog.v1.enum_value) = {label: "Expendable"}];
+  SEA_SURFACE_MODIFIER2_CYBERSPACE = 16 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+}

@@ -1,0 +1,147 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/task/catalog/v1/task_definition.proto";
+
+message LandEquipmentSymbol {
+  LandEquipmentEntity entity = 1 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Entity"
+    required: true
+  }];
+  optional LandEquipmentModifier1 modifier1 = 2 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 1"
+  }];
+  optional LandEquipmentModifier2 modifier2 = 3 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 2"
+  }];
+}
+
+enum LandEquipmentEntity {
+  LAND_EQUIPMENT_ENTITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  LAND_EQUIPMENT_ENTITY_WEAPON = 110000 [(varta.task.catalog.v1.enum_value) = {label: "Weapon"}];
+  LAND_EQUIPMENT_ENTITY_RIFLE = 110100 [(varta.task.catalog.v1.enum_value) = {label: "Rifle"}];
+  LAND_EQUIPMENT_ENTITY_MACHINE_GUN = 110200 [(varta.task.catalog.v1.enum_value) = {label: "Machine Gun"}];
+  LAND_EQUIPMENT_ENTITY_GRENADE_LAUNCHER = 110300 [(varta.task.catalog.v1.enum_value) = {label: "Grenade Launcher"}];
+  LAND_EQUIPMENT_ENTITY_FLAME_THROWER = 110400 [(varta.task.catalog.v1.enum_value) = {label: "Flame Thrower"}];
+  LAND_EQUIPMENT_ENTITY_AIR_DEFENCE_GUN = 110500 [(varta.task.catalog.v1.enum_value) = {label: "Air Defence Gun"}];
+  LAND_EQUIPMENT_ENTITY_ANTITANK_GUN = 110600 [(varta.task.catalog.v1.enum_value) = {label: "Antitank Gun"}];
+  LAND_EQUIPMENT_ENTITY_DIRECT_FIRE_GUN = 110700 [(varta.task.catalog.v1.enum_value) = {label: "Direct Fire Gun"}];
+  LAND_EQUIPMENT_ENTITY_RECOILLESS_GUN = 110800 [(varta.task.catalog.v1.enum_value) = {label: "Recoilless Gun"}];
+  LAND_EQUIPMENT_ENTITY_HOWITZER = 110900 [(varta.task.catalog.v1.enum_value) = {label: "Howitzer"}];
+  LAND_EQUIPMENT_ENTITY_MISSILE_LAUNCHER = 111000 [(varta.task.catalog.v1.enum_value) = {label: "Missile Launcher"}];
+  LAND_EQUIPMENT_ENTITY_ANTITANK_MISSILE_LAUNCHER = 111200 [(varta.task.catalog.v1.enum_value) = {label: "Antitank Missile Launcher"}];
+  LAND_EQUIPMENT_ENTITY_SURFACE_TO_SURFACE_MISSILE_LAUNCHER = 111300 [(varta.task.catalog.v1.enum_value) = {label: "Surface-to-surface Missile Launcher"}];
+  LAND_EQUIPMENT_ENTITY_MORTAR = 111400 [(varta.task.catalog.v1.enum_value) = {label: "Mortar"}];
+  LAND_EQUIPMENT_ENTITY_SINGLE_ROCKET_LAUNCHER = 111500 [(varta.task.catalog.v1.enum_value) = {label: "Single Rocket Launcher"}];
+  LAND_EQUIPMENT_ENTITY_MULTIPLE_ROCKET_LAUNCHER = 111600 [(varta.task.catalog.v1.enum_value) = {label: "Multiple Rocket Launcher"}];
+  LAND_EQUIPMENT_ENTITY_ANTITANK_ROCKET_LAUNCHER = 111700 [(varta.task.catalog.v1.enum_value) = {label: "Antitank Rocket Launcher"}];
+  LAND_EQUIPMENT_ENTITY_NON_LETHAL_WEAPON = 111800 [(varta.task.catalog.v1.enum_value) = {label: "Non-lethal Weapon"}];
+  LAND_EQUIPMENT_ENTITY_TASER = 111900 [(varta.task.catalog.v1.enum_value) = {label: "Taser"}];
+  LAND_EQUIPMENT_ENTITY_WATER_CANNON = 112000 [(varta.task.catalog.v1.enum_value) = {label: "Water Cannon"}];
+  LAND_EQUIPMENT_ENTITY_ARMOURED_FIGHTING_VEHICLE = 120101 [(varta.task.catalog.v1.enum_value) = {label: "Armoured Fighting Vehicle"}];
+  LAND_EQUIPMENT_ENTITY_ARMOURED_PERSONNEL_CARRIER = 120103 [(varta.task.catalog.v1.enum_value) = {label: "Armoured Personnel Carrier"}];
+  LAND_EQUIPMENT_ENTITY_ARMOUR = 120105 [(varta.task.catalog.v1.enum_value) = {label: "Armour"}];
+  LAND_EQUIPMENT_ENTITY_TANK = 120200 [(varta.task.catalog.v1.enum_value) = {label: "Tank"}];
+  LAND_EQUIPMENT_ENTITY_IC_BRIDGE = 130100 [(varta.task.catalog.v1.enum_value) = {label: "Ic.bridge"}];
+  LAND_EQUIPMENT_ENTITY_DRILLING = 130700 [(varta.task.catalog.v1.enum_value) = {label: "Drilling"}];
+  LAND_EQUIPMENT_ENTITY_EARTHMOVER = 130800 [(varta.task.catalog.v1.enum_value) = {label: "Earthmover"}];
+  LAND_EQUIPMENT_ENTITY_MULTIFUNCTIONAL_EARTHMOVER_DIGGER = 130801 [(varta.task.catalog.v1.enum_value) = {label: "Multifunctional Earthmover Digger"}];
+  LAND_EQUIPMENT_ENTITY_MINE_CLEARING_EQUIPMENT = 130900 [(varta.task.catalog.v1.enum_value) = {label: "Mine Clearing Equipment"}];
+  LAND_EQUIPMENT_ENTITY_MINE_LAYING = 131000 [(varta.task.catalog.v1.enum_value) = {label: "Mine Laying"}];
+  LAND_EQUIPMENT_ENTITY_DOZER = 131100 [(varta.task.catalog.v1.enum_value) = {label: "Dozer"}];
+  LAND_EQUIPMENT_ENTITY_DOZER_ARMORED = 131101 [(varta.task.catalog.v1.enum_value) = {label: "Dozer Armored"}];
+  LAND_EQUIPMENT_ENTITY_UTILITY_VEHICLE = 140100 [(varta.task.catalog.v1.enum_value) = {label: "Utility Vehicle"}];
+  LAND_EQUIPMENT_ENTITY_BUS = 140500 [(varta.task.catalog.v1.enum_value) = {label: "Bus"}];
+  LAND_EQUIPMENT_ENTITY_SEMI_TRAILER_TRUCK = 140600 [(varta.task.catalog.v1.enum_value) = {label: "Semi-trailer Truck"}];
+  LAND_EQUIPMENT_ENTITY_TRAIN_LOCOMOTIVE = 150100 [(varta.task.catalog.v1.enum_value) = {label: "Train Locomotive"}];
+  LAND_EQUIPMENT_ENTITY_RAILCAR = 150200 [(varta.task.catalog.v1.enum_value) = {label: "Railcar"}];
+  LAND_EQUIPMENT_ENTITY_CIVILIAN_VEHICLE_AUTOMOBILE = 160100 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Vehicle.automobile"}];
+  LAND_EQUIPMENT_ENTITY_CIVILIAN_VEHICLE_OPEN_BED_TRUCK = 160200 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Vehicle.open-bed Truck"}];
+  LAND_EQUIPMENT_ENTITY_CIVILIAN_VEHICLE_UTILITY_VEHICLE = 160400 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Vehicle.utility Vehicle"}];
+  LAND_EQUIPMENT_ENTITY_CIVILIAN_VEHICLE_JEEP_TYPE_VEHICLE = 160500 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Vehicle.jeep Type Vehicle"}];
+  LAND_EQUIPMENT_ENTITY_KNOWN_INSURGENT_VEHICLE = 160800 [(varta.task.catalog.v1.enum_value) = {label: "Known Insurgent Vehicle"}];
+  LAND_EQUIPMENT_ENTITY_FF_LAW_ENFORCEMENT = 170000 [(varta.task.catalog.v1.enum_value) = {label: "Ff.law Enforcement"}];
+  LAND_EQUIPMENT_ENTITY_FF_BORDER_PATROL = 170200 [(varta.task.catalog.v1.enum_value) = {label: "Ff.border Patrol"}];
+  LAND_EQUIPMENT_ENTITY_FF_CUSTOMS_SERVICE = 170300 [(varta.task.catalog.v1.enum_value) = {label: "Ff.customs Service"}];
+  LAND_EQUIPMENT_ENTITY_DRUG_ENFORCEMENT_AGENCY_DEA = 170400 [(varta.task.catalog.v1.enum_value) = {label: "Drug Enforcement Agency (dea)"}];
+  LAND_EQUIPMENT_ENTITY_FF_DEPARTMENT_OF_JUSTICE_DOJ = 170500 [(varta.task.catalog.v1.enum_value) = {label: "Ff.department of Justice (doj)"}];
+  LAND_EQUIPMENT_ENTITY_FEDERAL_BUREAU_OF_INVESTIGATION_FBI = 170600 [(varta.task.catalog.v1.enum_value) = {label: "Federal Bureau of Investigation (fbi)"}];
+  LAND_EQUIPMENT_ENTITY_LAW_ENFORCEMENT = 170700 [(varta.task.catalog.v1.enum_value) = {label: "Law Enforcement"}];
+  LAND_EQUIPMENT_ENTITY_UNITED_STATES_SECRET_SERVICE_TREAS_USSS = 170800 [(varta.task.catalog.v1.enum_value) = {label: "United States Secret Service(treas) (usss)"}];
+  LAND_EQUIPMENT_ENTITY_TRANSPORTATION_SECURITY_AGENCY_TSA = 170900 [(varta.task.catalog.v1.enum_value) = {label: "Transportation Security Agency (tsa)"}];
+  LAND_EQUIPMENT_ENTITY_LAW_ENFORCEMENT_VESSEL = 171000 [(varta.task.catalog.v1.enum_value) = {label: "Law Enforcement Vessel"}];
+  LAND_EQUIPMENT_ENTITY_FF_US_MARSHALS_SERVICE = 171100 [(varta.task.catalog.v1.enum_value) = {label: "Ff.us Marshals Service"}];
+  LAND_EQUIPMENT_ENTITY_PACK_ANIMAL = 180000 [(varta.task.catalog.v1.enum_value) = {label: "Pack Animal"}];
+  LAND_EQUIPMENT_ENTITY_FF_BROADCAST_TRANSMITTER_ANTENNA = 200100 [(varta.task.catalog.v1.enum_value) = {label: "Ff.broadcast Transmitter Antenna"}];
+  LAND_EQUIPMENT_ENTITY_BOMB = 200200 [(varta.task.catalog.v1.enum_value) = {label: "Bomb"}];
+  LAND_EQUIPMENT_ENTITY_BOOBY_TRAP = 200300 [(varta.task.catalog.v1.enum_value) = {label: "Booby Trap"}];
+  LAND_EQUIPMENT_ENTITY_CBRN_EQUIPMENT = 200400 [(varta.task.catalog.v1.enum_value) = {label: "CBRN Equipment"}];
+  LAND_EQUIPMENT_ENTITY_COMPUTER_SYSTEM = 200500 [(varta.task.catalog.v1.enum_value) = {label: "Computer System"}];
+  LAND_EQUIPMENT_ENTITY_COMMAND_LAUNCH_EQUIPMENT_CLE = 200600 [(varta.task.catalog.v1.enum_value) = {label: "Command Launch Equipment (cle)"}];
+  LAND_EQUIPMENT_ENTITY_GENERATOR_SET = 200700 [(varta.task.catalog.v1.enum_value) = {label: "Generator Set"}];
+  LAND_EQUIPMENT_ENTITY_LASER = 201000 [(varta.task.catalog.v1.enum_value) = {label: "Laser"}];
+  LAND_EQUIPMENT_ENTITY_PSYCHOLOGICAL_OPERATIONS_EQUIPMENT = 201100 [(varta.task.catalog.v1.enum_value) = {label: "Psychological Operations Equipment"}];
+  LAND_EQUIPMENT_ENTITY_SUSTAINMENT = 201200 [(varta.task.catalog.v1.enum_value) = {label: "Sustainment"}];
+  LAND_EQUIPMENT_ENTITY_TENT = 201300 [(varta.task.catalog.v1.enum_value) = {label: "Tent"}];
+  LAND_EQUIPMENT_ENTITY_TENT_CIVILIAN = 201301 [(varta.task.catalog.v1.enum_value) = {label: "Tent Civilian"}];
+  LAND_EQUIPMENT_ENTITY_TENT_MILITARY = 201302 [(varta.task.catalog.v1.enum_value) = {label: "Tent Military"}];
+  LAND_EQUIPMENT_ENTITY_UNIT_DEPLOYMENT_SHIPMENTS = 201400 [(varta.task.catalog.v1.enum_value) = {label: "Unit Deployment Shipments"}];
+  LAND_EQUIPMENT_ENTITY_EMERGENCY_MEDICAL_OPERATION = 201500 [(varta.task.catalog.v1.enum_value) = {label: "Emergency Medical Operation"}];
+  LAND_EQUIPMENT_ENTITY_MEDICAL_EVACUATION_HELICOPTER = 201501 [(varta.task.catalog.v1.enum_value) = {label: "Medical Evacuation Helicopter"}];
+  LAND_EQUIPMENT_ENTITY_LAND_MINE = 210100 [(varta.task.catalog.v1.enum_value) = {label: "Land Mine"}];
+  LAND_EQUIPMENT_ENTITY_ANTIPERSONNEL_LAND_MINE = 210200 [(varta.task.catalog.v1.enum_value) = {label: "Antipersonnel Land Mine"}];
+  LAND_EQUIPMENT_ENTITY_ANTITANK_MINE = 210300 [(varta.task.catalog.v1.enum_value) = {label: "Antitank Mine"}];
+  LAND_EQUIPMENT_ENTITY_IMPROVISED_EXPLOSIVE_DEVICE = 210400 [(varta.task.catalog.v1.enum_value) = {label: "Improvised Explosive Device"}];
+  LAND_EQUIPMENT_ENTITY_ANTIPERSONNEL_LAND_MINE_LESS_THAN_LETHAL = 210500 [(varta.task.catalog.v1.enum_value) = {label: "Antipersonnel Land Mine Less Than Lethal"}];
+  LAND_EQUIPMENT_ENTITY_SENSOR = 220100 [(varta.task.catalog.v1.enum_value) = {label: "Sensor"}];
+  LAND_EQUIPMENT_ENTITY_SENSOR_EMPLACED = 220200 [(varta.task.catalog.v1.enum_value) = {label: "Sensor Emplaced"}];
+  LAND_EQUIPMENT_ENTITY_RADAR = 220300 [(varta.task.catalog.v1.enum_value) = {label: "Radar"}];
+  LAND_EQUIPMENT_ENTITY_FF_EMERGENCY_OPERATION = 230000 [(varta.task.catalog.v1.enum_value) = {label: "Ff.emergency Operation"}];
+  LAND_EQUIPMENT_ENTITY_FIRE_PROTECTION = 230200 [(varta.task.catalog.v1.enum_value) = {label: "Fire Protection"}];
+  LAND_EQUIPMENT_ENTITY_MANUAL_TRACK = 240000 [(varta.task.catalog.v1.enum_value) = {label: "Manual Track"}];
+  LAND_EQUIPMENT_ENTITY_AVIATION_ROTARY_WING = 250000 [(varta.task.catalog.v1.enum_value) = {label: "Aviation Rotary Wing"}];
+}
+
+enum LandEquipmentModifier1 {
+  LAND_EQUIPMENT_MODIFIER1_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  LAND_EQUIPMENT_MODIFIER1_BIOLOGICAL = 1 [(varta.task.catalog.v1.enum_value) = {label: "Biological"}];
+  LAND_EQUIPMENT_MODIFIER1_CHEMICAL = 2 [(varta.task.catalog.v1.enum_value) = {label: "Chemical"}];
+  LAND_EQUIPMENT_MODIFIER1_EARLY_WARNING_RADAR = 3 [(varta.task.catalog.v1.enum_value) = {label: "Early Warning Radar"}];
+  LAND_EQUIPMENT_MODIFIER1_INTRUSION = 4 [(varta.task.catalog.v1.enum_value) = {label: "Intrusion"}];
+  LAND_EQUIPMENT_MODIFIER1_NUCLEAR = 5 [(varta.task.catalog.v1.enum_value) = {label: "Nuclear"}];
+  LAND_EQUIPMENT_MODIFIER1_RADIOLOGICAL = 6 [(varta.task.catalog.v1.enum_value) = {label: "Radiological"}];
+  LAND_EQUIPMENT_MODIFIER1_UPGRADED_EARLY_WARNING_RADAR = 7 [(varta.task.catalog.v1.enum_value) = {label: "Upgraded Early Warning Radar"}];
+  LAND_EQUIPMENT_MODIFIER1_HIJACKING = 8 [(varta.task.catalog.v1.enum_value) = {label: "Hijacking"}];
+  LAND_EQUIPMENT_MODIFIER1_CIVILIAN = 9 [(varta.task.catalog.v1.enum_value) = {label: "Civilian"}];
+  LAND_EQUIPMENT_MODIFIER1_TILT_ROTOR = 10 [(varta.task.catalog.v1.enum_value) = {label: "Tilt-rotor"}];
+  LAND_EQUIPMENT_MODIFIER1_MULTI_PURPOSE_BLADE = 12 [(varta.task.catalog.v1.enum_value) = {label: "Multi-purpose Blade"}];
+  LAND_EQUIPMENT_MODIFIER1_TANK_WIDTH_MINE_PLOW = 13 [(varta.task.catalog.v1.enum_value) = {label: "Tank-width Mine Plow"}];
+  LAND_EQUIPMENT_MODIFIER1_BRIDGING = 14 [(varta.task.catalog.v1.enum_value) = {label: "Bridging"}];
+  LAND_EQUIPMENT_MODIFIER1_CYBERSPACE = 15 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+  LAND_EQUIPMENT_MODIFIER1_ARMORED = 16 [(varta.task.catalog.v1.enum_value) = {label: "Armored"}];
+  LAND_EQUIPMENT_MODIFIER1_ATTACK = 17 [(varta.task.catalog.v1.enum_value) = {label: "Attack"}];
+  LAND_EQUIPMENT_MODIFIER1_CARGO = 18 [(varta.task.catalog.v1.enum_value) = {label: "Cargo"}];
+  LAND_EQUIPMENT_MODIFIER1_MAINTENANCE = 19 [(varta.task.catalog.v1.enum_value) = {label: "Maintenance"}];
+  LAND_EQUIPMENT_MODIFIER1_MEDEVAC = 20 [(varta.task.catalog.v1.enum_value) = {label: "Medevac"}];
+  LAND_EQUIPMENT_MODIFIER1_PETROLEUM = 21 [(varta.task.catalog.v1.enum_value) = {label: "Petroleum"}];
+  LAND_EQUIPMENT_MODIFIER1_UTILITY = 22 [(varta.task.catalog.v1.enum_value) = {label: "Utility"}];
+  LAND_EQUIPMENT_MODIFIER1_WATER = 23 [(varta.task.catalog.v1.enum_value) = {label: "Water"}];
+  LAND_EQUIPMENT_MODIFIER1_ROBOTIC = 24 [(varta.task.catalog.v1.enum_value) = {label: "Robotic"}];
+}
+
+enum LandEquipmentModifier2 {
+  LAND_EQUIPMENT_MODIFIER2_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  LAND_EQUIPMENT_MODIFIER2_CYBERSPACE = 1 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+  LAND_EQUIPMENT_MODIFIER2_LIGHT = 2 [(varta.task.catalog.v1.enum_value) = {label: "Light"}];
+  LAND_EQUIPMENT_MODIFIER2_MEDIUM = 3 [(varta.task.catalog.v1.enum_value) = {label: "Medium"}];
+  LAND_EQUIPMENT_MODIFIER2_RAILROAD = 4 [(varta.task.catalog.v1.enum_value) = {label: "Railroad"}];
+  LAND_EQUIPMENT_MODIFIER2_TRACKED = 5 [(varta.task.catalog.v1.enum_value) = {label: "Tracked"}];
+  LAND_EQUIPMENT_MODIFIER2_TRACTOR_TRAILER = 6 [(varta.task.catalog.v1.enum_value) = {label: "Tractor Trailer"}];
+  LAND_EQUIPMENT_MODIFIER2_WHEELED_LIMITED = 7 [(varta.task.catalog.v1.enum_value) = {label: "Wheeled Limited"}];
+  LAND_EQUIPMENT_MODIFIER2_WHEELED = 8 [(varta.task.catalog.v1.enum_value) = {label: "Wheeled"}];
+  LAND_EQUIPMENT_MODIFIER2_ROBOTIC = 9 [(varta.task.catalog.v1.enum_value) = {label: "Robotic"}];
+}

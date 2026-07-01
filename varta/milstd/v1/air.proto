@@ -1,0 +1,138 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/task/catalog/v1/task_definition.proto";
+
+message AirSymbol {
+  AirEntity entity = 1 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Entity"
+    required: true
+  }];
+  optional AirModifier1 modifier1 = 2 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 1"
+  }];
+  optional AirModifier2 modifier2 = 3 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 2"
+  }];
+}
+
+enum AirEntity {
+  AIR_ENTITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  AIR_ENTITY_MILITARY = 110000 [(varta.task.catalog.v1.enum_value) = {label: "Military"}];
+  AIR_ENTITY_FIXED_WING = 110100 [(varta.task.catalog.v1.enum_value) = {label: "Fixed-wing"}];
+  AIR_ENTITY_MEDICAL_EVACUATION = 110101 [(varta.task.catalog.v1.enum_value) = {label: "Medical Evacuation"}];
+  AIR_ENTITY_ATTACK_STRIKE = 110102 [(varta.task.catalog.v1.enum_value) = {label: "Attack Strike"}];
+  AIR_ENTITY_BOMBER = 110103 [(varta.task.catalog.v1.enum_value) = {label: "Bomber"}];
+  AIR_ENTITY_FIGHTER = 110104 [(varta.task.catalog.v1.enum_value) = {label: "Fighter"}];
+  AIR_ENTITY_FIGHTER_BOMBER = 110105 [(varta.task.catalog.v1.enum_value) = {label: "Fighter Bomber"}];
+  AIR_ENTITY_CARGO = 110107 [(varta.task.catalog.v1.enum_value) = {label: "Cargo"}];
+  AIR_ENTITY_JAMMER_ELECTRONIC_COUNTER_MEASURES = 110108 [(varta.task.catalog.v1.enum_value) = {label: "Jammer Electronic Counter-measures"}];
+  AIR_ENTITY_TANKER = 110109 [(varta.task.catalog.v1.enum_value) = {label: "Tanker"}];
+  AIR_ENTITY_PATROL = 110110 [(varta.task.catalog.v1.enum_value) = {label: "Patrol"}];
+  AIR_ENTITY_RECONNAISSANCE = 110111 [(varta.task.catalog.v1.enum_value) = {label: "Reconnaissance"}];
+  AIR_ENTITY_TRAINER = 110112 [(varta.task.catalog.v1.enum_value) = {label: "Trainer"}];
+  AIR_ENTITY_UTILITY = 110113 [(varta.task.catalog.v1.enum_value) = {label: "Utility"}];
+  AIR_ENTITY_VSTOL = 110114 [(varta.task.catalog.v1.enum_value) = {label: "VSTOL"}];
+  AIR_ENTITY_AIRBORNE_COMMAND_POST = 110115 [(varta.task.catalog.v1.enum_value) = {label: "Airborne Command Post"}];
+  AIR_ENTITY_AIRBORNE_EARLY_WARNING = 110116 [(varta.task.catalog.v1.enum_value) = {label: "Airborne Early Warning"}];
+  AIR_ENTITY_ANTISURFACE_WARFARE = 110117 [(varta.task.catalog.v1.enum_value) = {label: "Antisurface Warfare"}];
+  AIR_ENTITY_ANTISUBMARINE_WARFARE = 110118 [(varta.task.catalog.v1.enum_value) = {label: "Antisubmarine Warfare"}];
+  AIR_ENTITY_COMMUNICATIONS = 110119 [(varta.task.catalog.v1.enum_value) = {label: "Communications"}];
+  AIR_ENTITY_COMBAT_SEARCH_AND_RESCUE = 110120 [(varta.task.catalog.v1.enum_value) = {label: "Combat Search And Rescue"}];
+  AIR_ENTITY_ELECTRONIC_SUPPORT = 110121 [(varta.task.catalog.v1.enum_value) = {label: "Electronic Support"}];
+  AIR_ENTITY_GOVERNMENT = 110122 [(varta.task.catalog.v1.enum_value) = {label: "Government"}];
+  AIR_ENTITY_MINE_COUNTERMEASURES = 110123 [(varta.task.catalog.v1.enum_value) = {label: "Mine Countermeasures"}];
+  AIR_ENTITY_PERSONNEL_RECOVERY = 110124 [(varta.task.catalog.v1.enum_value) = {label: "Personnel Recovery"}];
+  AIR_ENTITY_SEARCH_AND_RESCUE = 110125 [(varta.task.catalog.v1.enum_value) = {label: "Search And Rescue"}];
+  AIR_ENTITY_SPECIAL_OPERATIONS_FORCES = 110126 [(varta.task.catalog.v1.enum_value) = {label: "Special Operations Forces"}];
+  AIR_ENTITY_ULTRA_LIGHT = 110127 [(varta.task.catalog.v1.enum_value) = {label: "Ultra Light"}];
+  AIR_ENTITY_PHOTOGRAPHIC_RECONNAISSANCE = 110128 [(varta.task.catalog.v1.enum_value) = {label: "Photographic Reconnaissance"}];
+  AIR_ENTITY_VIP = 110129 [(varta.task.catalog.v1.enum_value) = {label: "VIP"}];
+  AIR_ENTITY_SUPRESSION_OF_ENEMY_AIR_DEFENCE = 110130 [(varta.task.catalog.v1.enum_value) = {label: "Supression of Enemy Air Defence"}];
+  AIR_ENTITY_PASSENGER = 110131 [(varta.task.catalog.v1.enum_value) = {label: "Passenger"}];
+  AIR_ENTITY_ESCORT = 110132 [(varta.task.catalog.v1.enum_value) = {label: "Escort"}];
+  AIR_ENTITY_ELECTRONIC_ATTACK_EA = 110133 [(varta.task.catalog.v1.enum_value) = {label: "Electronic Attack (ea)"}];
+  AIR_ENTITY_MILITARY_ROTARY_WING = 110200 [(varta.task.catalog.v1.enum_value) = {label: "Military Rotary Wing"}];
+  AIR_ENTITY_UNMANNED_AERIAL_VEHICLE = 110300 [(varta.task.catalog.v1.enum_value) = {label: "Unmanned Aerial Vehicle"}];
+  AIR_ENTITY_VERTICAL_TAKEOFF_UAV_VT_UAV = 110400 [(varta.task.catalog.v1.enum_value) = {label: "Vertical-takeoff UAV (vt-uav)"}];
+  AIR_ENTITY_MILITARY_BALLOON = 110500 [(varta.task.catalog.v1.enum_value) = {label: "Military Balloon"}];
+  AIR_ENTITY_MILITARY_AIRSHIP = 110600 [(varta.task.catalog.v1.enum_value) = {label: "Military Airship"}];
+  AIR_ENTITY_TETHERED_LIGHTER_THAN_AIR = 110700 [(varta.task.catalog.v1.enum_value) = {label: "Tethered Lighter Than Air"}];
+  AIR_ENTITY_CIVILIAN = 120000 [(varta.task.catalog.v1.enum_value) = {label: "Civilian"}];
+  AIR_ENTITY_CIVILIAN_FIXED_WING = 120100 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Fixed-wing"}];
+  AIR_ENTITY_CIVILIAN_ROTARY_WING = 120200 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Rotary Wing"}];
+  AIR_ENTITY_CIVILIAN_UNMANNED_AERIAL_VEHICLE = 120300 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Unmanned Aerial Vehicle"}];
+  AIR_ENTITY_CIVILIAN_BALLOON = 120400 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Balloon"}];
+  AIR_ENTITY_CIVILIAN_AIRSHIP = 120500 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Airship"}];
+  AIR_ENTITY_CIVILIAN_TETHERED_LIGHTER_THAN_AIR = 120600 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Tethered Lighter Than Air"}];
+  AIR_ENTITY_CIVILIAN_MEDICAL_EVACUATION = 120700 [(varta.task.catalog.v1.enum_value) = {label: "Civilian Medical Evacuation"}];
+  AIR_ENTITY_WEAPON = 130000 [(varta.task.catalog.v1.enum_value) = {label: "Weapon"}];
+  AIR_ENTITY_BOMB = 130100 [(varta.task.catalog.v1.enum_value) = {label: "Bomb"}];
+  AIR_ENTITY_UNDERWATER_DECOY = 130200 [(varta.task.catalog.v1.enum_value) = {label: "Underwater Decoy"}];
+  AIR_ENTITY_MANUAL_TRACK = 140000 [(varta.task.catalog.v1.enum_value) = {label: "Manual Track"}];
+}
+
+enum AirModifier1 {
+  AIR_MODIFIER1_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  AIR_MODIFIER1_ATTACK = 1 [(varta.task.catalog.v1.enum_value) = {label: "Attack"}];
+  AIR_MODIFIER1_BOMBER = 2 [(varta.task.catalog.v1.enum_value) = {label: "Bomber"}];
+  AIR_MODIFIER1_CARGO = 3 [(varta.task.catalog.v1.enum_value) = {label: "Cargo"}];
+  AIR_MODIFIER1_FIGHTER = 4 [(varta.task.catalog.v1.enum_value) = {label: "Fighter"}];
+  AIR_MODIFIER1_INTERCEPTOR = 5 [(varta.task.catalog.v1.enum_value) = {label: "Interceptor"}];
+  AIR_MODIFIER1_TANKER = 6 [(varta.task.catalog.v1.enum_value) = {label: "Tanker"}];
+  AIR_MODIFIER1_UTILITY = 7 [(varta.task.catalog.v1.enum_value) = {label: "Utility"}];
+  AIR_MODIFIER1_VSTOL = 8 [(varta.task.catalog.v1.enum_value) = {label: "VSTOL"}];
+  AIR_MODIFIER1_PASSENGER = 9 [(varta.task.catalog.v1.enum_value) = {label: "Passenger"}];
+  AIR_MODIFIER1_ULTRA_LIGHT = 10 [(varta.task.catalog.v1.enum_value) = {label: "Ultra Light"}];
+  AIR_MODIFIER1_AIRBORNE_COMMAND_POST = 11 [(varta.task.catalog.v1.enum_value) = {label: "Airborne Command Post"}];
+  AIR_MODIFIER1_AIRBORNE_EARLY_WARNING = 12 [(varta.task.catalog.v1.enum_value) = {label: "Airborne Early Warning"}];
+  AIR_MODIFIER1_GOVERNMENT = 13 [(varta.task.catalog.v1.enum_value) = {label: "Government"}];
+  AIR_MODIFIER1_MEDEVAC = 14 [(varta.task.catalog.v1.enum_value) = {label: "Medevac"}];
+  AIR_MODIFIER1_ESCORT = 15 [(varta.task.catalog.v1.enum_value) = {label: "Escort"}];
+  AIR_MODIFIER1_JAMMER_ELECTRONIC_COUNTER_MEASURES = 16 [(varta.task.catalog.v1.enum_value) = {label: "Jammer Electronic Counter-measures"}];
+  AIR_MODIFIER1_PATROL = 17 [(varta.task.catalog.v1.enum_value) = {label: "Patrol"}];
+  AIR_MODIFIER1_RECONNAISSANCE = 18 [(varta.task.catalog.v1.enum_value) = {label: "Reconnaissance"}];
+  AIR_MODIFIER1_TRAINER = 19 [(varta.task.catalog.v1.enum_value) = {label: "Trainer"}];
+  AIR_MODIFIER1_PHOTOGRAPHIC = 20 [(varta.task.catalog.v1.enum_value) = {label: "Photographic"}];
+  AIR_MODIFIER1_PERSONNEL_RECOVERY = 21 [(varta.task.catalog.v1.enum_value) = {label: "Personnel Recovery"}];
+  AIR_MODIFIER1_ANTISUBMARINE_WARFARE = 22 [(varta.task.catalog.v1.enum_value) = {label: "Antisubmarine Warfare"}];
+  AIR_MODIFIER1_COMMUNICATIONS = 23 [(varta.task.catalog.v1.enum_value) = {label: "Communications"}];
+  AIR_MODIFIER1_ELECTRONIC_SUPPORT_ES = 24 [(varta.task.catalog.v1.enum_value) = {label: "Electronic Support (es)"}];
+  AIR_MODIFIER1_MINE_COUNTERMEASURES = 25 [(varta.task.catalog.v1.enum_value) = {label: "Mine Countermeasures"}];
+  AIR_MODIFIER1_SEARCH_AND_RESCUE = 26 [(varta.task.catalog.v1.enum_value) = {label: "Search And Rescue"}];
+  AIR_MODIFIER1_SPECIAL_OPERATIONS_FORCES = 27 [(varta.task.catalog.v1.enum_value) = {label: "Special Operations Forces"}];
+  AIR_MODIFIER1_SURFACE_WARFARE = 28 [(varta.task.catalog.v1.enum_value) = {label: "Surface Warfare"}];
+  AIR_MODIFIER1_VIP = 29 [(varta.task.catalog.v1.enum_value) = {label: "VIP"}];
+  AIR_MODIFIER1_COMBAT_SEARCH_AND_RESCUE = 30 [(varta.task.catalog.v1.enum_value) = {label: "Combat Search And Rescue"}];
+  AIR_MODIFIER1_SUPRESSION_OF_ENEMY_AIR_DEFENCE = 31 [(varta.task.catalog.v1.enum_value) = {label: "Supression of Enemy Air Defence"}];
+  AIR_MODIFIER1_ANTISURFACE_WARFARE = 32 [(varta.task.catalog.v1.enum_value) = {label: "Antisurface Warfare"}];
+  AIR_MODIFIER1_FIGHTER_BOMBER = 33 [(varta.task.catalog.v1.enum_value) = {label: "Fighter Bomber"}];
+  AIR_MODIFIER1_INTENSIVE_CARE = 34 [(varta.task.catalog.v1.enum_value) = {label: "Intensive Care"}];
+  AIR_MODIFIER1_ELECTRONIC_ATTACK_EA = 35 [(varta.task.catalog.v1.enum_value) = {label: "Electronic Attack (ea)"}];
+  AIR_MODIFIER1_MULTIMISSION = 36 [(varta.task.catalog.v1.enum_value) = {label: "Multimission"}];
+  AIR_MODIFIER1_HIJACKING = 37 [(varta.task.catalog.v1.enum_value) = {label: "Hijacking"}];
+  AIR_MODIFIER1_ASW_HELO_LAMPS = 38 [(varta.task.catalog.v1.enum_value) = {label: "Asw Helo-lamps"}];
+  AIR_MODIFIER1_ASW_HELO_SH_60R = 39 [(varta.task.catalog.v1.enum_value) = {label: "Asw Helo - SH-60R"}];
+  AIR_MODIFIER1_HIJACKER = 40 [(varta.task.catalog.v1.enum_value) = {label: "Hijacker"}];
+  AIR_MODIFIER1_CYBERSPACE = 41 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+}
+
+enum AirModifier2 {
+  AIR_MODIFIER2_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  AIR_MODIFIER2_HEAVY = 1 [(varta.task.catalog.v1.enum_value) = {label: "Heavy"}];
+  AIR_MODIFIER2_MEDIUM = 2 [(varta.task.catalog.v1.enum_value) = {label: "Medium"}];
+  AIR_MODIFIER2_LIGHT = 3 [(varta.task.catalog.v1.enum_value) = {label: "Light"}];
+  AIR_MODIFIER2_BOOM_ONLY = 4 [(varta.task.catalog.v1.enum_value) = {label: "Boom-only"}];
+  AIR_MODIFIER2_DROUGE_ONLY = 5 [(varta.task.catalog.v1.enum_value) = {label: "Drouge-only"}];
+  AIR_MODIFIER2_BOOM_AND_DROUGE = 6 [(varta.task.catalog.v1.enum_value) = {label: "Boom And Drouge"}];
+  AIR_MODIFIER2_CLOSE_RANGE = 7 [(varta.task.catalog.v1.enum_value) = {label: "Close Range"}];
+  AIR_MODIFIER2_SHORT_RANGE = 8 [(varta.task.catalog.v1.enum_value) = {label: "Short Range"}];
+  AIR_MODIFIER2_MEDIUM_RANGE = 9 [(varta.task.catalog.v1.enum_value) = {label: "Medium Range"}];
+  AIR_MODIFIER2_LONG_RANGE = 10 [(varta.task.catalog.v1.enum_value) = {label: "Long Range"}];
+  AIR_MODIFIER2_DOWNLINKED = 11 [(varta.task.catalog.v1.enum_value) = {label: "Downlinked"}];
+  AIR_MODIFIER2_CYBERSPACE = 12 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+}

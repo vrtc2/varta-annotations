@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/task/catalog/v1/task_definition.proto";
+
+message AirMissileSymbol {
+  AirMissileEntity entity = 1 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Entity"
+    required: true
+  }];
+  optional AirMissileModifier1 modifier1 = 2 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 1"
+  }];
+  optional AirMissileModifier2 modifier2 = 3 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 2"
+  }];
+}
+
+enum AirMissileEntity {
+  AIR_MISSILE_ENTITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  AIR_MISSILE_ENTITY_ICON = 110000 [(varta.task.catalog.v1.enum_value) = {label: "Icon"}];
+}
+
+enum AirMissileModifier1 {
+  AIR_MISSILE_MODIFIER1_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  AIR_MISSILE_MODIFIER1_AIR = 1 [(varta.task.catalog.v1.enum_value) = {label: "Air"}];
+  AIR_MISSILE_MODIFIER1_SURFACE = 2 [(varta.task.catalog.v1.enum_value) = {label: "Surface"}];
+  AIR_MISSILE_MODIFIER1_SUBSURFACE = 3 [(varta.task.catalog.v1.enum_value) = {label: "Subsurface"}];
+  AIR_MISSILE_MODIFIER1_SPACE = 4 [(varta.task.catalog.v1.enum_value) = {label: "Space"}];
+  AIR_MISSILE_MODIFIER1_ANTI_BALLISTIC = 5 [(varta.task.catalog.v1.enum_value) = {label: "Anti-ballistic"}];
+  AIR_MISSILE_MODIFIER1_BALLISTIC = 6 [(varta.task.catalog.v1.enum_value) = {label: "Ballistic"}];
+  AIR_MISSILE_MODIFIER1_CRUISE = 7 [(varta.task.catalog.v1.enum_value) = {label: "Cruise"}];
+  AIR_MISSILE_MODIFIER1_INTERCEPTOR = 8 [(varta.task.catalog.v1.enum_value) = {label: "Interceptor"}];
+  AIR_MISSILE_MODIFIER1_HYPERSONIC = 9 [(varta.task.catalog.v1.enum_value) = {label: "Hypersonic"}];
+}
+
+enum AirMissileModifier2 {
+  AIR_MISSILE_MODIFIER2_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  AIR_MISSILE_MODIFIER2_AIR = 1 [(varta.task.catalog.v1.enum_value) = {label: "Air"}];
+  AIR_MISSILE_MODIFIER2_SURFACE = 2 [(varta.task.catalog.v1.enum_value) = {label: "Surface"}];
+  AIR_MISSILE_MODIFIER2_SUBSURFACE = 3 [(varta.task.catalog.v1.enum_value) = {label: "Subsurface"}];
+  AIR_MISSILE_MODIFIER2_SPACE = 4 [(varta.task.catalog.v1.enum_value) = {label: "Space"}];
+  AIR_MISSILE_MODIFIER2_LAUNCHED = 5 [(varta.task.catalog.v1.enum_value) = {label: "Launched"}];
+  AIR_MISSILE_MODIFIER2_MISSILE = 6 [(varta.task.catalog.v1.enum_value) = {label: "Missile"}];
+  AIR_MISSILE_MODIFIER2_PATRIOT = 7 [(varta.task.catalog.v1.enum_value) = {label: "Patriot"}];
+  AIR_MISSILE_MODIFIER2_STANDARD_MISSILE_2_SM_2 = 8 [(varta.task.catalog.v1.enum_value) = {label: "Standard Missile - 2 (sm-2)"}];
+  AIR_MISSILE_MODIFIER2_STANDARD_MISSILE_6_SM_6 = 9 [(varta.task.catalog.v1.enum_value) = {label: "Standard Missile - 6 (sm-6)"}];
+  AIR_MISSILE_MODIFIER2_EVOLVED_SEA_SPARROW_MISSILE_ESSM = 10 [(varta.task.catalog.v1.enum_value) = {label: "Evolved Sea Sparrow Missile (essm)"}];
+  AIR_MISSILE_MODIFIER2_ROLLING_AIRFRAME_MISSILE_RAM = 11 [(varta.task.catalog.v1.enum_value) = {label: "Rolling Airframe Missile (ram)"}];
+  AIR_MISSILE_MODIFIER2_SHORT_RANGE = 12 [(varta.task.catalog.v1.enum_value) = {label: "Short Range"}];
+  AIR_MISSILE_MODIFIER2_MEDIUM_RANGE = 13 [(varta.task.catalog.v1.enum_value) = {label: "Medium Range"}];
+  AIR_MISSILE_MODIFIER2_INTERMEDIATE_RANGE = 14 [(varta.task.catalog.v1.enum_value) = {label: "Intermediate Range"}];
+  AIR_MISSILE_MODIFIER2_LONG_RANGE = 15 [(varta.task.catalog.v1.enum_value) = {label: "Long Range"}];
+  AIR_MISSILE_MODIFIER2_INTERCONTINENTAL = 16 [(varta.task.catalog.v1.enum_value) = {label: "Intercontinental"}];
+}

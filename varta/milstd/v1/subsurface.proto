@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/task/catalog/v1/task_definition.proto";
+
+message SubsurfaceSymbol {
+  SubsurfaceEntity entity = 1 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Entity"
+    required: true
+  }];
+  optional SubsurfaceModifier1 modifier1 = 2 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 1"
+  }];
+  optional SubsurfaceModifier2 modifier2 = 3 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 2"
+  }];
+}
+
+enum SubsurfaceEntity {
+  SUBSURFACE_ENTITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SUBSURFACE_ENTITY_MILITARY = 110000 [(varta.task.catalog.v1.enum_value) = {label: "Military"}];
+  SUBSURFACE_ENTITY_SUBMARINE = 110100 [(varta.task.catalog.v1.enum_value) = {label: "Submarine"}];
+  SUBSURFACE_ENTITY_SUBMARINE_SURFACED = 110101 [(varta.task.catalog.v1.enum_value) = {label: "Submarine, Surfaced"}];
+  SUBSURFACE_ENTITY_SUBMARINE_SNORKELING = 110102 [(varta.task.catalog.v1.enum_value) = {label: "Submarine, Snorkeling"}];
+  SUBSURFACE_ENTITY_SUBMARINE_BOTTOMED = 110103 [(varta.task.catalog.v1.enum_value) = {label: "Submarine, Bottomed"}];
+  SUBSURFACE_ENTITY_OTHER_SUBMERSIBLE = 110200 [(varta.task.catalog.v1.enum_value) = {label: "Other Submersible"}];
+  SUBSURFACE_ENTITY_NON_SUBMARINE = 110300 [(varta.task.catalog.v1.enum_value) = {label: "Non-submarine"}];
+  SUBSURFACE_ENTITY_DIVER_MILITARY = 110500 [(varta.task.catalog.v1.enum_value) = {label: "Diver, Military"}];
+  SUBSURFACE_ENTITY_CIVILIAN = 120000 [(varta.task.catalog.v1.enum_value) = {label: "Civilian"}];
+  SUBSURFACE_ENTITY_SUBMERSIBLE_CIVILIAN = 120100 [(varta.task.catalog.v1.enum_value) = {label: "Submersible, Civilian"}];
+  SUBSURFACE_ENTITY_DIVER_CIVILIAN = 120300 [(varta.task.catalog.v1.enum_value) = {label: "Diver, Civilian"}];
+  SUBSURFACE_ENTITY_UNDERWATER_WEAPON = 130000 [(varta.task.catalog.v1.enum_value) = {label: "Underwater Weapon"}];
+  SUBSURFACE_ENTITY_TORPEDO = 130100 [(varta.task.catalog.v1.enum_value) = {label: "Torpedo"}];
+  SUBSURFACE_ENTITY_IMPROVISED_EXPLOSIVE_DEVICE_IED = 130200 [(varta.task.catalog.v1.enum_value) = {label: "Improvised Explosive Device (ied)"}];
+  SUBSURFACE_ENTITY_UNDERWATER_DECOY = 130300 [(varta.task.catalog.v1.enum_value) = {label: "Underwater Decoy"}];
+  SUBSURFACE_ENTITY_FUSED_TRACK = 150000 [(varta.task.catalog.v1.enum_value) = {label: "Fused Track"}];
+  SUBSURFACE_ENTITY_MANUAL_TRACK = 160000 [(varta.task.catalog.v1.enum_value) = {label: "Manual Track"}];
+  SUBSURFACE_ENTITY_SEABED_INSTALLATION_MAN_MADE_MILITARY = 200000 [(varta.task.catalog.v1.enum_value) = {label: "Seabed Installation, Man-made, Military"}];
+}
+
+enum SubsurfaceModifier1 {
+  SUBSURFACE_MODIFIER1_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SUBSURFACE_MODIFIER1_ANTISUBMARINE_WARFARE = 1 [(varta.task.catalog.v1.enum_value) = {label: "Antisubmarine Warfare"}];
+  SUBSURFACE_MODIFIER1_AUXILIARY = 2 [(varta.task.catalog.v1.enum_value) = {label: "Auxiliary"}];
+  SUBSURFACE_MODIFIER1_COMMAND_AND_CONTROL = 3 [(varta.task.catalog.v1.enum_value) = {label: "Command And Control"}];
+  SUBSURFACE_MODIFIER1_INTELLIGENCE_SURVEILLANCE_RECONNAISSANCE = 4 [(varta.task.catalog.v1.enum_value) = {label: "Intelligence, Surveillance, Reconnaissance"}];
+  SUBSURFACE_MODIFIER1_MINE_COUNTERMEASURES = 5 [(varta.task.catalog.v1.enum_value) = {label: "Mine Countermeasures"}];
+  SUBSURFACE_MODIFIER1_MINE_WARFARE = 6 [(varta.task.catalog.v1.enum_value) = {label: "Mine Warfare"}];
+  SUBSURFACE_MODIFIER1_SURFACE_WARFARE = 7 [(varta.task.catalog.v1.enum_value) = {label: "Surface Warfare"}];
+  SUBSURFACE_MODIFIER1_ATTACK = 8 [(varta.task.catalog.v1.enum_value) = {label: "Attack"}];
+  SUBSURFACE_MODIFIER1_BALLISTIC_MISSILE = 9 [(varta.task.catalog.v1.enum_value) = {label: "Ballistic Missile"}];
+  SUBSURFACE_MODIFIER1_GUIDED_MISSILE = 10 [(varta.task.catalog.v1.enum_value) = {label: "Guided Missile"}];
+  SUBSURFACE_MODIFIER1_OTHER_GUIDED_MISSILES_POINT_DEFENCE = 11 [(varta.task.catalog.v1.enum_value) = {label: "Other Guided Missiles (point Defence)"}];
+  SUBSURFACE_MODIFIER1_SPECIAL_OPERATIONS_FORCE = 12 [(varta.task.catalog.v1.enum_value) = {label: "Special Operations Force"}];
+  SUBSURFACE_MODIFIER1_POSSIBLE_SUBMARINE_LOW_1 = 13 [(varta.task.catalog.v1.enum_value) = {label: "Possible Submarine - Low 1"}];
+  SUBSURFACE_MODIFIER1_POSSIBLE_SUBMARINE_LOW_2 = 14 [(varta.task.catalog.v1.enum_value) = {label: "Possible Submarine - Low 2"}];
+  SUBSURFACE_MODIFIER1_POSSIBLE_SUBMARINE_HIGH_3 = 15 [(varta.task.catalog.v1.enum_value) = {label: "Possible Submarine - High 3"}];
+  SUBSURFACE_MODIFIER1_POSSIBLE_SUBMARINE_HIGH_4 = 16 [(varta.task.catalog.v1.enum_value) = {label: "Possible Submarine - High 4"}];
+  SUBSURFACE_MODIFIER1_PROBABLE_SUBMARINE = 17 [(varta.task.catalog.v1.enum_value) = {label: "Probable Submarine"}];
+  SUBSURFACE_MODIFIER1_CERTAIN_SUBMARINE = 18 [(varta.task.catalog.v1.enum_value) = {label: "Certain Submarine"}];
+  SUBSURFACE_MODIFIER1_ANTI_TORPEDO_TORPEDO = 19 [(varta.task.catalog.v1.enum_value) = {label: "Anti-torpedo Torpedo"}];
+  SUBSURFACE_MODIFIER1_HIJACKING_HIJACKED = 20 [(varta.task.catalog.v1.enum_value) = {label: "Hijacking Hijacked"}];
+  SUBSURFACE_MODIFIER1_HIJACKER = 21 [(varta.task.catalog.v1.enum_value) = {label: "Hijacker"}];
+  SUBSURFACE_MODIFIER1_CYBERSPACE = 22 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+}
+
+enum SubsurfaceModifier2 {
+  SUBSURFACE_MODIFIER2_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  SUBSURFACE_MODIFIER2_AIR_INDEPENDENT_PROPULSION = 1 [(varta.task.catalog.v1.enum_value) = {label: "Air Independent Propulsion"}];
+  SUBSURFACE_MODIFIER2_DIESEL_PROPULSION = 2 [(varta.task.catalog.v1.enum_value) = {label: "Diesel Propulsion"}];
+  SUBSURFACE_MODIFIER2_DIESEL_TYPE_1 = 3 [(varta.task.catalog.v1.enum_value) = {label: "Diesel - Type 1"}];
+  SUBSURFACE_MODIFIER2_DIESEL_TYPE_2 = 4 [(varta.task.catalog.v1.enum_value) = {label: "Diesel - Type 2"}];
+  SUBSURFACE_MODIFIER2_DIESEL_TYPE_3 = 5 [(varta.task.catalog.v1.enum_value) = {label: "Diesel - Type 3"}];
+  SUBSURFACE_MODIFIER2_NUCLEAR_POWERED = 6 [(varta.task.catalog.v1.enum_value) = {label: "Nuclear Powered"}];
+  SUBSURFACE_MODIFIER2_NUCLEAR_TYPE_1 = 7 [(varta.task.catalog.v1.enum_value) = {label: "Nuclear - Type 1"}];
+  SUBSURFACE_MODIFIER2_NUCLEAR_TYPE_2 = 8 [(varta.task.catalog.v1.enum_value) = {label: "Nuclear - Type 2"}];
+  SUBSURFACE_MODIFIER2_NUCLEAR_TYPE_3 = 9 [(varta.task.catalog.v1.enum_value) = {label: "Nuclear - Type 3"}];
+  SUBSURFACE_MODIFIER2_NUCLEAR_TYPE_4 = 10 [(varta.task.catalog.v1.enum_value) = {label: "Nuclear - Type 4"}];
+  SUBSURFACE_MODIFIER2_NUCLEAR_TYPE_5 = 11 [(varta.task.catalog.v1.enum_value) = {label: "Nuclear - Type 5"}];
+  SUBSURFACE_MODIFIER2_NUCLEAR_TYPE_6 = 12 [(varta.task.catalog.v1.enum_value) = {label: "Nuclear - Type 6"}];
+  SUBSURFACE_MODIFIER2_NUCLEAR_TYPE_7 = 13 [(varta.task.catalog.v1.enum_value) = {label: "Nuclear - Type 7"}];
+  SUBSURFACE_MODIFIER2_AUTONOMOUS_CONTROL = 14 [(varta.task.catalog.v1.enum_value) = {label: "Autonomous Control"}];
+  SUBSURFACE_MODIFIER2_REMOTELY_PILOTED = 15 [(varta.task.catalog.v1.enum_value) = {label: "Remotely Piloted"}];
+  SUBSURFACE_MODIFIER2_EXPENDABLE = 16 [(varta.task.catalog.v1.enum_value) = {label: "Expendable"}];
+  SUBSURFACE_MODIFIER2_CYBERSPACE = 17 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+}

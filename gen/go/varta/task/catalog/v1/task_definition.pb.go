@@ -464,7 +464,8 @@ const file_varta_task_catalog_v1_task_definition_proto_rawDesc = "" +
 	"\voneof_value\x12\x1d.google.protobuf.FieldOptions\x18֣\x04 \x01(\v2#.varta.task.catalog.v1.OneofValueUIR\n" +
 	"oneofValue:`\n" +
 	"\voneof_field\x12\x1d.google.protobuf.OneofOptions\x18գ\x04 \x01(\v2\x1e.varta.task.catalog.v1.FieldUIR\n" +
-	"oneofFieldBKZIgithub.com/vrtc2/varta-annotations/gen/go/varta/task/catalog/v1;catalogv1b\x06proto3"
+	"oneofFieldB\xf2\x01\n" +
+	"\x19com.varta.task.catalog.v1B\x13TaskDefinitionProtoP\x01ZIgithub.com/vrtc2/varta-annotations/gen/go/varta/task/catalog/v1;catalogv1\xa2\x02\x03VTC\xaa\x02\x15Varta.Task.Catalog.V1\xca\x02\x15Varta\\Task\\Catalog\\V1\xe2\x02!Varta\\Task\\Catalog\\V1\\GPBMetadata\xea\x02\x18Varta::Task::Catalog::V1b\x06proto3"
 
 var (
 	file_varta_task_catalog_v1_task_definition_proto_rawDescOnce sync.Once

@@ -1,0 +1,170 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/task/catalog/v1/task_definition.proto";
+
+message DismountedIndividualSymbol {
+  DismountedEntity entity = 1 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Entity"
+    required: true
+  }];
+  optional DismountedModifier1 modifier1 = 2 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 1"
+  }];
+  optional DismountedModifier2 modifier2 = 3 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 2"
+  }];
+}
+
+enum DismountedEntity {
+  DISMOUNTED_ENTITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  DISMOUNTED_ENTITY_FF_INFANTRY_DISMOUNTED = 110101 [(varta.task.catalog.v1.enum_value) = {label: "Ff.infantry Dismounted"}];
+  DISMOUNTED_ENTITY_FF_MEDICAL = 110102 [(varta.task.catalog.v1.enum_value) = {label: "Ff.medical"}];
+  DISMOUNTED_ENTITY_FF_RECONNAISSANCE_DISMOUNTED = 110103 [(varta.task.catalog.v1.enum_value) = {label: "Ff.reconnaissance Dismounted"}];
+  DISMOUNTED_ENTITY_FF_SIGNAL_DISMOUNTED = 110104 [(varta.task.catalog.v1.enum_value) = {label: "Ff.signal Dismounted"}];
+  DISMOUNTED_ENTITY_EXPLOSIVE_ORDNANCE_DISPOSAL = 110201 [(varta.task.catalog.v1.enum_value) = {label: "Explosive Ordnance Disposal"}];
+  DISMOUNTED_ENTITY_FIELD_ARTILLERY_OBSERVER = 110202 [(varta.task.catalog.v1.enum_value) = {label: "Field Artillery Observer"}];
+  DISMOUNTED_ENTITY_JOINT_FIRE_SUPPORT = 110203 [(varta.task.catalog.v1.enum_value) = {label: "Joint Fire Support"}];
+  DISMOUNTED_ENTITY_LIAISON = 110204 [(varta.task.catalog.v1.enum_value) = {label: "Liaison"}];
+  DISMOUNTED_ENTITY_MESSENGER = 110205 [(varta.task.catalog.v1.enum_value) = {label: "Messenger"}];
+  DISMOUNTED_ENTITY_MILITARY_POLICE = 110206 [(varta.task.catalog.v1.enum_value) = {label: "Military Police"}];
+  DISMOUNTED_ENTITY_OBSERVER_OBSERVATION = 110207 [(varta.task.catalog.v1.enum_value) = {label: "Observer Observation"}];
+  DISMOUNTED_ENTITY_SECURITY = 110208 [(varta.task.catalog.v1.enum_value) = {label: "Security"}];
+  DISMOUNTED_ENTITY_SNIPER = 110209 [(varta.task.catalog.v1.enum_value) = {label: "Sniper"}];
+  DISMOUNTED_ENTITY_SPECIAL_OPERATIONS_FORCES = 110210 [(varta.task.catalog.v1.enum_value) = {label: "Special Operations Forces"}];
+  DISMOUNTED_ENTITY_DESIGNATED_MARKSMAN = 110211 [(varta.task.catalog.v1.enum_value) = {label: "Designated Marksman"}];
+  DISMOUNTED_ENTITY_MEDIC = 110212 [(varta.task.catalog.v1.enum_value) = {label: "Medic"}];
+  DISMOUNTED_ENTITY_FF_SIGNAL_DISMOUNTED_2 = 110213 [(varta.task.catalog.v1.enum_value) = {label: "Ff.signal Dismounted"}];
+  DISMOUNTED_ENTITY_FF_RECONNAISSANCE_DISMOUNTED_2 = 110214 [(varta.task.catalog.v1.enum_value) = {label: "Ff.reconnaissance Dismounted"}];
+  DISMOUNTED_ENTITY_FF_INFANTRY_DISMOUNTED_2 = 110215 [(varta.task.catalog.v1.enum_value) = {label: "Ff.infantry Dismounted"}];
+  DISMOUNTED_ENTITY_CLOSE_PROTECTION = 110216 [(varta.task.catalog.v1.enum_value) = {label: "Close Protection"}];
+  DISMOUNTED_ENTITY_CROWD_AND_RIOT_CONTROL = 110217 [(varta.task.catalog.v1.enum_value) = {label: "Crowd And Riot Control"}];
+  DISMOUNTED_ENTITY_SPECIAL_WEAPONS_AND_TACTICS_SWAT = 110218 [(varta.task.catalog.v1.enum_value) = {label: "Special Weapons And Tactics (swat)"}];
+  DISMOUNTED_ENTITY_DEMOLITION = 110219 [(varta.task.catalog.v1.enum_value) = {label: "Demolition"}];
+  DISMOUNTED_ENTITY_COMMANDER_CDR = 110220 [(varta.task.catalog.v1.enum_value) = {label: "Commander (cdr)"}];
+  DISMOUNTED_ENTITY_SECOND_IN_COMMAND_SIC = 110221 [(varta.task.catalog.v1.enum_value) = {label: "Second in Command (sic)"}];
+  DISMOUNTED_ENTITY_RIFLE = 110301 [(varta.task.catalog.v1.enum_value) = {label: "Rifle"}];
+  DISMOUNTED_ENTITY_MACHINE_GUN = 110305 [(varta.task.catalog.v1.enum_value) = {label: "Machine Gun"}];
+  DISMOUNTED_ENTITY_GRENADE_LAUNCHER = 110309 [(varta.task.catalog.v1.enum_value) = {label: "Grenade Launcher"}];
+  DISMOUNTED_ENTITY_FLAME_THROWER = 110313 [(varta.task.catalog.v1.enum_value) = {label: "Flame Thrower"}];
+  DISMOUNTED_ENTITY_MORTAR = 110314 [(varta.task.catalog.v1.enum_value) = {label: "Mortar"}];
+  DISMOUNTED_ENTITY_SINGLE_ROCKET_LAUNCHER = 110315 [(varta.task.catalog.v1.enum_value) = {label: "Single Rocket Launcher"}];
+  DISMOUNTED_ENTITY_ANTITANK_ROCKET_LAUNCHER = 110316 [(varta.task.catalog.v1.enum_value) = {label: "Antitank Rocket Launcher"}];
+  DISMOUNTED_ENTITY_GRENADE_LAUNCHER_2 = 110333 [(varta.task.catalog.v1.enum_value) = {label: "Grenade Launcher"}];
+  DISMOUNTED_ENTITY_FLAME_THROWER_2 = 110349 [(varta.task.catalog.v1.enum_value) = {label: "Flame Thrower"}];
+  DISMOUNTED_ENTITY_MORTAR_2 = 110353 [(varta.task.catalog.v1.enum_value) = {label: "Mortar"}];
+  DISMOUNTED_ENTITY_SINGLE_ROCKET_LAUNCHER_2 = 110357 [(varta.task.catalog.v1.enum_value) = {label: "Single Rocket Launcher"}];
+  DISMOUNTED_ENTITY_ANTITANK_ROCKET_LAUNCHER_2 = 110361 [(varta.task.catalog.v1.enum_value) = {label: "Antitank Rocket Launcher"}];
+  DISMOUNTED_ENTITY_NON_LETHAL_WEAPON = 110401 [(varta.task.catalog.v1.enum_value) = {label: "Non-lethal Weapon"}];
+  DISMOUNTED_ENTITY_TASER = 110403 [(varta.task.catalog.v1.enum_value) = {label: "Taser"}];
+  DISMOUNTED_ENTITY_NON_LETHAL_GRENADE_LAUNCHER = 110405 [(varta.task.catalog.v1.enum_value) = {label: "Non-lethal Grenade Launcher"}];
+  DISMOUNTED_ENTITY_TASER_2 = 110409 [(varta.task.catalog.v1.enum_value) = {label: "Taser"}];
+  DISMOUNTED_ENTITY_LAW_ENFORCEMENT = 120101 [(varta.task.catalog.v1.enum_value) = {label: "Law Enforcement"}];
+}
+
+enum DismountedModifier1 {
+  DISMOUNTED_MODIFIER1_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  DISMOUNTED_MODIFIER1_CLOSE_PROTECTION = 1 [(varta.task.catalog.v1.enum_value) = {label: "Close Protection"}];
+  DISMOUNTED_MODIFIER1_CROWD_AND_RIOT_CONTROL = 2 [(varta.task.catalog.v1.enum_value) = {label: "Crowd And Riot Control"}];
+  DISMOUNTED_MODIFIER1_EXPLOSIVE_ORDNANCE_DISPOSAL = 3 [(varta.task.catalog.v1.enum_value) = {label: "Explosive Ordnance Disposal"}];
+  DISMOUNTED_MODIFIER1_SECURITY = 4 [(varta.task.catalog.v1.enum_value) = {label: "Security"}];
+  DISMOUNTED_MODIFIER1_SNIPER = 5 [(varta.task.catalog.v1.enum_value) = {label: "Sniper"}];
+  DISMOUNTED_MODIFIER1_SPECIAL_WEAPONS_AND_TACTICS = 6 [(varta.task.catalog.v1.enum_value) = {label: "Special Weapons And Tactics"}];
+  DISMOUNTED_MODIFIER1_NONGOVERNMENTAL_ORGANIZATION_NGO = 7 [(varta.task.catalog.v1.enum_value) = {label: "Nongovernmental Organization (ngo)"}];
+  DISMOUNTED_MODIFIER1_MULTINATIONAL = 8 [(varta.task.catalog.v1.enum_value) = {label: "Multinational"}];
+  DISMOUNTED_MODIFIER1_MULTINATIONAL_SPECIALIZED_UNIT = 9 [(varta.task.catalog.v1.enum_value) = {label: "Multinational Specialized Unit"}];
+  DISMOUNTED_MODIFIER1_GOVERNMENT_ORGANIZATION = 10 [(varta.task.catalog.v1.enum_value) = {label: "Government Organization"}];
+  DISMOUNTED_MODIFIER1_FIELD_ARTILLERY_OBSERVER = 11 [(varta.task.catalog.v1.enum_value) = {label: "Field Artillery Observer"}];
+  DISMOUNTED_MODIFIER1_JOINT_FIRE_SUPPORT = 12 [(varta.task.catalog.v1.enum_value) = {label: "Joint Fire Support"}];
+  DISMOUNTED_MODIFIER1_LIAISON = 13 [(varta.task.catalog.v1.enum_value) = {label: "Liaison"}];
+  DISMOUNTED_MODIFIER1_MESSENGER = 14 [(varta.task.catalog.v1.enum_value) = {label: "Messenger"}];
+  DISMOUNTED_MODIFIER1_MILITARY_POLICE = 15 [(varta.task.catalog.v1.enum_value) = {label: "Military Police"}];
+  DISMOUNTED_MODIFIER1_OBSERVER = 16 [(varta.task.catalog.v1.enum_value) = {label: "Observer"}];
+  DISMOUNTED_MODIFIER1_DESIGNATED_MARKSMAN = 17 [(varta.task.catalog.v1.enum_value) = {label: "Designated Marksman"}];
+  DISMOUNTED_MODIFIER1_J7 = 18 [(varta.task.catalog.v1.enum_value) = {label: "j7"}];
+  DISMOUNTED_MODIFIER1_J8 = 19 [(varta.task.catalog.v1.enum_value) = {label: "j8"}];
+  DISMOUNTED_MODIFIER1_SIGNALER = 20 [(varta.task.catalog.v1.enum_value) = {label: "Signaler"}];
+  DISMOUNTED_MODIFIER1_RECONNAISSANCE = 21 [(varta.task.catalog.v1.enum_value) = {label: "Reconnaissance"}];
+  DISMOUNTED_MODIFIER1_INFANTRY = 22 [(varta.task.catalog.v1.enum_value) = {label: "Infantry"}];
+  DISMOUNTED_MODIFIER1_COMMANDER = 23 [(varta.task.catalog.v1.enum_value) = {label: "Commander"}];
+  DISMOUNTED_MODIFIER1_SECOND_IN_COMMAND = 24 [(varta.task.catalog.v1.enum_value) = {label: "Second in Command"}];
+  DISMOUNTED_MODIFIER1_DEMOLITION = 25 [(varta.task.catalog.v1.enum_value) = {label: "Demolition"}];
+  DISMOUNTED_MODIFIER1_POLICE = 26 [(varta.task.catalog.v1.enum_value) = {label: "Police"}];
+  DISMOUNTED_MODIFIER1_OF_7 = 27 [(varta.task.catalog.v1.enum_value) = {label: "Of-7"}];
+  DISMOUNTED_MODIFIER1_OF_8 = 28 [(varta.task.catalog.v1.enum_value) = {label: "Of-8"}];
+  DISMOUNTED_MODIFIER1_OF_9 = 29 [(varta.task.catalog.v1.enum_value) = {label: "Of-9"}];
+  DISMOUNTED_MODIFIER1_OF_10 = 30 [(varta.task.catalog.v1.enum_value) = {label: "Of-10"}];
+  DISMOUNTED_MODIFIER1_OF_D = 31 [(varta.task.catalog.v1.enum_value) = {label: "Of-d"}];
+  DISMOUNTED_MODIFIER1_OR_1 = 32 [(varta.task.catalog.v1.enum_value) = {label: "Or-1"}];
+  DISMOUNTED_MODIFIER1_OR_2 = 33 [(varta.task.catalog.v1.enum_value) = {label: "Or-2"}];
+  DISMOUNTED_MODIFIER1_OR_3 = 34 [(varta.task.catalog.v1.enum_value) = {label: "Or-3"}];
+  DISMOUNTED_MODIFIER1_OR_4 = 35 [(varta.task.catalog.v1.enum_value) = {label: "Or-4"}];
+  DISMOUNTED_MODIFIER1_OR_5 = 36 [(varta.task.catalog.v1.enum_value) = {label: "Or-5"}];
+  DISMOUNTED_MODIFIER1_OR_6 = 37 [(varta.task.catalog.v1.enum_value) = {label: "Or-6"}];
+  DISMOUNTED_MODIFIER1_OR_7 = 38 [(varta.task.catalog.v1.enum_value) = {label: "Or-7"}];
+  DISMOUNTED_MODIFIER1_OR_8 = 39 [(varta.task.catalog.v1.enum_value) = {label: "Or-8"}];
+  DISMOUNTED_MODIFIER1_OR_9 = 40 [(varta.task.catalog.v1.enum_value) = {label: "Or-9"}];
+  DISMOUNTED_MODIFIER1_WO_1 = 41 [(varta.task.catalog.v1.enum_value) = {label: "Wo-1"}];
+  DISMOUNTED_MODIFIER1_WO_2 = 42 [(varta.task.catalog.v1.enum_value) = {label: "Wo-2"}];
+  DISMOUNTED_MODIFIER1_WO_3 = 43 [(varta.task.catalog.v1.enum_value) = {label: "Wo-3"}];
+  DISMOUNTED_MODIFIER1_WO_4 = 44 [(varta.task.catalog.v1.enum_value) = {label: "Wo-4"}];
+  DISMOUNTED_MODIFIER1_WO_5 = 45 [(varta.task.catalog.v1.enum_value) = {label: "Wo-5"}];
+  DISMOUNTED_MODIFIER1_INDIVIDUAL = 46 [(varta.task.catalog.v1.enum_value) = {label: "Individual"}];
+  DISMOUNTED_MODIFIER1_TEAM = 47 [(varta.task.catalog.v1.enum_value) = {label: "Team"}];
+  DISMOUNTED_MODIFIER1_SQUAD = 48 [(varta.task.catalog.v1.enum_value) = {label: "Squad"}];
+  DISMOUNTED_MODIFIER1_SECTION = 49 [(varta.task.catalog.v1.enum_value) = {label: "Section"}];
+  DISMOUNTED_MODIFIER1_PLATOON = 50 [(varta.task.catalog.v1.enum_value) = {label: "Platoon"}];
+  DISMOUNTED_MODIFIER1_COMPANY = 51 [(varta.task.catalog.v1.enum_value) = {label: "Company"}];
+  DISMOUNTED_MODIFIER1_BATTALION = 52 [(varta.task.catalog.v1.enum_value) = {label: "Battalion"}];
+  DISMOUNTED_MODIFIER1_REGIMENT = 53 [(varta.task.catalog.v1.enum_value) = {label: "Regiment"}];
+  DISMOUNTED_MODIFIER1_BRIGADE = 54 [(varta.task.catalog.v1.enum_value) = {label: "Brigade"}];
+  DISMOUNTED_MODIFIER1_DIVISION = 55 [(varta.task.catalog.v1.enum_value) = {label: "Division"}];
+  DISMOUNTED_MODIFIER1_VIDEO_IMAGERY = 56 [(varta.task.catalog.v1.enum_value) = {label: "Video Imagery"}];
+}
+
+enum DismountedModifier2 {
+  DISMOUNTED_MODIFIER2_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  DISMOUNTED_MODIFIER2_AIRBORNE = 1 [(varta.task.catalog.v1.enum_value) = {label: "Airborne"}];
+  DISMOUNTED_MODIFIER2_BICYCLE_EQUIPPED = 2 [(varta.task.catalog.v1.enum_value) = {label: "Bicycle Equipped"}];
+  DISMOUNTED_MODIFIER2_VIDEO_IMAGERY = 3 [(varta.task.catalog.v1.enum_value) = {label: "Video Imagery"}];
+  DISMOUNTED_MODIFIER2_J1 = 4 [(varta.task.catalog.v1.enum_value) = {label: "j1"}];
+  DISMOUNTED_MODIFIER2_J2 = 5 [(varta.task.catalog.v1.enum_value) = {label: "j2"}];
+  DISMOUNTED_MODIFIER2_J3 = 6 [(varta.task.catalog.v1.enum_value) = {label: "j3"}];
+  DISMOUNTED_MODIFIER2_J4 = 7 [(varta.task.catalog.v1.enum_value) = {label: "j4"}];
+  DISMOUNTED_MODIFIER2_J5 = 8 [(varta.task.catalog.v1.enum_value) = {label: "j5"}];
+  DISMOUNTED_MODIFIER2_J6 = 9 [(varta.task.catalog.v1.enum_value) = {label: "j6"}];
+  DISMOUNTED_MODIFIER2_J7 = 10 [(varta.task.catalog.v1.enum_value) = {label: "j7"}];
+  DISMOUNTED_MODIFIER2_J8 = 11 [(varta.task.catalog.v1.enum_value) = {label: "j8"}];
+  DISMOUNTED_MODIFIER2_J9 = 12 [(varta.task.catalog.v1.enum_value) = {label: "j9"}];
+  DISMOUNTED_MODIFIER2_MOUNTAIN = 13 [(varta.task.catalog.v1.enum_value) = {label: "Mountain"}];
+  DISMOUNTED_MODIFIER2_OF_1 = 14 [(varta.task.catalog.v1.enum_value) = {label: "Of-1"}];
+  DISMOUNTED_MODIFIER2_OF_2 = 15 [(varta.task.catalog.v1.enum_value) = {label: "Of-2"}];
+  DISMOUNTED_MODIFIER2_OF_3 = 16 [(varta.task.catalog.v1.enum_value) = {label: "Of-3"}];
+  DISMOUNTED_MODIFIER2_OF_4 = 17 [(varta.task.catalog.v1.enum_value) = {label: "Of-4"}];
+  DISMOUNTED_MODIFIER2_OF_5 = 18 [(varta.task.catalog.v1.enum_value) = {label: "Of-5"}];
+  DISMOUNTED_MODIFIER2_OF_6 = 19 [(varta.task.catalog.v1.enum_value) = {label: "Of-6"}];
+  DISMOUNTED_MODIFIER2_OF_7 = 20 [(varta.task.catalog.v1.enum_value) = {label: "Of-7"}];
+  DISMOUNTED_MODIFIER2_OF_8 = 21 [(varta.task.catalog.v1.enum_value) = {label: "Of-8"}];
+  DISMOUNTED_MODIFIER2_OF_9 = 22 [(varta.task.catalog.v1.enum_value) = {label: "Of-9"}];
+  DISMOUNTED_MODIFIER2_OF_10 = 23 [(varta.task.catalog.v1.enum_value) = {label: "Of-10"}];
+  DISMOUNTED_MODIFIER2_OF_D = 24 [(varta.task.catalog.v1.enum_value) = {label: "Of-d"}];
+  DISMOUNTED_MODIFIER2_OR_1 = 25 [(varta.task.catalog.v1.enum_value) = {label: "Or-1"}];
+  DISMOUNTED_MODIFIER2_OR_2 = 26 [(varta.task.catalog.v1.enum_value) = {label: "Or-2"}];
+  DISMOUNTED_MODIFIER2_OR_3 = 27 [(varta.task.catalog.v1.enum_value) = {label: "Or-3"}];
+  DISMOUNTED_MODIFIER2_OR_4 = 28 [(varta.task.catalog.v1.enum_value) = {label: "Or-4"}];
+  DISMOUNTED_MODIFIER2_OR_5 = 29 [(varta.task.catalog.v1.enum_value) = {label: "Or-5"}];
+  DISMOUNTED_MODIFIER2_OR_6 = 30 [(varta.task.catalog.v1.enum_value) = {label: "Or-6"}];
+  DISMOUNTED_MODIFIER2_OR_7 = 31 [(varta.task.catalog.v1.enum_value) = {label: "Or-7"}];
+  DISMOUNTED_MODIFIER2_OR_8 = 32 [(varta.task.catalog.v1.enum_value) = {label: "Or-8"}];
+  DISMOUNTED_MODIFIER2_OR_9 = 33 [(varta.task.catalog.v1.enum_value) = {label: "Or-9"}];
+  DISMOUNTED_MODIFIER2_WO_1 = 34 [(varta.task.catalog.v1.enum_value) = {label: "Wo-1"}];
+  DISMOUNTED_MODIFIER2_WO_2 = 35 [(varta.task.catalog.v1.enum_value) = {label: "Wo-2"}];
+  DISMOUNTED_MODIFIER2_WO_3 = 36 [(varta.task.catalog.v1.enum_value) = {label: "Wo-3"}];
+  DISMOUNTED_MODIFIER2_WO_4 = 37 [(varta.task.catalog.v1.enum_value) = {label: "Wo-4"}];
+  DISMOUNTED_MODIFIER2_WO_5 = 38 [(varta.task.catalog.v1.enum_value) = {label: "Wo-5"}];
+  DISMOUNTED_MODIFIER2_SKI = 39 [(varta.task.catalog.v1.enum_value) = {label: "Ski"}];
+}

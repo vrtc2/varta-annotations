@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/task/catalog/v1/task_definition.proto";
+
+message LandCivilianSymbol {
+  LandCivilianEntity entity = 1 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Entity"
+    required: true
+  }];
+  optional LandCivilianModifier1 modifier1 = 2 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 1"
+  }];
+  optional LandCivilianModifier2 modifier2 = 3 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 2"
+  }];
+}
+
+enum LandCivilianEntity {
+  LAND_CIVILIAN_ENTITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  LAND_CIVILIAN_ENTITY_CIVILIAN = 110000 [(varta.task.catalog.v1.enum_value) = {label: "Civilian"}];
+  LAND_CIVILIAN_ENTITY_ENVIRONMENTAL_PROTECTION = 110100 [(varta.task.catalog.v1.enum_value) = {label: "Environmental Protection"}];
+  LAND_CIVILIAN_ENTITY_GOVERNMENT_ORGANIZATION = 110200 [(varta.task.catalog.v1.enum_value) = {label: "Government Organization"}];
+  LAND_CIVILIAN_ENTITY_INDIVIDUAL = 110300 [(varta.task.catalog.v1.enum_value) = {label: "Individual"}];
+  LAND_CIVILIAN_ENTITY_GROUP = 110400 [(varta.task.catalog.v1.enum_value) = {label: "Group"}];
+  LAND_CIVILIAN_ENTITY_KILLING_VICTIM = 110500 [(varta.task.catalog.v1.enum_value) = {label: "Killing Victim"}];
+  LAND_CIVILIAN_ENTITY_KILLING_VICTIMS = 110600 [(varta.task.catalog.v1.enum_value) = {label: "Killing Victims"}];
+  LAND_CIVILIAN_ENTITY_SPY = 110800 [(varta.task.catalog.v1.enum_value) = {label: "Spy"}];
+  LAND_CIVILIAN_ENTITY_COMPOSITE_LOSS = 110900 [(varta.task.catalog.v1.enum_value) = {label: "Composite Loss"}];
+  LAND_CIVILIAN_ENTITY_EMERGENCY_MEDICAL_OPERATION = 111000 [(varta.task.catalog.v1.enum_value) = {label: "Emergency Medical Operation"}];
+}
+
+enum LandCivilianModifier1 {
+  LAND_CIVILIAN_MODIFIER1_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  LAND_CIVILIAN_MODIFIER1_ASSASSINATION = 1 [(varta.task.catalog.v1.enum_value) = {label: "Assassination"}];
+  LAND_CIVILIAN_MODIFIER1_EXECUTION_WRONGFUL_KILLING = 2 [(varta.task.catalog.v1.enum_value) = {label: "Execution (wrongful Killing)"}];
+  LAND_CIVILIAN_MODIFIER1_MURDER = 3 [(varta.task.catalog.v1.enum_value) = {label: "Murder"}];
+  LAND_CIVILIAN_MODIFIER1_HIJACKING_HIJACKED = 4 [(varta.task.catalog.v1.enum_value) = {label: "Hijacking Hijacked"}];
+  LAND_CIVILIAN_MODIFIER1_KIDNAPPING = 5 [(varta.task.catalog.v1.enum_value) = {label: "Kidnapping"}];
+  LAND_CIVILIAN_MODIFIER1_PIRACY = 6 [(varta.task.catalog.v1.enum_value) = {label: "Piracy"}];
+  LAND_CIVILIAN_MODIFIER1_RAPE = 7 [(varta.task.catalog.v1.enum_value) = {label: "Rape"}];
+  LAND_CIVILIAN_MODIFIER1_CIVILIAN = 8 [(varta.task.catalog.v1.enum_value) = {label: "Civilian"}];
+  LAND_CIVILIAN_MODIFIER1_DISPLACED_PERSONS_REFUGEES_AND_EVACUEES = 9 [(varta.task.catalog.v1.enum_value) = {label: "Displaced Persons, Refugees, And Evacuees"}];
+  LAND_CIVILIAN_MODIFIER1_FOREIGN_FIGHTERS = 10 [(varta.task.catalog.v1.enum_value) = {label: "Foreign Fighters"}];
+  LAND_CIVILIAN_MODIFIER1_GANG = 11 [(varta.task.catalog.v1.enum_value) = {label: "Gang"}];
+  LAND_CIVILIAN_MODIFIER1_GOVERNMENT_ORGANIZATION = 12 [(varta.task.catalog.v1.enum_value) = {label: "Government Organization"}];
+  LAND_CIVILIAN_MODIFIER1_LEADER = 13 [(varta.task.catalog.v1.enum_value) = {label: "Leader"}];
+  LAND_CIVILIAN_MODIFIER1_NONGOVERNMENTAL_ORGANIZATION_NGO = 14 [(varta.task.catalog.v1.enum_value) = {label: "Nongovernmental Organization (ngo)"}];
+  LAND_CIVILIAN_MODIFIER1_COERCED_IMPRESSED = 15 [(varta.task.catalog.v1.enum_value) = {label: "Coerced Impressed"}];
+  LAND_CIVILIAN_MODIFIER1_WILLING_RECRUIT = 16 [(varta.task.catalog.v1.enum_value) = {label: "Willing Recruit"}];
+  LAND_CIVILIAN_MODIFIER1_RELIGIOUS = 17 [(varta.task.catalog.v1.enum_value) = {label: "Religious"}];
+  LAND_CIVILIAN_MODIFIER1_TARGETED = 18 [(varta.task.catalog.v1.enum_value) = {label: "Targeted"}];
+  LAND_CIVILIAN_MODIFIER1_TERRORIST = 19 [(varta.task.catalog.v1.enum_value) = {label: "Terrorist"}];
+  LAND_CIVILIAN_MODIFIER1_SPEAKER = 20 [(varta.task.catalog.v1.enum_value) = {label: "Speaker"}];
+  LAND_CIVILIAN_MODIFIER1_ACCIDENT = 21 [(varta.task.catalog.v1.enum_value) = {label: "Accident"}];
+  LAND_CIVILIAN_MODIFIER1_COMBAT = 22 [(varta.task.catalog.v1.enum_value) = {label: "Combat"}];
+  LAND_CIVILIAN_MODIFIER1_OTHER = 23 [(varta.task.catalog.v1.enum_value) = {label: "Other"}];
+  LAND_CIVILIAN_MODIFIER1_LOOT = 24 [(varta.task.catalog.v1.enum_value) = {label: "Loot"}];
+  LAND_CIVILIAN_MODIFIER1_HIJACKER = 25 [(varta.task.catalog.v1.enum_value) = {label: "Hijacker"}];
+  LAND_CIVILIAN_MODIFIER1_CYBERSPACE = 26 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+}
+
+enum LandCivilianModifier2 {
+  LAND_CIVILIAN_MODIFIER2_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  LAND_CIVILIAN_MODIFIER2_LEADER_OR_LEADERSHIP = 1 [(varta.task.catalog.v1.enum_value) = {label: "Leader or Leadership"}];
+  LAND_CIVILIAN_MODIFIER2_CYBERSPACE = 2 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+}

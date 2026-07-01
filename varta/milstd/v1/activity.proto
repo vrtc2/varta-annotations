@@ -1,0 +1,168 @@
+syntax = "proto3";
+
+package varta.milstd.v1;
+
+import "varta/task/catalog/v1/task_definition.proto";
+
+message ActivitySymbol {
+  ActivityEntity entity = 1 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Entity"
+    required: true
+  }];
+  optional ActivityModifier1 modifier1 = 2 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 1"
+  }];
+  optional ActivityModifier2 modifier2 = 3 [(varta.task.catalog.v1.field) = {
+    widget: WIDGET_ENUM
+    label: "Modifier 2"
+  }];
+}
+
+enum ActivityEntity {
+  ACTIVITY_ENTITY_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  ACTIVITY_ENTITY_CRIMINAL_ACTIVITY_INCIDENT = 110100 [(varta.task.catalog.v1.enum_value) = {label: "Criminal.activity.incident"}];
+  ACTIVITY_ENTITY_ARSON_FIRE = 110102 [(varta.task.catalog.v1.enum_value) = {label: "Arson Fire"}];
+  ACTIVITY_ENTITY_DRIVE_BY_SHOOTING = 110104 [(varta.task.catalog.v1.enum_value) = {label: "Drive-by Shooting"}];
+  ACTIVITY_ENTITY_DRUG_RELATED_ACTIVITIES = 110105 [(varta.task.catalog.v1.enum_value) = {label: "Drug Related Activities"}];
+  ACTIVITY_ENTITY_EXTORTION = 110106 [(varta.task.catalog.v1.enum_value) = {label: "Extortion"}];
+  ACTIVITY_ENTITY_GRAFFITI = 110107 [(varta.task.catalog.v1.enum_value) = {label: "Graffiti"}];
+  ACTIVITY_ENTITY_KILLING_VICTIM = 110108 [(varta.task.catalog.v1.enum_value) = {label: "Killing Victim"}];
+  ACTIVITY_ENTITY_POISONING = 110109 [(varta.task.catalog.v1.enum_value) = {label: "Poisoning"}];
+  ACTIVITY_ENTITY_RIOT = 110110 [(varta.task.catalog.v1.enum_value) = {label: "Riot"}];
+  ACTIVITY_ENTITY_BLACK_MARKETING = 110113 [(varta.task.catalog.v1.enum_value) = {label: "Black Marketing"}];
+  ACTIVITY_ENTITY_VANDALISM_LOOT_RANSACK_PLUNDER_SACK = 110114 [(varta.task.catalog.v1.enum_value) = {label: "Vandalism Loot Ransack Plunder Sack"}];
+  ACTIVITY_ENTITY_FF_JAIL_BREAK = 110115 [(varta.task.catalog.v1.enum_value) = {label: "Ff.jail Break"}];
+  ACTIVITY_ENTITY_ROBBERY = 110116 [(varta.task.catalog.v1.enum_value) = {label: "Robbery"}];
+  ACTIVITY_ENTITY_THEFT = 110117 [(varta.task.catalog.v1.enum_value) = {label: "Theft"}];
+  ACTIVITY_ENTITY_BURGLARY = 110118 [(varta.task.catalog.v1.enum_value) = {label: "Burglary"}];
+  ACTIVITY_ENTITY_SMUGGLING = 110119 [(varta.task.catalog.v1.enum_value) = {label: "Smuggling"}];
+  ACTIVITY_ENTITY_ROCK_THROWING = 110120 [(varta.task.catalog.v1.enum_value) = {label: "Rock Throwing"}];
+  ACTIVITY_ENTITY_SABOTAGE = 110122 [(varta.task.catalog.v1.enum_value) = {label: "Sabotage"}];
+  ACTIVITY_ENTITY_BOMB = 110200 [(varta.task.catalog.v1.enum_value) = {label: "Bomb"}];
+  ACTIVITY_ENTITY_IED = 110300 [(varta.task.catalog.v1.enum_value) = {label: "IED"}];
+  ACTIVITY_ENTITY_SHOOTING = 110400 [(varta.task.catalog.v1.enum_value) = {label: "Shooting"}];
+  ACTIVITY_ENTITY_SNIPING = 110401 [(varta.task.catalog.v1.enum_value) = {label: "Sniping"}];
+  ACTIVITY_ENTITY_ILLEGAL_DRUG_OPERATION = 110500 [(varta.task.catalog.v1.enum_value) = {label: "Illegal Drug Operation"}];
+  ACTIVITY_ENTITY_EXPLOSION = 110600 [(varta.task.catalog.v1.enum_value) = {label: "Explosion"}];
+  ACTIVITY_ENTITY_MC_HOME = 110700 [(varta.task.catalog.v1.enum_value) = {label: "Mc.home"}];
+  ACTIVITY_ENTITY_CRIMINAL_CIVIL_DISTURBANCE = 120000 [(varta.task.catalog.v1.enum_value) = {label: "Criminal.civil Disturbance"}];
+  ACTIVITY_ENTITY_DEMONSTRATION = 120100 [(varta.task.catalog.v1.enum_value) = {label: "Demonstration"}];
+  ACTIVITY_ENTITY_PATROLLING = 130100 [(varta.task.catalog.v1.enum_value) = {label: "Patrolling"}];
+  ACTIVITY_ENTITY_PSYCHOLOGICAL_OPERATIONS = 130200 [(varta.task.catalog.v1.enum_value) = {label: "Psychological Operations"}];
+  ACTIVITY_ENTITY_SEARCHING = 130300 [(varta.task.catalog.v1.enum_value) = {label: "Searching"}];
+  ACTIVITY_ENTITY_MINE_LAYING = 130500 [(varta.task.catalog.v1.enum_value) = {label: "Mine Laying"}];
+  ACTIVITY_ENTITY_SPY = 130600 [(varta.task.catalog.v1.enum_value) = {label: "Spy"}];
+  ACTIVITY_ENTITY_WARRANT_SERVED = 130700 [(varta.task.catalog.v1.enum_value) = {label: "Warrant Served"}];
+  ACTIVITY_ENTITY_POLLING_PLACE_ELECTION = 131001 [(varta.task.catalog.v1.enum_value) = {label: "Polling Place Election"}];
+  ACTIVITY_ENTITY_FF_EMERGENCY_OPERATION = 131200 [(varta.task.catalog.v1.enum_value) = {label: "Ff.emergency Operation"}];
+  ACTIVITY_ENTITY_FOOD_DISTRIBUTION = 131202 [(varta.task.catalog.v1.enum_value) = {label: "Food Distribution"}];
+  ACTIVITY_ENTITY_EMERGENCY_PUBLIC_INFORMATION_CENTER = 131205 [(varta.task.catalog.v1.enum_value) = {label: "Emergency Public Information Center"}];
+  ACTIVITY_ENTITY_EMERGENCY_MEDICAL_OPERATION = 131300 [(varta.task.catalog.v1.enum_value) = {label: "Emergency Medical Operation"}];
+  ACTIVITY_ENTITY_EMT_STATION_LOCATION = 131301 [(varta.task.catalog.v1.enum_value) = {label: "Emt Station Location"}];
+  ACTIVITY_ENTITY_HEALTH_DEPARTMENT_FACILITY = 131302 [(varta.task.catalog.v1.enum_value) = {label: "Health Department Facility"}];
+  ACTIVITY_ENTITY_MEDICAL_FACILITIES_OUTPATIENT = 131303 [(varta.task.catalog.v1.enum_value) = {label: "Medical Facilities Outpatient"}];
+  ACTIVITY_ENTITY_OPERATION_EMERGENCY_MEDICAL_OPERATION = 131304 [(varta.task.catalog.v1.enum_value) = {label: "Operation Emergency Medical Operation"}];
+  ACTIVITY_ENTITY_PHARMACY = 131305 [(varta.task.catalog.v1.enum_value) = {label: "Pharmacy"}];
+  ACTIVITY_ENTITY_TRIAGE = 131306 [(varta.task.catalog.v1.enum_value) = {label: "Triage"}];
+  ACTIVITY_ENTITY_FIRE_PROTECTION = 131400 [(varta.task.catalog.v1.enum_value) = {label: "Fire Protection"}];
+  ACTIVITY_ENTITY_FIRE_HYDRANT = 131401 [(varta.task.catalog.v1.enum_value) = {label: "Fire Hydrant"}];
+  ACTIVITY_ENTITY_OTHER_WATER_SUPPLY_LOCATION = 131403 [(varta.task.catalog.v1.enum_value) = {label: "Other Water Supply Location"}];
+  ACTIVITY_ENTITY_FF_LAW_ENFORCEMENT = 131500 [(varta.task.catalog.v1.enum_value) = {label: "Ff.law Enforcement"}];
+  ACTIVITY_ENTITY_FF_BORDER_PATROL = 131502 [(varta.task.catalog.v1.enum_value) = {label: "Ff.border Patrol"}];
+  ACTIVITY_ENTITY_FF_CUSTOMS_SERVICE = 131503 [(varta.task.catalog.v1.enum_value) = {label: "Ff.customs Service"}];
+  ACTIVITY_ENTITY_DRUG_ENFORCEMENT_AGENCY_DEA = 131504 [(varta.task.catalog.v1.enum_value) = {label: "Drug Enforcement Agency (dea)"}];
+  ACTIVITY_ENTITY_FF_DEPARTMENT_OF_JUSTICE_DOJ = 131505 [(varta.task.catalog.v1.enum_value) = {label: "Ff.department of Justice (doj)"}];
+  ACTIVITY_ENTITY_FEDERAL_BUREAU_OF_INVESTIGATION_FBI = 131506 [(varta.task.catalog.v1.enum_value) = {label: "Federal Bureau of Investigation (fbi)"}];
+  ACTIVITY_ENTITY_LAW_ENFORCEMENT = 131507 [(varta.task.catalog.v1.enum_value) = {label: "Law Enforcement"}];
+  ACTIVITY_ENTITY_FF_PRISON = 131508 [(varta.task.catalog.v1.enum_value) = {label: "Ff.prison"}];
+  ACTIVITY_ENTITY_UNITED_STATES_SECRET_SERVICE_TREAS_USSS = 131509 [(varta.task.catalog.v1.enum_value) = {label: "United States Secret Service(treas) (usss)"}];
+  ACTIVITY_ENTITY_TRANSPORTATION_SECURITY_AGENCY_TSA = 131510 [(varta.task.catalog.v1.enum_value) = {label: "Transportation Security Agency (tsa)"}];
+  ACTIVITY_ENTITY_LAW_ENFORCEMENT_VESSEL = 131511 [(varta.task.catalog.v1.enum_value) = {label: "Law Enforcement Vessel"}];
+  ACTIVITY_ENTITY_FF_US_MARSHALS_SERVICE = 131512 [(varta.task.catalog.v1.enum_value) = {label: "Ff.us Marshals Service"}];
+  ACTIVITY_ENTITY_INTERNAL_SECURITY_FORCE = 131513 [(varta.task.catalog.v1.enum_value) = {label: "Internal Security Force"}];
+  ACTIVITY_ENTITY_FIRE_EVENT = 140000 [(varta.task.catalog.v1.enum_value) = {label: "Fire Event"}];
+  ACTIVITY_ENTITY_FIRE_ORIGIN = 140100 [(varta.task.catalog.v1.enum_value) = {label: "Fire Origin"}];
+  ACTIVITY_ENTITY_SMOKE = 140200 [(varta.task.catalog.v1.enum_value) = {label: "Smoke"}];
+  ACTIVITY_ENTITY_HOT_SPOT = 140300 [(varta.task.catalog.v1.enum_value) = {label: "Hot Spot"}];
+  ACTIVITY_ENTITY_NON_RESIDENTIAL_FIRE = 140400 [(varta.task.catalog.v1.enum_value) = {label: "Non-residential Fire"}];
+  ACTIVITY_ENTITY_RESIDENTIAL_FIRE = 140500 [(varta.task.catalog.v1.enum_value) = {label: "Residential Fire"}];
+  ACTIVITY_ENTITY_SCHOOL_FIRE = 140600 [(varta.task.catalog.v1.enum_value) = {label: "School Fire"}];
+  ACTIVITY_ENTITY_SPECIAL_NEEDS_FIRE = 140700 [(varta.task.catalog.v1.enum_value) = {label: "Special Needs Fire"}];
+  ACTIVITY_ENTITY_WILD_FIRE = 140800 [(varta.task.catalog.v1.enum_value) = {label: "Wild Fire"}];
+  ACTIVITY_ENTITY_HAZARDOUS_MATERIALS_INCIDENT = 150100 [(varta.task.catalog.v1.enum_value) = {label: "Hazardous Materials Incident"}];
+  ACTIVITY_ENTITY_CHEMICAL_AGENT = 150101 [(varta.task.catalog.v1.enum_value) = {label: "Chemical Agent"}];
+  ACTIVITY_ENTITY_CORROSIVE_MATERIAL = 150102 [(varta.task.catalog.v1.enum_value) = {label: "Corrosive Material"}];
+  ACTIVITY_ENTITY_HAZARDOUS_WHEN_WET = 150103 [(varta.task.catalog.v1.enum_value) = {label: "Hazardous When Wet"}];
+  ACTIVITY_ENTITY_EXPLOSIVE_MATERIAL = 150104 [(varta.task.catalog.v1.enum_value) = {label: "Explosive Material"}];
+  ACTIVITY_ENTITY_FLAMMABLE_GAS = 150105 [(varta.task.catalog.v1.enum_value) = {label: "Flammable Gas"}];
+  ACTIVITY_ENTITY_FLAMMABLE_LIQUID = 150106 [(varta.task.catalog.v1.enum_value) = {label: "Flammable Liquid"}];
+  ACTIVITY_ENTITY_FLAMMABLE_SOLID = 150107 [(varta.task.catalog.v1.enum_value) = {label: "Flammable Solid"}];
+  ACTIVITY_ENTITY_NON_FLAMMABLE_GAS = 150108 [(varta.task.catalog.v1.enum_value) = {label: "Non-flammable Gas"}];
+  ACTIVITY_ENTITY_ORGANIC_PEROXIDE = 150109 [(varta.task.catalog.v1.enum_value) = {label: "Organic Peroxide"}];
+  ACTIVITY_ENTITY_OXIDIZER = 150110 [(varta.task.catalog.v1.enum_value) = {label: "Oxidizer"}];
+  ACTIVITY_ENTITY_RADIOACTIVE_MATERIAL = 150111 [(varta.task.catalog.v1.enum_value) = {label: "Radioactive Material"}];
+  ACTIVITY_ENTITY_SPONTANEOUSLY_COMBUSTIBLE_MATERIAL = 150112 [(varta.task.catalog.v1.enum_value) = {label: "Spontaneously Combustible Material"}];
+  ACTIVITY_ENTITY_TOXIC_GAS = 150113 [(varta.task.catalog.v1.enum_value) = {label: "Toxic Gas"}];
+  ACTIVITY_ENTITY_TOXIC_INFECTIOUS_MATERIAL = 150114 [(varta.task.catalog.v1.enum_value) = {label: "Toxic Infectious Material"}];
+  ACTIVITY_ENTITY_UNEXPLODED_ORDNANCE = 150115 [(varta.task.catalog.v1.enum_value) = {label: "Unexploded Ordnance"}];
+  ACTIVITY_ENTITY_TRANSPORTATION = 160000 [(varta.task.catalog.v1.enum_value) = {label: "Transportation"}];
+  ACTIVITY_ENTITY_HIJACKING_AIRPLANE = 160100 [(varta.task.catalog.v1.enum_value) = {label: "Hijacking (airplane)"}];
+  ACTIVITY_ENTITY_HIJACKING_BOAT = 160200 [(varta.task.catalog.v1.enum_value) = {label: "Hijacking (boat)"}];
+  ACTIVITY_ENTITY_TRAIN_LOCOMOTIVE = 160300 [(varta.task.catalog.v1.enum_value) = {label: "Train Locomotive"}];
+  ACTIVITY_ENTITY_KNOWN_INSURGENT_VEHICLE = 160400 [(varta.task.catalog.v1.enum_value) = {label: "Known Insurgent Vehicle"}];
+  ACTIVITY_ENTITY_NATURAL_EVENT = 170000 [(varta.task.catalog.v1.enum_value) = {label: "Natural Event"}];
+  ACTIVITY_ENTITY_GEOLOGIC = 170100 [(varta.task.catalog.v1.enum_value) = {label: "Geologic"}];
+  ACTIVITY_ENTITY_AFTERSHOCK = 170101 [(varta.task.catalog.v1.enum_value) = {label: "Aftershock"}];
+  ACTIVITY_ENTITY_AVALANCHE = 170102 [(varta.task.catalog.v1.enum_value) = {label: "Avalanche"}];
+  ACTIVITY_ENTITY_EARTHQUAKE_EPICENTER = 170103 [(varta.task.catalog.v1.enum_value) = {label: "Earthquake Epicenter"}];
+  ACTIVITY_ENTITY_LANDSLIDE = 170104 [(varta.task.catalog.v1.enum_value) = {label: "Landslide"}];
+  ACTIVITY_ENTITY_SUBSIDENCE = 170105 [(varta.task.catalog.v1.enum_value) = {label: "Subsidence"}];
+  ACTIVITY_ENTITY_VOLCANIC_ERUPTION = 170106 [(varta.task.catalog.v1.enum_value) = {label: "Volcanic Eruption"}];
+  ACTIVITY_ENTITY_VOLCANIC_THREAT = 170107 [(varta.task.catalog.v1.enum_value) = {label: "Volcanic Threat"}];
+  ACTIVITY_ENTITY_CAVE_ENTRANCE = 170108 [(varta.task.catalog.v1.enum_value) = {label: "Cave Entrance"}];
+  ACTIVITY_ENTITY_HYDRO_METEOROLOGICAL = 170200 [(varta.task.catalog.v1.enum_value) = {label: "Hydro-meteorological"}];
+  ACTIVITY_ENTITY_DROUGHT = 170201 [(varta.task.catalog.v1.enum_value) = {label: "Drought"}];
+  ACTIVITY_ENTITY_FLOOD = 170202 [(varta.task.catalog.v1.enum_value) = {label: "Flood"}];
+  ACTIVITY_ENTITY_TSUNAMI = 170203 [(varta.task.catalog.v1.enum_value) = {label: "Tsunami"}];
+  ACTIVITY_ENTITY_INFESTATION = 170300 [(varta.task.catalog.v1.enum_value) = {label: "Infestation"}];
+  ACTIVITY_ENTITY_BIRD = 170301 [(varta.task.catalog.v1.enum_value) = {label: "Bird"}];
+  ACTIVITY_ENTITY_INSECT = 170302 [(varta.task.catalog.v1.enum_value) = {label: "Insect"}];
+  ACTIVITY_ENTITY_MICROBIAL = 170303 [(varta.task.catalog.v1.enum_value) = {label: "Microbial"}];
+  ACTIVITY_ENTITY_REPTILE = 170304 [(varta.task.catalog.v1.enum_value) = {label: "Reptile"}];
+  ACTIVITY_ENTITY_RODENT = 170305 [(varta.task.catalog.v1.enum_value) = {label: "Rodent"}];
+  ACTIVITY_ENTITY_ISOLATED_PERSONNEL = 180300 [(varta.task.catalog.v1.enum_value) = {label: "Isolated Personnel"}];
+}
+
+enum ActivityModifier1 {
+  ACTIVITY_MODIFIER1_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  ACTIVITY_MODIFIER1_ASSASSINATION = 1 [(varta.task.catalog.v1.enum_value) = {label: "Assassination"}];
+  ACTIVITY_MODIFIER1_EXECUTION_WRONGFUL_KILLING = 2 [(varta.task.catalog.v1.enum_value) = {label: "Execution (wrongful Killing)"}];
+  ACTIVITY_MODIFIER1_HIJACKING_HIJACKED = 3 [(varta.task.catalog.v1.enum_value) = {label: "Hijacking Hijacked"}];
+  ACTIVITY_MODIFIER1_HOUSE_TO_HOUSE = 4 [(varta.task.catalog.v1.enum_value) = {label: "House-to-house"}];
+  ACTIVITY_MODIFIER1_KIDNAPPING = 5 [(varta.task.catalog.v1.enum_value) = {label: "Kidnapping"}];
+  ACTIVITY_MODIFIER1_MURDER = 6 [(varta.task.catalog.v1.enum_value) = {label: "Murder"}];
+  ACTIVITY_MODIFIER1_PIRACY = 7 [(varta.task.catalog.v1.enum_value) = {label: "Piracy"}];
+  ACTIVITY_MODIFIER1_RAPE = 8 [(varta.task.catalog.v1.enum_value) = {label: "Rape"}];
+  ACTIVITY_MODIFIER1_WRITTEN_PSYCHOLOGICAL_OPERATIONS = 9 [(varta.task.catalog.v1.enum_value) = {label: "Written Psychological Operations"}];
+  ACTIVITY_MODIFIER1_PIRATE = 10 [(varta.task.catalog.v1.enum_value) = {label: "Pirate"}];
+  ACTIVITY_MODIFIER1_FALSE = 11 [(varta.task.catalog.v1.enum_value) = {label: "False"}];
+  ACTIVITY_MODIFIER1_FIND = 12 [(varta.task.catalog.v1.enum_value) = {label: "Find"}];
+  ACTIVITY_MODIFIER1_FOUND_AND_CLEARED = 13 [(varta.task.catalog.v1.enum_value) = {label: "Found And Cleared"}];
+  ACTIVITY_MODIFIER1_HOAX_DECOY = 14 [(varta.task.catalog.v1.enum_value) = {label: "Hoax (decoy)"}];
+  ACTIVITY_MODIFIER1_ATTEMPTED = 15 [(varta.task.catalog.v1.enum_value) = {label: "Attempted"}];
+  ACTIVITY_MODIFIER1_ACCIDENT = 16 [(varta.task.catalog.v1.enum_value) = {label: "Accident"}];
+  ACTIVITY_MODIFIER1_INCIDENT = 17 [(varta.task.catalog.v1.enum_value) = {label: "Incident"}];
+  ACTIVITY_MODIFIER1_THEFT = 18 [(varta.task.catalog.v1.enum_value) = {label: "Theft"}];
+  ACTIVITY_MODIFIER1_HIJACKER = 19 [(varta.task.catalog.v1.enum_value) = {label: "Hijacker"}];
+  ACTIVITY_MODIFIER1_CYBERSPACE = 20 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+  ACTIVITY_MODIFIER1_EVICTION = 21 [(varta.task.catalog.v1.enum_value) = {label: "Eviction"}];
+  ACTIVITY_MODIFIER1_RAID = 22 [(varta.task.catalog.v1.enum_value) = {label: "Raid"}];
+}
+
+enum ActivityModifier2 {
+  ACTIVITY_MODIFIER2_UNSPECIFIED = 0 [(varta.task.catalog.v1.enum_value) = {label: "Unspecified"}];
+  ACTIVITY_MODIFIER2_CYBERSPACE = 1 [(varta.task.catalog.v1.enum_value) = {label: "Cyberspace"}];
+  ACTIVITY_MODIFIER2_SECURITY_FORCE_ASSISTANCE = 2 [(varta.task.catalog.v1.enum_value) = {label: "Security Force Assistance"}];
+}
