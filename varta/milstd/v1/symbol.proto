@@ -19,6 +19,8 @@ import "varta/milstd/v1/space_missile.proto";
 import "varta/milstd/v1/subsurface.proto";
 import "varta/task/catalog/v1/task_definition.proto";
 
+option go_package = "github.com/vrtc2/varta-annotations/gen/go/varta/milstd/v1;milstdv1";
+
 // MIL-STD-2525D symbol definition.
 // The frontend assembles the full SIDC string from these fields plus
 // MilitaryView.disposition (which maps to SIDC Standard Identity, position 4).

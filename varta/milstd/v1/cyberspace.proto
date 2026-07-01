@@ -4,6 +4,8 @@ package varta.milstd.v1;
 
 import "varta/task/catalog/v1/task_definition.proto";
 
+option go_package = "github.com/vrtc2/varta-annotations/gen/go/varta/milstd/v1;milstdv1";
+
 message CyberspaceSymbol {
   CyberspaceEntity entity = 1 [(varta.task.catalog.v1.field) = {
     widget: WIDGET_ENUM

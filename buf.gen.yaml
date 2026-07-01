@@ -1,9 +1,9 @@
 version: v2
 managed:
   enabled: true
-  override:
-    - file_option: go_package_prefix
-      value: github.com/vrtc2/varta-annotations/gen/go
+  disable:
+    - file_option: go_package
+      module: buf.build/vrtc2/varta-annotations
 plugins:
   - remote: buf.build/protocolbuffers/go
     out: gen/go

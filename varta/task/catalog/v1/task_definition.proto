@@ -4,6 +4,8 @@ package varta.task.catalog.v1;
 
 import "google/protobuf/descriptor.proto";
 
+option go_package = "github.com/vrtc2/varta-annotations/gen/go/varta/task/catalog/v1;catalogv1";
+
 // Task annotations.
 //
 // Apply these options to your own protobuf messages, fields, oneofs and enum
