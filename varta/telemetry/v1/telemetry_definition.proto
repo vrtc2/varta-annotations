@@ -20,9 +20,21 @@ extend google.protobuf.MessageOptions {
   Telemetry telemetry = 71010;
 }
 
+// ValueFormat is a display hint for how Varta should render a field's value.
+// It is advisory: Varta ignores a format that does not apply to the field's
+// type (e.g. UTF8/HEX only affect `bytes`). When unspecified, each value is
+// rendered with the default for its type — in particular, bytes as base64.
+// New formats (JSON, timestamps, durations, ...) are added as enum values.
+enum ValueFormat {
+  VALUE_FORMAT_UNSPECIFIED = 0;
+  VALUE_FORMAT_UTF8 = 1;  // decode `bytes` as UTF-8 text
+  VALUE_FORMAT_HEX = 2;   // render `bytes` as a hex string
+}
+
 message TelemetryField {
   string name = 1;
   optional string description = 2;
+  ValueFormat format = 3;
 }
 
 extend google.protobuf.FieldOptions {

@@ -22,6 +22,60 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// ValueFormat is a display hint for how Varta should render a field's value.
+// It is advisory: Varta ignores a format that does not apply to the field's
+// type (e.g. UTF8/HEX only affect `bytes`). When unspecified, each value is
+// rendered with the default for its type — in particular, bytes as base64.
+// New formats (JSON, timestamps, durations, ...) are added as enum values.
+type ValueFormat int32
+
+const (
+	ValueFormat_VALUE_FORMAT_UNSPECIFIED ValueFormat = 0
+	ValueFormat_VALUE_FORMAT_UTF8        ValueFormat = 1 // decode `bytes` as UTF-8 text
+	ValueFormat_VALUE_FORMAT_HEX         ValueFormat = 2 // render `bytes` as a hex string
+)
+
+// Enum value maps for ValueFormat.
+var (
+	ValueFormat_name = map[int32]string{
+		0: "VALUE_FORMAT_UNSPECIFIED",
+		1: "VALUE_FORMAT_UTF8",
+		2: "VALUE_FORMAT_HEX",
+	}
+	ValueFormat_value = map[string]int32{
+		"VALUE_FORMAT_UNSPECIFIED": 0,
+		"VALUE_FORMAT_UTF8":        1,
+		"VALUE_FORMAT_HEX":         2,
+	}
+)
+
+func (x ValueFormat) Enum() *ValueFormat {
+	p := new(ValueFormat)
+	*p = x
+	return p
+}
+
+func (x ValueFormat) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ValueFormat) Descriptor() protoreflect.EnumDescriptor {
+	return file_varta_telemetry_v1_telemetry_definition_proto_enumTypes[0].Descriptor()
+}
+
+func (ValueFormat) Type() protoreflect.EnumType {
+	return &file_varta_telemetry_v1_telemetry_definition_proto_enumTypes[0]
+}
+
+func (x ValueFormat) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ValueFormat.Descriptor instead.
+func (ValueFormat) EnumDescriptor() ([]byte, []int) {
+	return file_varta_telemetry_v1_telemetry_definition_proto_rawDescGZIP(), []int{0}
+}
+
 type Telemetry struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -78,6 +132,7 @@ type TelemetryField struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Description   *string                `protobuf:"bytes,2,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	Format        ValueFormat            `protobuf:"varint,3,opt,name=format,proto3,enum=varta.telemetry.v1.ValueFormat" json:"format,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -124,6 +179,13 @@ func (x *TelemetryField) GetDescription() string {
 		return *x.Description
 	}
 	return ""
+}
+
+func (x *TelemetryField) GetFormat() ValueFormat {
+	if x != nil {
+		return x.Format
+	}
+	return ValueFormat_VALUE_FORMAT_UNSPECIFIED
 }
 
 type TelemetryEnumValue struct {
@@ -231,15 +293,20 @@ const file_varta_telemetry_v1_telemetry_definition_proto_rawDesc = "" +
 	"\tTelemetry\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12%\n" +
 	"\vdescription\x18\x02 \x01(\tH\x00R\vdescription\x88\x01\x01B\x0e\n" +
-	"\f_description\"[\n" +
+	"\f_description\"\x94\x01\n" +
 	"\x0eTelemetryField\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12%\n" +
-	"\vdescription\x18\x02 \x01(\tH\x00R\vdescription\x88\x01\x01B\x0e\n" +
+	"\vdescription\x18\x02 \x01(\tH\x00R\vdescription\x88\x01\x01\x127\n" +
+	"\x06format\x18\x03 \x01(\x0e2\x1f.varta.telemetry.v1.ValueFormatR\x06formatB\x0e\n" +
 	"\f_description\"a\n" +
 	"\x12TelemetryEnumValue\x12\x14\n" +
 	"\x05label\x18\x01 \x01(\tR\x05label\x12%\n" +
 	"\vdescription\x18\x02 \x01(\tH\x00R\vdescription\x88\x01\x01B\x0e\n" +
-	"\f_description:^\n" +
+	"\f_description*X\n" +
+	"\vValueFormat\x12\x1c\n" +
+	"\x18VALUE_FORMAT_UNSPECIFIED\x10\x00\x12\x15\n" +
+	"\x11VALUE_FORMAT_UTF8\x10\x01\x12\x14\n" +
+	"\x10VALUE_FORMAT_HEX\x10\x02:^\n" +
 	"\ttelemetry\x12\x1f.google.protobuf.MessageOptions\x18\xe2\xaa\x04 \x01(\v2\x1d.varta.telemetry.v1.TelemetryR\ttelemetry:Y\n" +
 	"\x05field\x12\x1d.google.protobuf.FieldOptions\x18\xec\xaa\x04 \x01(\v2\".varta.telemetry.v1.TelemetryFieldR\x05field:j\n" +
 	"\n" +
@@ -258,27 +325,30 @@ func file_varta_telemetry_v1_telemetry_definition_proto_rawDescGZIP() []byte {
 	return file_varta_telemetry_v1_telemetry_definition_proto_rawDescData
 }
 
+var file_varta_telemetry_v1_telemetry_definition_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_varta_telemetry_v1_telemetry_definition_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_varta_telemetry_v1_telemetry_definition_proto_goTypes = []any{
-	(*Telemetry)(nil),                     // 0: varta.telemetry.v1.Telemetry
-	(*TelemetryField)(nil),                // 1: varta.telemetry.v1.TelemetryField
-	(*TelemetryEnumValue)(nil),            // 2: varta.telemetry.v1.TelemetryEnumValue
-	(*descriptorpb.MessageOptions)(nil),   // 3: google.protobuf.MessageOptions
-	(*descriptorpb.FieldOptions)(nil),     // 4: google.protobuf.FieldOptions
-	(*descriptorpb.EnumValueOptions)(nil), // 5: google.protobuf.EnumValueOptions
+	(ValueFormat)(0),                      // 0: varta.telemetry.v1.ValueFormat
+	(*Telemetry)(nil),                     // 1: varta.telemetry.v1.Telemetry
+	(*TelemetryField)(nil),                // 2: varta.telemetry.v1.TelemetryField
+	(*TelemetryEnumValue)(nil),            // 3: varta.telemetry.v1.TelemetryEnumValue
+	(*descriptorpb.MessageOptions)(nil),   // 4: google.protobuf.MessageOptions
+	(*descriptorpb.FieldOptions)(nil),     // 5: google.protobuf.FieldOptions
+	(*descriptorpb.EnumValueOptions)(nil), // 6: google.protobuf.EnumValueOptions
 }
 var file_varta_telemetry_v1_telemetry_definition_proto_depIdxs = []int32{
-	3, // 0: varta.telemetry.v1.telemetry:extendee -> google.protobuf.MessageOptions
-	4, // 1: varta.telemetry.v1.field:extendee -> google.protobuf.FieldOptions
-	5, // 2: varta.telemetry.v1.enum_value:extendee -> google.protobuf.EnumValueOptions
-	0, // 3: varta.telemetry.v1.telemetry:type_name -> varta.telemetry.v1.Telemetry
-	1, // 4: varta.telemetry.v1.field:type_name -> varta.telemetry.v1.TelemetryField
-	2, // 5: varta.telemetry.v1.enum_value:type_name -> varta.telemetry.v1.TelemetryEnumValue
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	3, // [3:6] is the sub-list for extension type_name
-	0, // [0:3] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0, // 0: varta.telemetry.v1.TelemetryField.format:type_name -> varta.telemetry.v1.ValueFormat
+	4, // 1: varta.telemetry.v1.telemetry:extendee -> google.protobuf.MessageOptions
+	5, // 2: varta.telemetry.v1.field:extendee -> google.protobuf.FieldOptions
+	6, // 3: varta.telemetry.v1.enum_value:extendee -> google.protobuf.EnumValueOptions
+	1, // 4: varta.telemetry.v1.telemetry:type_name -> varta.telemetry.v1.Telemetry
+	2, // 5: varta.telemetry.v1.field:type_name -> varta.telemetry.v1.TelemetryField
+	3, // 6: varta.telemetry.v1.enum_value:type_name -> varta.telemetry.v1.TelemetryEnumValue
+	7, // [7:7] is the sub-list for method output_type
+	7, // [7:7] is the sub-list for method input_type
+	4, // [4:7] is the sub-list for extension type_name
+	1, // [1:4] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_varta_telemetry_v1_telemetry_definition_proto_init() }
@@ -294,13 +364,14 @@ func file_varta_telemetry_v1_telemetry_definition_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_varta_telemetry_v1_telemetry_definition_proto_rawDesc), len(file_varta_telemetry_v1_telemetry_definition_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   3,
 			NumExtensions: 3,
 			NumServices:   0,
 		},
 		GoTypes:           file_varta_telemetry_v1_telemetry_definition_proto_goTypes,
 		DependencyIndexes: file_varta_telemetry_v1_telemetry_definition_proto_depIdxs,
+		EnumInfos:         file_varta_telemetry_v1_telemetry_definition_proto_enumTypes,
 		MessageInfos:      file_varta_telemetry_v1_telemetry_definition_proto_msgTypes,
 		ExtensionInfos:    file_varta_telemetry_v1_telemetry_definition_proto_extTypes,
 	}.Build()
