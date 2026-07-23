@@ -39,6 +39,12 @@ const (
 	Widget_WIDGET_MAP_POINT      Widget = 10
 	Widget_WIDGET_WAYPOINTS      Widget = 11
 	Widget_WIDGET_WAYPOINTS_ITEM Widget = 12
+	// Color input with a picker. The field is a string holding a hex color
+	// ("#3b82f6").
+	Widget_WIDGET_COLOR Widget = 13
+	// Entity picker. The field is a string holding the chosen entity id; the
+	// offered entities are narrowed via EntityIdWidgetOptions.
+	Widget_WIDGET_ENTITY_ID Widget = 14
 )
 
 // Enum value maps for Widget.
@@ -57,6 +63,8 @@ var (
 		10: "WIDGET_MAP_POINT",
 		11: "WIDGET_WAYPOINTS",
 		12: "WIDGET_WAYPOINTS_ITEM",
+		13: "WIDGET_COLOR",
+		14: "WIDGET_ENTITY_ID",
 	}
 	Widget_value = map[string]int32{
 		"WIDGET_UNSPECIFIED":    0,
@@ -72,6 +80,8 @@ var (
 		"WIDGET_MAP_POINT":      10,
 		"WIDGET_WAYPOINTS":      11,
 		"WIDGET_WAYPOINTS_ITEM": 12,
+		"WIDGET_COLOR":          13,
+		"WIDGET_ENTITY_ID":      14,
 	}
 )
 
@@ -103,12 +113,21 @@ func (Widget) EnumDescriptor() ([]byte, []int) {
 }
 
 type FieldUI struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Widget        Widget                 `protobuf:"varint,1,opt,name=widget,proto3,enum=varta.task.catalog.v1.Widget" json:"widget,omitempty"`
-	Label         string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
-	Placeholder   string                 `protobuf:"bytes,3,opt,name=placeholder,proto3" json:"placeholder,omitempty"`
-	Required      bool                   `protobuf:"varint,4,opt,name=required,proto3" json:"required,omitempty"`
-	Hint          string                 `protobuf:"bytes,5,opt,name=hint,proto3" json:"hint,omitempty"`
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	Widget      Widget                 `protobuf:"varint,1,opt,name=widget,proto3,enum=varta.task.catalog.v1.Widget" json:"widget,omitempty"`
+	Label       string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
+	Placeholder string                 `protobuf:"bytes,3,opt,name=placeholder,proto3" json:"placeholder,omitempty"`
+	Required    bool                   `protobuf:"varint,4,opt,name=required,proto3" json:"required,omitempty"`
+	Hint        string                 `protobuf:"bytes,5,opt,name=hint,proto3" json:"hint,omitempty"`
+	// Per-widget options. Set the variant matching `widget`; widgets without
+	// options leave it unset.
+	//
+	// Types that are valid to be assigned to Options:
+	//
+	//	*FieldUI_EntityId
+	//	*FieldUI_Integer
+	//	*FieldUI_Float
+	Options       isFieldUI_Options `protobuf_oneof:"options"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -178,6 +197,223 @@ func (x *FieldUI) GetHint() string {
 	return ""
 }
 
+func (x *FieldUI) GetOptions() isFieldUI_Options {
+	if x != nil {
+		return x.Options
+	}
+	return nil
+}
+
+func (x *FieldUI) GetEntityId() *EntityIdWidgetOptions {
+	if x != nil {
+		if x, ok := x.Options.(*FieldUI_EntityId); ok {
+			return x.EntityId
+		}
+	}
+	return nil
+}
+
+func (x *FieldUI) GetInteger() *IntegerWidgetOptions {
+	if x != nil {
+		if x, ok := x.Options.(*FieldUI_Integer); ok {
+			return x.Integer
+		}
+	}
+	return nil
+}
+
+func (x *FieldUI) GetFloat() *FloatWidgetOptions {
+	if x != nil {
+		if x, ok := x.Options.(*FieldUI_Float); ok {
+			return x.Float
+		}
+	}
+	return nil
+}
+
+type isFieldUI_Options interface {
+	isFieldUI_Options()
+}
+
+type FieldUI_EntityId struct {
+	EntityId *EntityIdWidgetOptions `protobuf:"bytes,100,opt,name=entity_id,json=entityId,proto3,oneof"`
+}
+
+type FieldUI_Integer struct {
+	Integer *IntegerWidgetOptions `protobuf:"bytes,101,opt,name=integer,proto3,oneof"`
+}
+
+type FieldUI_Float struct {
+	Float *FloatWidgetOptions `protobuf:"bytes,102,opt,name=float,proto3,oneof"`
+}
+
+func (*FieldUI_EntityId) isFieldUI_Options() {}
+
+func (*FieldUI_Integer) isFieldUI_Options() {}
+
+func (*FieldUI_Float) isFieldUI_Options() {}
+
+// Options for WIDGET_ENTITY_ID.
+type EntityIdWidgetOptions struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// RE2 regexp the entity id must match to be offered (e.g. "^drone-").
+	// Empty matches every entity.
+	IdRegexp      string `protobuf:"bytes,1,opt,name=id_regexp,json=idRegexp,proto3" json:"id_regexp,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EntityIdWidgetOptions) Reset() {
+	*x = EntityIdWidgetOptions{}
+	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EntityIdWidgetOptions) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EntityIdWidgetOptions) ProtoMessage() {}
+
+func (x *EntityIdWidgetOptions) ProtoReflect() protoreflect.Message {
+	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EntityIdWidgetOptions.ProtoReflect.Descriptor instead.
+func (*EntityIdWidgetOptions) Descriptor() ([]byte, []int) {
+	return file_varta_task_catalog_v1_task_definition_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *EntityIdWidgetOptions) GetIdRegexp() string {
+	if x != nil {
+		return x.IdRegexp
+	}
+	return ""
+}
+
+// Options for WIDGET_INTEGER.
+type IntegerWidgetOptions struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Min           *int64                 `protobuf:"varint,1,opt,name=min,proto3,oneof" json:"min,omitempty"`
+	Max           *int64                 `protobuf:"varint,2,opt,name=max,proto3,oneof" json:"max,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IntegerWidgetOptions) Reset() {
+	*x = IntegerWidgetOptions{}
+	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IntegerWidgetOptions) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IntegerWidgetOptions) ProtoMessage() {}
+
+func (x *IntegerWidgetOptions) ProtoReflect() protoreflect.Message {
+	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IntegerWidgetOptions.ProtoReflect.Descriptor instead.
+func (*IntegerWidgetOptions) Descriptor() ([]byte, []int) {
+	return file_varta_task_catalog_v1_task_definition_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *IntegerWidgetOptions) GetMin() int64 {
+	if x != nil && x.Min != nil {
+		return *x.Min
+	}
+	return 0
+}
+
+func (x *IntegerWidgetOptions) GetMax() int64 {
+	if x != nil && x.Max != nil {
+		return *x.Max
+	}
+	return 0
+}
+
+// Options for WIDGET_FLOAT.
+type FloatWidgetOptions struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Min           *float64               `protobuf:"fixed64,1,opt,name=min,proto3,oneof" json:"min,omitempty"`
+	Max           *float64               `protobuf:"fixed64,2,opt,name=max,proto3,oneof" json:"max,omitempty"`
+	Step          *float64               `protobuf:"fixed64,3,opt,name=step,proto3,oneof" json:"step,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FloatWidgetOptions) Reset() {
+	*x = FloatWidgetOptions{}
+	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FloatWidgetOptions) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FloatWidgetOptions) ProtoMessage() {}
+
+func (x *FloatWidgetOptions) ProtoReflect() protoreflect.Message {
+	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FloatWidgetOptions.ProtoReflect.Descriptor instead.
+func (*FloatWidgetOptions) Descriptor() ([]byte, []int) {
+	return file_varta_task_catalog_v1_task_definition_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *FloatWidgetOptions) GetMin() float64 {
+	if x != nil && x.Min != nil {
+		return *x.Min
+	}
+	return 0
+}
+
+func (x *FloatWidgetOptions) GetMax() float64 {
+	if x != nil && x.Max != nil {
+		return *x.Max
+	}
+	return 0
+}
+
+func (x *FloatWidgetOptions) GetStep() float64 {
+	if x != nil && x.Step != nil {
+		return *x.Step
+	}
+	return 0
+}
+
 // Optionally extend message options to mark this message as a Task
 type TaskDefinition struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -191,7 +427,7 @@ type TaskDefinition struct {
 
 func (x *TaskDefinition) Reset() {
 	*x = TaskDefinition{}
-	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[1]
+	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -203,7 +439,7 @@ func (x *TaskDefinition) String() string {
 func (*TaskDefinition) ProtoMessage() {}
 
 func (x *TaskDefinition) ProtoReflect() protoreflect.Message {
-	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[1]
+	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -216,7 +452,7 @@ func (x *TaskDefinition) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TaskDefinition.ProtoReflect.Descriptor instead.
 func (*TaskDefinition) Descriptor() ([]byte, []int) {
-	return file_varta_task_catalog_v1_task_definition_proto_rawDescGZIP(), []int{1}
+	return file_varta_task_catalog_v1_task_definition_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *TaskDefinition) GetName() string {
@@ -257,7 +493,7 @@ type EnumValueUI struct {
 
 func (x *EnumValueUI) Reset() {
 	*x = EnumValueUI{}
-	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[2]
+	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -269,7 +505,7 @@ func (x *EnumValueUI) String() string {
 func (*EnumValueUI) ProtoMessage() {}
 
 func (x *EnumValueUI) ProtoReflect() protoreflect.Message {
-	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[2]
+	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -282,7 +518,7 @@ func (x *EnumValueUI) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnumValueUI.ProtoReflect.Descriptor instead.
 func (*EnumValueUI) Descriptor() ([]byte, []int) {
-	return file_varta_task_catalog_v1_task_definition_proto_rawDescGZIP(), []int{2}
+	return file_varta_task_catalog_v1_task_definition_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *EnumValueUI) GetLabel() string {
@@ -309,7 +545,7 @@ type OneofValueUI struct {
 
 func (x *OneofValueUI) Reset() {
 	*x = OneofValueUI{}
-	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[3]
+	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -321,7 +557,7 @@ func (x *OneofValueUI) String() string {
 func (*OneofValueUI) ProtoMessage() {}
 
 func (x *OneofValueUI) ProtoReflect() protoreflect.Message {
-	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[3]
+	mi := &file_varta_task_catalog_v1_task_definition_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -334,7 +570,7 @@ func (x *OneofValueUI) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OneofValueUI.ProtoReflect.Descriptor instead.
 func (*OneofValueUI) Descriptor() ([]byte, []int) {
-	return file_varta_task_catalog_v1_task_definition_proto_rawDescGZIP(), []int{3}
+	return file_varta_task_catalog_v1_task_definition_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *OneofValueUI) GetLabel() string {
@@ -424,13 +660,31 @@ var File_varta_task_catalog_v1_task_definition_proto protoreflect.FileDescriptor
 
 const file_varta_task_catalog_v1_task_definition_proto_rawDesc = "" +
 	"\n" +
-	"+varta/task/catalog/v1/task_definition.proto\x12\x15varta.task.catalog.v1\x1a google/protobuf/descriptor.proto\"\xa8\x01\n" +
+	"+varta/task/catalog/v1/task_definition.proto\x12\x15varta.task.catalog.v1\x1a google/protobuf/descriptor.proto\"\x8c\x03\n" +
 	"\aFieldUI\x125\n" +
 	"\x06widget\x18\x01 \x01(\x0e2\x1d.varta.task.catalog.v1.WidgetR\x06widget\x12\x14\n" +
 	"\x05label\x18\x02 \x01(\tR\x05label\x12 \n" +
 	"\vplaceholder\x18\x03 \x01(\tR\vplaceholder\x12\x1a\n" +
 	"\brequired\x18\x04 \x01(\bR\brequired\x12\x12\n" +
-	"\x04hint\x18\x05 \x01(\tR\x04hint\"v\n" +
+	"\x04hint\x18\x05 \x01(\tR\x04hint\x12K\n" +
+	"\tentity_id\x18d \x01(\v2,.varta.task.catalog.v1.EntityIdWidgetOptionsH\x00R\bentityId\x12G\n" +
+	"\ainteger\x18e \x01(\v2+.varta.task.catalog.v1.IntegerWidgetOptionsH\x00R\ainteger\x12A\n" +
+	"\x05float\x18f \x01(\v2).varta.task.catalog.v1.FloatWidgetOptionsH\x00R\x05floatB\t\n" +
+	"\aoptions\"4\n" +
+	"\x15EntityIdWidgetOptions\x12\x1b\n" +
+	"\tid_regexp\x18\x01 \x01(\tR\bidRegexp\"T\n" +
+	"\x14IntegerWidgetOptions\x12\x15\n" +
+	"\x03min\x18\x01 \x01(\x03H\x00R\x03min\x88\x01\x01\x12\x15\n" +
+	"\x03max\x18\x02 \x01(\x03H\x01R\x03max\x88\x01\x01B\x06\n" +
+	"\x04_minB\x06\n" +
+	"\x04_max\"t\n" +
+	"\x12FloatWidgetOptions\x12\x15\n" +
+	"\x03min\x18\x01 \x01(\x01H\x00R\x03min\x88\x01\x01\x12\x15\n" +
+	"\x03max\x18\x02 \x01(\x01H\x01R\x03max\x88\x01\x01\x12\x17\n" +
+	"\x04step\x18\x03 \x01(\x01H\x02R\x04step\x88\x01\x01B\x06\n" +
+	"\x04_minB\x06\n" +
+	"\x04_maxB\a\n" +
+	"\x05_step\"v\n" +
 	"\x0eTaskDefinition\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x1a\n" +
@@ -441,7 +695,7 @@ const file_varta_task_catalog_v1_task_definition_proto_rawDesc = "" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\"F\n" +
 	"\fOneofValueUI\x12\x14\n" +
 	"\x05label\x18\x01 \x01(\tR\x05label\x12 \n" +
-	"\vdescription\x18\x02 \x01(\tR\vdescription*\x96\x02\n" +
+	"\vdescription\x18\x02 \x01(\tR\vdescription*\xbe\x02\n" +
 	"\x06Widget\x12\x16\n" +
 	"\x12WIDGET_UNSPECIFIED\x10\x00\x12\x12\n" +
 	"\x0eWIDGET_INTEGER\x10\x01\x12\x10\n" +
@@ -456,7 +710,9 @@ const file_varta_task_catalog_v1_task_definition_proto_rawDesc = "" +
 	"\x10WIDGET_MAP_POINT\x10\n" +
 	"\x12\x14\n" +
 	"\x10WIDGET_WAYPOINTS\x10\v\x12\x19\n" +
-	"\x15WIDGET_WAYPOINTS_ITEM\x10\f:U\n" +
+	"\x15WIDGET_WAYPOINTS_ITEM\x10\f\x12\x10\n" +
+	"\fWIDGET_COLOR\x10\r\x12\x14\n" +
+	"\x10WIDGET_ENTITY_ID\x10\x0e:U\n" +
 	"\x05field\x12\x1d.google.protobuf.FieldOptions\x18գ\x04 \x01(\v2\x1e.varta.task.catalog.v1.FieldUIR\x05field:\\\n" +
 	"\x04task\x12\x1f.google.protobuf.MessageOptions\x18֣\x04 \x01(\v2%.varta.task.catalog.v1.TaskDefinitionR\x04task:f\n" +
 	"\n" +
@@ -480,35 +736,41 @@ func file_varta_task_catalog_v1_task_definition_proto_rawDescGZIP() []byte {
 }
 
 var file_varta_task_catalog_v1_task_definition_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_varta_task_catalog_v1_task_definition_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_varta_task_catalog_v1_task_definition_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_varta_task_catalog_v1_task_definition_proto_goTypes = []any{
 	(Widget)(0),                           // 0: varta.task.catalog.v1.Widget
 	(*FieldUI)(nil),                       // 1: varta.task.catalog.v1.FieldUI
-	(*TaskDefinition)(nil),                // 2: varta.task.catalog.v1.TaskDefinition
-	(*EnumValueUI)(nil),                   // 3: varta.task.catalog.v1.EnumValueUI
-	(*OneofValueUI)(nil),                  // 4: varta.task.catalog.v1.OneofValueUI
-	(*descriptorpb.FieldOptions)(nil),     // 5: google.protobuf.FieldOptions
-	(*descriptorpb.MessageOptions)(nil),   // 6: google.protobuf.MessageOptions
-	(*descriptorpb.EnumValueOptions)(nil), // 7: google.protobuf.EnumValueOptions
-	(*descriptorpb.OneofOptions)(nil),     // 8: google.protobuf.OneofOptions
+	(*EntityIdWidgetOptions)(nil),         // 2: varta.task.catalog.v1.EntityIdWidgetOptions
+	(*IntegerWidgetOptions)(nil),          // 3: varta.task.catalog.v1.IntegerWidgetOptions
+	(*FloatWidgetOptions)(nil),            // 4: varta.task.catalog.v1.FloatWidgetOptions
+	(*TaskDefinition)(nil),                // 5: varta.task.catalog.v1.TaskDefinition
+	(*EnumValueUI)(nil),                   // 6: varta.task.catalog.v1.EnumValueUI
+	(*OneofValueUI)(nil),                  // 7: varta.task.catalog.v1.OneofValueUI
+	(*descriptorpb.FieldOptions)(nil),     // 8: google.protobuf.FieldOptions
+	(*descriptorpb.MessageOptions)(nil),   // 9: google.protobuf.MessageOptions
+	(*descriptorpb.EnumValueOptions)(nil), // 10: google.protobuf.EnumValueOptions
+	(*descriptorpb.OneofOptions)(nil),     // 11: google.protobuf.OneofOptions
 }
 var file_varta_task_catalog_v1_task_definition_proto_depIdxs = []int32{
 	0,  // 0: varta.task.catalog.v1.FieldUI.widget:type_name -> varta.task.catalog.v1.Widget
-	5,  // 1: varta.task.catalog.v1.field:extendee -> google.protobuf.FieldOptions
-	6,  // 2: varta.task.catalog.v1.task:extendee -> google.protobuf.MessageOptions
-	7,  // 3: varta.task.catalog.v1.enum_value:extendee -> google.protobuf.EnumValueOptions
-	5,  // 4: varta.task.catalog.v1.oneof_value:extendee -> google.protobuf.FieldOptions
-	8,  // 5: varta.task.catalog.v1.oneof_field:extendee -> google.protobuf.OneofOptions
-	1,  // 6: varta.task.catalog.v1.field:type_name -> varta.task.catalog.v1.FieldUI
-	2,  // 7: varta.task.catalog.v1.task:type_name -> varta.task.catalog.v1.TaskDefinition
-	3,  // 8: varta.task.catalog.v1.enum_value:type_name -> varta.task.catalog.v1.EnumValueUI
-	4,  // 9: varta.task.catalog.v1.oneof_value:type_name -> varta.task.catalog.v1.OneofValueUI
-	1,  // 10: varta.task.catalog.v1.oneof_field:type_name -> varta.task.catalog.v1.FieldUI
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	6,  // [6:11] is the sub-list for extension type_name
-	1,  // [1:6] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	2,  // 1: varta.task.catalog.v1.FieldUI.entity_id:type_name -> varta.task.catalog.v1.EntityIdWidgetOptions
+	3,  // 2: varta.task.catalog.v1.FieldUI.integer:type_name -> varta.task.catalog.v1.IntegerWidgetOptions
+	4,  // 3: varta.task.catalog.v1.FieldUI.float:type_name -> varta.task.catalog.v1.FloatWidgetOptions
+	8,  // 4: varta.task.catalog.v1.field:extendee -> google.protobuf.FieldOptions
+	9,  // 5: varta.task.catalog.v1.task:extendee -> google.protobuf.MessageOptions
+	10, // 6: varta.task.catalog.v1.enum_value:extendee -> google.protobuf.EnumValueOptions
+	8,  // 7: varta.task.catalog.v1.oneof_value:extendee -> google.protobuf.FieldOptions
+	11, // 8: varta.task.catalog.v1.oneof_field:extendee -> google.protobuf.OneofOptions
+	1,  // 9: varta.task.catalog.v1.field:type_name -> varta.task.catalog.v1.FieldUI
+	5,  // 10: varta.task.catalog.v1.task:type_name -> varta.task.catalog.v1.TaskDefinition
+	6,  // 11: varta.task.catalog.v1.enum_value:type_name -> varta.task.catalog.v1.EnumValueUI
+	7,  // 12: varta.task.catalog.v1.oneof_value:type_name -> varta.task.catalog.v1.OneofValueUI
+	1,  // 13: varta.task.catalog.v1.oneof_field:type_name -> varta.task.catalog.v1.FieldUI
+	14, // [14:14] is the sub-list for method output_type
+	14, // [14:14] is the sub-list for method input_type
+	9,  // [9:14] is the sub-list for extension type_name
+	4,  // [4:9] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_varta_task_catalog_v1_task_definition_proto_init() }
@@ -516,13 +778,20 @@ func file_varta_task_catalog_v1_task_definition_proto_init() {
 	if File_varta_task_catalog_v1_task_definition_proto != nil {
 		return
 	}
+	file_varta_task_catalog_v1_task_definition_proto_msgTypes[0].OneofWrappers = []any{
+		(*FieldUI_EntityId)(nil),
+		(*FieldUI_Integer)(nil),
+		(*FieldUI_Float)(nil),
+	}
+	file_varta_task_catalog_v1_task_definition_proto_msgTypes[2].OneofWrappers = []any{}
+	file_varta_task_catalog_v1_task_definition_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_varta_task_catalog_v1_task_definition_proto_rawDesc), len(file_varta_task_catalog_v1_task_definition_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   4,
+			NumMessages:   7,
 			NumExtensions: 5,
 			NumServices:   0,
 		},

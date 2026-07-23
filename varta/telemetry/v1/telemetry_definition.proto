@@ -27,8 +27,8 @@ extend google.protobuf.MessageOptions {
 // New formats (JSON, timestamps, durations, ...) are added as enum values.
 enum ValueFormat {
   VALUE_FORMAT_UNSPECIFIED = 0;
-  VALUE_FORMAT_UTF8 = 1;  // decode `bytes` as UTF-8 text
-  VALUE_FORMAT_HEX = 2;   // render `bytes` as a hex string
+  VALUE_FORMAT_UTF8 = 1; // decode `bytes` as UTF-8 text
+  VALUE_FORMAT_HEX = 2; // render `bytes` as a hex string
 }
 
 message TelemetryField {

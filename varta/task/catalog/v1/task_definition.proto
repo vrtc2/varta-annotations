@@ -27,6 +27,12 @@ enum Widget {
   WIDGET_MAP_POINT = 10;
   WIDGET_WAYPOINTS = 11;
   WIDGET_WAYPOINTS_ITEM = 12;
+  // Color input with a picker. The field is a string holding a hex color
+  // ("#3b82f6").
+  WIDGET_COLOR = 13;
+  // Entity picker. The field is a string holding the chosen entity id; the
+  // offered entities are narrowed via EntityIdWidgetOptions.
+  WIDGET_ENTITY_ID = 14;
 }
 
 message FieldUI {
@@ -35,6 +41,34 @@ message FieldUI {
   string placeholder = 3;
   bool required = 4;
   string hint = 5;
+
+  // Per-widget options. Set the variant matching `widget`; widgets without
+  // options leave it unset.
+  oneof options {
+    EntityIdWidgetOptions entity_id = 100;
+    IntegerWidgetOptions integer = 101;
+    FloatWidgetOptions float = 102;
+  }
+}
+
+// Options for WIDGET_ENTITY_ID.
+message EntityIdWidgetOptions {
+  // RE2 regexp the entity id must match to be offered (e.g. "^drone-").
+  // Empty matches every entity.
+  string id_regexp = 1;
+}
+
+// Options for WIDGET_INTEGER.
+message IntegerWidgetOptions {
+  optional int64 min = 1;
+  optional int64 max = 2;
+}
+
+// Options for WIDGET_FLOAT.
+message FloatWidgetOptions {
+  optional double min = 1;
+  optional double max = 2;
+  optional double step = 3;
 }
 
 // Extend field options
