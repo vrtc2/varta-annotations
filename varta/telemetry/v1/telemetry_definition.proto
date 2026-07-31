@@ -31,10 +31,31 @@ enum ValueFormat {
   VALUE_FORMAT_HEX = 2; // render `bytes` as a hex string
 }
 
+// ColumnWidth is the width a field's column gets by default in Varta's
+// telemetry table. It is a coarse t-shirt scale, not pixels: the integration
+// says how much room the value needs (XS for a single number, XL for a long
+// string), Varta picks the actual size. Advisory — a width the user has resized
+// wins, and an unspecified width falls back to a default derived from the
+// field's type.
+enum ColumnWidth {
+  COLUMN_WIDTH_UNSPECIFIED = 0;
+  COLUMN_WIDTH_XS = 1; // a single short number, e.g. a count or a percentage
+  COLUMN_WIDTH_S = 2;
+  COLUMN_WIDTH_M = 3;
+  COLUMN_WIDTH_L = 4;
+  COLUMN_WIDTH_XL = 5; // long free text
+}
+
 message TelemetryField {
   string name = 1;
   optional string description = 2;
   ValueFormat format = 3;
+  ColumnWidth width = 4;
+
+  // Digits after the decimal point for a float/double field. Unset means Varta
+  // picks; 0 is a valid value and renders the number without a fraction.
+  // Ignored for non-floating-point fields.
+  optional uint32 decimal_places = 5;
 }
 
 extend google.protobuf.FieldOptions {

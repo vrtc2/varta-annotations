@@ -76,6 +76,70 @@ func (ValueFormat) EnumDescriptor() ([]byte, []int) {
 	return file_varta_telemetry_v1_telemetry_definition_proto_rawDescGZIP(), []int{0}
 }
 
+// ColumnWidth is the width a field's column gets by default in Varta's
+// telemetry table. It is a coarse t-shirt scale, not pixels: the integration
+// says how much room the value needs (XS for a single number, XL for a long
+// string), Varta picks the actual size. Advisory — a width the user has resized
+// wins, and an unspecified width falls back to a default derived from the
+// field's type.
+type ColumnWidth int32
+
+const (
+	ColumnWidth_COLUMN_WIDTH_UNSPECIFIED ColumnWidth = 0
+	ColumnWidth_COLUMN_WIDTH_XS          ColumnWidth = 1 // a single short number, e.g. a count or a percentage
+	ColumnWidth_COLUMN_WIDTH_S           ColumnWidth = 2
+	ColumnWidth_COLUMN_WIDTH_M           ColumnWidth = 3
+	ColumnWidth_COLUMN_WIDTH_L           ColumnWidth = 4
+	ColumnWidth_COLUMN_WIDTH_XL          ColumnWidth = 5 // long free text
+)
+
+// Enum value maps for ColumnWidth.
+var (
+	ColumnWidth_name = map[int32]string{
+		0: "COLUMN_WIDTH_UNSPECIFIED",
+		1: "COLUMN_WIDTH_XS",
+		2: "COLUMN_WIDTH_S",
+		3: "COLUMN_WIDTH_M",
+		4: "COLUMN_WIDTH_L",
+		5: "COLUMN_WIDTH_XL",
+	}
+	ColumnWidth_value = map[string]int32{
+		"COLUMN_WIDTH_UNSPECIFIED": 0,
+		"COLUMN_WIDTH_XS":          1,
+		"COLUMN_WIDTH_S":           2,
+		"COLUMN_WIDTH_M":           3,
+		"COLUMN_WIDTH_L":           4,
+		"COLUMN_WIDTH_XL":          5,
+	}
+)
+
+func (x ColumnWidth) Enum() *ColumnWidth {
+	p := new(ColumnWidth)
+	*p = x
+	return p
+}
+
+func (x ColumnWidth) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ColumnWidth) Descriptor() protoreflect.EnumDescriptor {
+	return file_varta_telemetry_v1_telemetry_definition_proto_enumTypes[1].Descriptor()
+}
+
+func (ColumnWidth) Type() protoreflect.EnumType {
+	return &file_varta_telemetry_v1_telemetry_definition_proto_enumTypes[1]
+}
+
+func (x ColumnWidth) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ColumnWidth.Descriptor instead.
+func (ColumnWidth) EnumDescriptor() ([]byte, []int) {
+	return file_varta_telemetry_v1_telemetry_definition_proto_rawDescGZIP(), []int{1}
+}
+
 type Telemetry struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -129,10 +193,15 @@ func (x *Telemetry) GetDescription() string {
 }
 
 type TelemetryField struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Description   *string                `protobuf:"bytes,2,opt,name=description,proto3,oneof" json:"description,omitempty"`
-	Format        ValueFormat            `protobuf:"varint,3,opt,name=format,proto3,enum=varta.telemetry.v1.ValueFormat" json:"format,omitempty"`
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	Name        string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Description *string                `protobuf:"bytes,2,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	Format      ValueFormat            `protobuf:"varint,3,opt,name=format,proto3,enum=varta.telemetry.v1.ValueFormat" json:"format,omitempty"`
+	Width       ColumnWidth            `protobuf:"varint,4,opt,name=width,proto3,enum=varta.telemetry.v1.ColumnWidth" json:"width,omitempty"`
+	// Digits after the decimal point for a float/double field. Unset means Varta
+	// picks; 0 is a valid value and renders the number without a fraction.
+	// Ignored for non-floating-point fields.
+	DecimalPlaces *uint32 `protobuf:"varint,5,opt,name=decimal_places,json=decimalPlaces,proto3,oneof" json:"decimal_places,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -186,6 +255,20 @@ func (x *TelemetryField) GetFormat() ValueFormat {
 		return x.Format
 	}
 	return ValueFormat_VALUE_FORMAT_UNSPECIFIED
+}
+
+func (x *TelemetryField) GetWidth() ColumnWidth {
+	if x != nil {
+		return x.Width
+	}
+	return ColumnWidth_COLUMN_WIDTH_UNSPECIFIED
+}
+
+func (x *TelemetryField) GetDecimalPlaces() uint32 {
+	if x != nil && x.DecimalPlaces != nil {
+		return *x.DecimalPlaces
+	}
+	return 0
 }
 
 type TelemetryEnumValue struct {
@@ -293,12 +376,15 @@ const file_varta_telemetry_v1_telemetry_definition_proto_rawDesc = "" +
 	"\tTelemetry\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12%\n" +
 	"\vdescription\x18\x02 \x01(\tH\x00R\vdescription\x88\x01\x01B\x0e\n" +
-	"\f_description\"\x94\x01\n" +
+	"\f_description\"\x8a\x02\n" +
 	"\x0eTelemetryField\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12%\n" +
 	"\vdescription\x18\x02 \x01(\tH\x00R\vdescription\x88\x01\x01\x127\n" +
-	"\x06format\x18\x03 \x01(\x0e2\x1f.varta.telemetry.v1.ValueFormatR\x06formatB\x0e\n" +
-	"\f_description\"a\n" +
+	"\x06format\x18\x03 \x01(\x0e2\x1f.varta.telemetry.v1.ValueFormatR\x06format\x125\n" +
+	"\x05width\x18\x04 \x01(\x0e2\x1f.varta.telemetry.v1.ColumnWidthR\x05width\x12*\n" +
+	"\x0edecimal_places\x18\x05 \x01(\rH\x01R\rdecimalPlaces\x88\x01\x01B\x0e\n" +
+	"\f_descriptionB\x11\n" +
+	"\x0f_decimal_places\"a\n" +
 	"\x12TelemetryEnumValue\x12\x14\n" +
 	"\x05label\x18\x01 \x01(\tR\x05label\x12%\n" +
 	"\vdescription\x18\x02 \x01(\tH\x00R\vdescription\x88\x01\x01B\x0e\n" +
@@ -306,7 +392,14 @@ const file_varta_telemetry_v1_telemetry_definition_proto_rawDesc = "" +
 	"\vValueFormat\x12\x1c\n" +
 	"\x18VALUE_FORMAT_UNSPECIFIED\x10\x00\x12\x15\n" +
 	"\x11VALUE_FORMAT_UTF8\x10\x01\x12\x14\n" +
-	"\x10VALUE_FORMAT_HEX\x10\x02:^\n" +
+	"\x10VALUE_FORMAT_HEX\x10\x02*\x91\x01\n" +
+	"\vColumnWidth\x12\x1c\n" +
+	"\x18COLUMN_WIDTH_UNSPECIFIED\x10\x00\x12\x13\n" +
+	"\x0fCOLUMN_WIDTH_XS\x10\x01\x12\x12\n" +
+	"\x0eCOLUMN_WIDTH_S\x10\x02\x12\x12\n" +
+	"\x0eCOLUMN_WIDTH_M\x10\x03\x12\x12\n" +
+	"\x0eCOLUMN_WIDTH_L\x10\x04\x12\x13\n" +
+	"\x0fCOLUMN_WIDTH_XL\x10\x05:^\n" +
 	"\ttelemetry\x12\x1f.google.protobuf.MessageOptions\x18\xe2\xaa\x04 \x01(\v2\x1d.varta.telemetry.v1.TelemetryR\ttelemetry:Y\n" +
 	"\x05field\x12\x1d.google.protobuf.FieldOptions\x18\xec\xaa\x04 \x01(\v2\".varta.telemetry.v1.TelemetryFieldR\x05field:j\n" +
 	"\n" +
@@ -325,30 +418,32 @@ func file_varta_telemetry_v1_telemetry_definition_proto_rawDescGZIP() []byte {
 	return file_varta_telemetry_v1_telemetry_definition_proto_rawDescData
 }
 
-var file_varta_telemetry_v1_telemetry_definition_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_varta_telemetry_v1_telemetry_definition_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_varta_telemetry_v1_telemetry_definition_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_varta_telemetry_v1_telemetry_definition_proto_goTypes = []any{
 	(ValueFormat)(0),                      // 0: varta.telemetry.v1.ValueFormat
-	(*Telemetry)(nil),                     // 1: varta.telemetry.v1.Telemetry
-	(*TelemetryField)(nil),                // 2: varta.telemetry.v1.TelemetryField
-	(*TelemetryEnumValue)(nil),            // 3: varta.telemetry.v1.TelemetryEnumValue
-	(*descriptorpb.MessageOptions)(nil),   // 4: google.protobuf.MessageOptions
-	(*descriptorpb.FieldOptions)(nil),     // 5: google.protobuf.FieldOptions
-	(*descriptorpb.EnumValueOptions)(nil), // 6: google.protobuf.EnumValueOptions
+	(ColumnWidth)(0),                      // 1: varta.telemetry.v1.ColumnWidth
+	(*Telemetry)(nil),                     // 2: varta.telemetry.v1.Telemetry
+	(*TelemetryField)(nil),                // 3: varta.telemetry.v1.TelemetryField
+	(*TelemetryEnumValue)(nil),            // 4: varta.telemetry.v1.TelemetryEnumValue
+	(*descriptorpb.MessageOptions)(nil),   // 5: google.protobuf.MessageOptions
+	(*descriptorpb.FieldOptions)(nil),     // 6: google.protobuf.FieldOptions
+	(*descriptorpb.EnumValueOptions)(nil), // 7: google.protobuf.EnumValueOptions
 }
 var file_varta_telemetry_v1_telemetry_definition_proto_depIdxs = []int32{
 	0, // 0: varta.telemetry.v1.TelemetryField.format:type_name -> varta.telemetry.v1.ValueFormat
-	4, // 1: varta.telemetry.v1.telemetry:extendee -> google.protobuf.MessageOptions
-	5, // 2: varta.telemetry.v1.field:extendee -> google.protobuf.FieldOptions
-	6, // 3: varta.telemetry.v1.enum_value:extendee -> google.protobuf.EnumValueOptions
-	1, // 4: varta.telemetry.v1.telemetry:type_name -> varta.telemetry.v1.Telemetry
-	2, // 5: varta.telemetry.v1.field:type_name -> varta.telemetry.v1.TelemetryField
-	3, // 6: varta.telemetry.v1.enum_value:type_name -> varta.telemetry.v1.TelemetryEnumValue
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	4, // [4:7] is the sub-list for extension type_name
-	1, // [1:4] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	1, // 1: varta.telemetry.v1.TelemetryField.width:type_name -> varta.telemetry.v1.ColumnWidth
+	5, // 2: varta.telemetry.v1.telemetry:extendee -> google.protobuf.MessageOptions
+	6, // 3: varta.telemetry.v1.field:extendee -> google.protobuf.FieldOptions
+	7, // 4: varta.telemetry.v1.enum_value:extendee -> google.protobuf.EnumValueOptions
+	2, // 5: varta.telemetry.v1.telemetry:type_name -> varta.telemetry.v1.Telemetry
+	3, // 6: varta.telemetry.v1.field:type_name -> varta.telemetry.v1.TelemetryField
+	4, // 7: varta.telemetry.v1.enum_value:type_name -> varta.telemetry.v1.TelemetryEnumValue
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	5, // [5:8] is the sub-list for extension type_name
+	2, // [2:5] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_varta_telemetry_v1_telemetry_definition_proto_init() }
@@ -364,7 +459,7 @@ func file_varta_telemetry_v1_telemetry_definition_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_varta_telemetry_v1_telemetry_definition_proto_rawDesc), len(file_varta_telemetry_v1_telemetry_definition_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      2,
 			NumMessages:   3,
 			NumExtensions: 3,
 			NumServices:   0,
