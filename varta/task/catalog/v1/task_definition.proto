@@ -57,6 +57,19 @@ message EntityIdWidgetOptions {
   // RE2 regexp the entity id must match to be offered (e.g. "^drone-").
   // Empty matches every entity.
   string id_regexp = 1;
+  // Narrows candidates relative to the entity the form was opened on; AND-ed
+  // with id_regexp. A form opened without an entity offers nothing for a
+  // scope other than UNSPECIFIED.
+  EntityIdScope scope = 2;
+}
+
+enum EntityIdScope {
+  // Every entity the user can see.
+  ENTITY_ID_SCOPE_UNSPECIFIED = 0;
+  // Entities whose parent is the context entity.
+  ENTITY_ID_SCOPE_CONTEXT_CHILDREN = 1;
+  // Entities with the context entity anywhere in their parent chain.
+  ENTITY_ID_SCOPE_CONTEXT_DESCENDANTS = 2;
 }
 
 // Options for WIDGET_INTEGER.

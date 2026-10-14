@@ -3,11 +3,13 @@ name: Buf
 on:
   push:
     branches: [main]
+    tags: ["v*"]
   pull_request:
     branches: [main]
 
 permissions:
   contents: read
+  pull-requests: write # buf-action posts a summary comment on the PR
 
 jobs:
   buf:
@@ -17,6 +19,6 @@ jobs:
       - uses: bufbuild/buf-action@v1
         with:
           token: ${{ secrets.BUF_TOKEN }}
-          # PRs: format + lint + breaking-change detection (against BSR), no push.
-          # Push to main: same checks, then publish to the BSR.
-          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+          # PRs and pushes to main: format + lint + breaking-change detection, no push.
+          # Push of a v* tag: same checks, then publish to the BSR.
+          push: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') }}
