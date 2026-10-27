@@ -42,6 +42,10 @@ message FieldUI {
   bool required = 4;
   string hint = 5;
 
+  // Where the field sits in the form. Unset: on a line of its own, one under
+  // another in the order of the message, as forms without layout are drawn.
+  FieldLayout layout = 6;
+
   // Per-widget options. Set the variant matching `widget`; widgets without
   // options leave it unset.
   oneof options {
@@ -50,6 +54,42 @@ message FieldUI {
     FloatWidgetOptions float = 102;
     TextWidgetOptions text = 103;
   }
+}
+
+// FieldLayout places a field in the form: in a section, beside the other
+// fields of its row, with a share of the row's width. The order of fields is
+// the order of the message, so a renderer that ignores layout still draws them
+// in a sensible order, one under another.
+message FieldLayout {
+  // Id of the section the field is in, like "where". The fields of a section
+  // are adjacent in the message; fields without a section come before every
+  // section, without a heading.
+  string section = 1;
+
+  // The section's heading. Set on the section's first field; the others leave
+  // it empty.
+  string section_title = 2;
+
+  // Id of the field's row, like "r2". Adjacent fields of a section with the
+  // same row share a line; empty means a line of its own. A row that does not
+  // fit the form's width is drawn as a column, its fields one under another.
+  string row = 3;
+
+  // The field's share of its row's width, relative to the other fields in it.
+  // Unset means 1.
+  optional uint32 weight = 4;
+
+  // How tall a big widget is drawn: a map, a route, a multiline text. Other
+  // widgets have one height and ignore it.
+  FieldHeight height = 5;
+}
+
+enum FieldHeight {
+  // The widget's own.
+  FIELD_HEIGHT_UNSPECIFIED = 0;
+  FIELD_HEIGHT_SMALL = 1;
+  FIELD_HEIGHT_MEDIUM = 2;
+  FIELD_HEIGHT_LARGE = 3;
 }
 
 // Options for WIDGET_ENTITY_ID.

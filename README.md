@@ -10,7 +10,7 @@ Published to the Buf Schema Registry as **`buf.build/vrtc2/varta-annotations`**.
 
 | File | Package | Purpose |
 |------|---------|---------|
-| `varta/task/catalog/v1/task_definition.proto` | `varta.task.catalog.v1` | Annotate a message as a **task** and describe its input form (`task`, `field`, `enum_value`, `oneof_value`, `oneof_field`). |
+| `varta/task/catalog/v1/task_definition.proto` | `varta.task.catalog.v1` | Annotate a message as a **task** and describe its input form (`task`, `field` with its place in the form — `layout`, `enum_value`, `oneof_value`, `oneof_field`). |
 | `varta/telemetry/v1/telemetry_definition.proto` | `varta.telemetry.v1` | Annotate a message as **telemetry** and label its fields/enum values (`telemetry`, `field`, `enum_value`). |
 
 These files only depend on `google/protobuf/descriptor.proto`.
